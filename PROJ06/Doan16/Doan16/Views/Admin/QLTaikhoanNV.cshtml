@@ -1,0 +1,62 @@
+﻿@model List<Doan16.Models.TaiKhoan>
+@{
+    ViewBag.Title = "QLTaikhoanNV";
+}
+
+<h2>QUẢN LÝ TÀI KHOẢN NHÂN VIÊN</h2>
+<table class="table" border="1">
+    <tr>
+        <th style="width:200px">
+            Tên đăng nhập
+        </th>
+        <th style="width:100px">
+            Mật khẩu
+        </th>
+        <th style="width:100px">
+            Số điện thoại
+        </th>
+        <th style="width:120px">
+            Địa chỉ
+        </th>
+        @*<th style="width:120px">
+            Phân quyền
+        </th>*@
+        @*<th style="width:200px">
+                @Html.DisplayNameFor(model => model.First().solanxem)
+            </th>
+            <th style="width:200px">
+                @Html.DisplayNameFor(model => model.First().moi)
+            </th>*@
+        <th style="width:120px">Phê duyệt</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenDangNhap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MatKhau)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SDT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                <input type="button" name="duyet" value="Duyệt" /> <input type="button" name="Huy" value="Hủy" />
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.solanxem)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.moi)
+                </td>*@
+
+        </tr>
+    }
+</table>
+
+

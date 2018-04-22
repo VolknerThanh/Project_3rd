@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "DangKy";
+}
+
+<table align="center">
+    <h2 style="text-align:center">ĐĂNG KÝ THÀNH VIÊN</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <tr style="height:40px">
+            <td> Họ tên khách hàng:</td>
+            <td>
+                @Html.TextBox("Hoten")
+            @ViewData["Loi1"]
+        </td>
+        </tr>
+        <tr style="height:40px">
+            <td> Tên đăng nhập:</td>
+            <td>
+                @Html.TextBox("TenDN")
+            @ViewData["Loi2"]
+        </td>
+        </tr>
+        <tr style="height:40px">
+            <td> Mật khẩu:</td>
+            <td>
+                @Html.Password("Matkhau")
+            @ViewData["Loi3"]
+        </td>
+        </tr>
+        <tr style="height:40px">
+            <td> Mật khẩu nhập lại:</td>
+            <td>
+                @Html.Password("Matkhaunhaplai")
+            @ViewData["Loi4"]
+        </td>
+        </tr>
+        <tr style="height:40px">
+            <td> Địa chỉ:</td>
+            <td>
+                @Html.TextBox("Diachi")
+            @ViewData["Loi5"]
+        </td>
+        </tr>
+        <tr style="height:40px">
+            <td> Email:</td>
+            <td>
+                @Html.TextBox("Email")
+            @ViewData["Loi6"]
+        </td>
+        </tr>
+        <tr style="height:40px">
+            <td> Điện thoại:</td>
+            <td>
+                @Html.TextBox("Dienthoai")
+            @ViewData["Loi7"]
+        </td>
+        </tr>
+        <tr style="height:40px">
+            <td> Giới tính:</td>
+            <td>
+                Nam @Html.RadioButton("Gioitinh", true, true) Nữ @Html.RadioButton("Gioitinh", false)
+                @ViewData["Loi8"]
+            </td>
+        </tr>
+        <tr style="height:40px">
+            <td> Ngày sinh:</td>
+            <td>
+                <input type="date" name="Ngaysinh" />
+            </td>
+        </tr>
+        <tr style="height:40px">
+            <td></td>
+            <td>
+                <input type="submit" value="Đăng ký" />
+            </td>
+        </tr>
+}
+</table>
+
