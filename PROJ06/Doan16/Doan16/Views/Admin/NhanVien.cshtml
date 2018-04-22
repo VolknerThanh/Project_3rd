@@ -1,9 +1,14 @@
 ﻿@model List<Doan16.Models.TaiKhoan>
+
 @{
-    ViewBag.Title = "QLTaikhoanNV";
+    ViewBag.Title = "NhanVien";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+
+
 <h2>QUẢN LÝ TÀI KHOẢN NHÂN VIÊN</h2>
+
 <table class="table" border="1">
     <tr>
         <th style="width:200px">
@@ -18,15 +23,7 @@
         <th style="width:120px">
             Địa chỉ
         </th>
-        @*<th style="width:120px">
-            Phân quyền
-        </th>*@
-        @*<th style="width:200px">
-                @Html.DisplayNameFor(model => model.First().solanxem)
-            </th>
-            <th style="width:200px">
-                @Html.DisplayNameFor(model => model.First().moi)
-            </th>*@
+
         <th style="width:120px">Phê duyệt</th>
     </tr>
 
@@ -58,5 +55,9 @@
         </tr>
     }
 </table>
+
+
+
+
 
 

@@ -10,17 +10,18 @@ namespace Doan16.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
-        public ActionResult Index()
+        
+        public ActionResult KhachHang()
         {
-            var iplKhach = new TaikhoankhachModel();
-            var model = iplKhach.ListAll();
+            var khachhang = new TaikhoankhachModel();
+            var model = khachhang.ListAll();
             return View(model);
         }
 
-        public ActionResult QLTaikhoanNV()
+        public ActionResult NhanVien()
         {
-            var iplNV = new NhanVienModel();
-            var model = iplNV.ListAll();
+            var nhanvien = new NhanVienModel();
+            var model = nhanvien.ListAll();
             return View(model);
         }
 

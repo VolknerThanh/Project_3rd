@@ -221,8 +221,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\KhachHang\DangKy.cshtml" />
     <Content Include="Views\KhachHang\DangNhap.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\QLTaikhoanNV.cshtml" />
+    <Content Include="Views\Admin\NhanVien.cshtml" />
+    <Content Include="Views\Admin\KhachHang.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Shared\_LayoutUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,9 +1,10 @@
 ﻿@model List<Doan16.Models.KhachHang>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "KhachHang";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2> QUẢN LÝ THÔNG TÀI KHOẢN</h2>
+<h2> QUẢN LÝ THÔNG TÀI KHOẢN KHÁCH HÀNG</h2>
 
 <table class="table" border="1">
     <tr>
@@ -25,12 +26,6 @@
         <th style="width:120px">
             Số điện thoại
         </th>
-        @*<th style="width:200px">
-                @Html.DisplayNameFor(model => model.First().solanxem)
-            </th>
-            <th style="width:200px">
-                @Html.DisplayNameFor(model => model.First().moi)
-            </th>*@
         <th style="width:120px">Phê duyệt</th>
     </tr>
 
