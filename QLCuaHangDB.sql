@@ -149,16 +149,17 @@ create table ChiTietPhieuGiaoHang(
 /* --------------------------------------------------- TẠO CƠ SỞ DỮ LIỆU -------------------------------------------------------------*/
 /*----- Nhà Cung Ứng --------*/
 set identity_insert NhaCungUng ON
-set identity_insert NhaCungUng OFF
+
 insert into NhaCungUng (id_NhaCungUng, TenNhaCungUng, DiaChi, SDT) values (1, 'Ruthy Flaherty', '6513 Artisan Trail', '1115709975');
 insert into NhaCungUng (id_NhaCungUng, TenNhaCungUng, DiaChi, SDT) values (2, 'Ethelin Comrie', '46289 Waxwing Place', '8467683557');
 insert into NhaCungUng (id_NhaCungUng, TenNhaCungUng, DiaChi, SDT) values (3, 'Johnath Estable', '9 Victoria Circle', '5024385868');
 insert into NhaCungUng (id_NhaCungUng, TenNhaCungUng, DiaChi, SDT) values (4, 'Jojo Simoneschi', '421 Oneill Way', '8982943902');
 insert into NhaCungUng (id_NhaCungUng, TenNhaCungUng, DiaChi, SDT) values (5, 'Vidovic Kendal', '65466 Tennessee Drive', '4417341951');
+set identity_insert NhaCungUng OFF
 
 /*------ Loại Nước giải khát ---------*/
 set identity_insert LoaiNGK ON
-set identity_insert LoaiNGK OFF
+
 insert into LoaiNGK (id_LoaiNGK, TenLoaiNGK, NhaCungUng) values (1, 'Networked', 5);
 insert into LoaiNGK (id_LoaiNGK, TenLoaiNGK, NhaCungUng) values (2, 'eco-centric', 4);
 insert into LoaiNGK (id_LoaiNGK, TenLoaiNGK, NhaCungUng) values (3, 'Profound', 5);
@@ -169,10 +170,11 @@ insert into LoaiNGK (id_LoaiNGK, TenLoaiNGK, NhaCungUng) values (7, '6th generat
 insert into LoaiNGK (id_LoaiNGK, TenLoaiNGK, NhaCungUng) values (8, 'Virtual', 5);
 insert into LoaiNGK (id_LoaiNGK, TenLoaiNGK, NhaCungUng) values (9, 'zero tolerance', 5);
 insert into LoaiNGK (id_LoaiNGK, TenLoaiNGK, NhaCungUng) values (10, 'task-force', 2);
+set identity_insert LoaiNGK OFF
 
 /*------- Nước giải khát ------*/
 set identity_insert NuocGK ON
-set identity_insert NuocGK OFF
+
 insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (1, 'Decentralized', 14000, 9, 14, 'mission-critical');
 insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (2, 'Compatible', 19000, 7, 7, 'secured line');
 insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (3, 'secondary', 30000, 2, 77, 'Secured');
@@ -203,10 +205,10 @@ insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh)
 insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (28, 'standardization', 10000, 5, 52, 'optimizing');
 insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (29, 'budgetary management', 9000, 6, 32, 'algorithm');
 insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (30, 'groupware', 8000, 8, 4, 'user-facing');
+set identity_insert NuocGK OFF
 
 /*------- Khách hàng ----*/
 set identity_insert KhachHang ON
-set identity_insert KhachHang OFF
 
 insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (1, 'Myrilla Cockrill', '9 Burrows Hill', '412-190-7625', 55000, 1);
 insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (2, 'Merla Bewley', '6605 Armistice Park', '912-706-5754', 645000, 0);
@@ -228,3 +230,49 @@ insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienCo
 insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (18, 'Jana Gravatt', '371 Ridgeview Crossing', '195-352-8441', 0, 0);
 insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (19, 'Vally Mileham', '2 Mayfield Trail', '280-695-6027', 653000, 0);
 insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (20, 'Yovonnda Caulton', '4277 Schmedeman Alley', '837-682-1990', 467000, 0);
+set identity_insert KhachHang OFF
+
+/*--------Hóa đơn ------*/
+set identity_insert HoaDon ON
+
+set identity_insert HoaDon OFF
+
+/*-------- Chi tiết hóa đơn ------*/
+set identity_insert ChiTietHoaDon ON
+
+set identity_insert ChiTietHoaDon OFF
+
+/*--------Phiếu hẹn ------*/
+set identity_insert PhieuHen ON
+
+set identity_insert PhieuHen OFF
+
+/*--------Chi tiết phiếu hẹn ------*/
+set identity_insert ChiTietPhieuHen ON
+
+set identity_insert ChiTietPhieuHen OFF
+
+/*-------- Phiếu trả nợ ----*/
+set identity_insert PhieuTraNo ON
+
+set identity_insert PhieuTraNo OFF
+
+/*--------- Đơn đặt hàng ----*/
+set identity_insert DonDatHang ON
+
+set identity_insert DonDatHang OFF
+
+/*----- Chi tiết đơn đặt hàng ------*/
+set identity_insert ChiTietDonDatHang ON
+
+set identity_insert ChiTietDonDatHang OFF
+
+/*------ Phiếu giao hàng ----*/
+set identity_insert PhieuGiaoHang ON
+
+set identity_insert PhieuGiaoHang OFF
+
+/*------ Chi tiết phiếu giao hàng ---*/
+set identity_insert ChiTietPhieuGiaoHang ON
+
+set identity_insert ChiTietPhieuGiaoHang OFF
