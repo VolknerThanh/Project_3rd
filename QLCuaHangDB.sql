@@ -1,4 +1,4 @@
-use master if exists (select * from sysdatabases where name = 'QLCuaHangDB') drop database QLCuaHangDB
+﻿use master if exists (select * from sysdatabases where name = 'QLCuaHangDB') drop database QLCuaHangDB
 go
 create database QLCuaHangDB
 go
@@ -44,6 +44,8 @@ create table NuocGK(
 
 	foreign key (nhanhieuNGK) references LoaiNGK(id_LoaiNGK)
 )
+alter table NuocGK alter column hinhanh varchar(200)
+
 go
 create table KhachHang(
 	id_KhachHang int identity primary key,
@@ -53,6 +55,7 @@ create table KhachHang(
 	SoTienConNo int,
 	daDangKy bit
 )
+
 go
 create table HoaDon(
 	id_HoaDon int identity primary key,
@@ -141,3 +144,87 @@ create table ChiTietPhieuGiaoHang(
 	foreign key (id_PhieuGiao) references PhieuGiaoHang(id_PhieuGiao),
 	foreign key (id_NuocGK) references NuocGK(id_NuocGK)
 )
+
+/*=====================================================================================================================================*/
+/* --------------------------------------------------- TẠO CƠ SỞ DỮ LIỆU -------------------------------------------------------------*/
+/*----- Nhà Cung Ứng --------*/
+set identity_insert NhaCungUng ON
+set identity_insert NhaCungUng OFF
+insert into NhaCungUng (id_NhaCungUng, TenNhaCungUng, DiaChi, SDT) values (1, 'Ruthy Flaherty', '6513 Artisan Trail', '1115709975');
+insert into NhaCungUng (id_NhaCungUng, TenNhaCungUng, DiaChi, SDT) values (2, 'Ethelin Comrie', '46289 Waxwing Place', '8467683557');
+insert into NhaCungUng (id_NhaCungUng, TenNhaCungUng, DiaChi, SDT) values (3, 'Johnath Estable', '9 Victoria Circle', '5024385868');
+insert into NhaCungUng (id_NhaCungUng, TenNhaCungUng, DiaChi, SDT) values (4, 'Jojo Simoneschi', '421 Oneill Way', '8982943902');
+insert into NhaCungUng (id_NhaCungUng, TenNhaCungUng, DiaChi, SDT) values (5, 'Vidovic Kendal', '65466 Tennessee Drive', '4417341951');
+
+/*------ Loại Nước giải khát ---------*/
+set identity_insert LoaiNGK ON
+set identity_insert LoaiNGK OFF
+insert into LoaiNGK (id_LoaiNGK, TenLoaiNGK, NhaCungUng) values (1, 'Networked', 5);
+insert into LoaiNGK (id_LoaiNGK, TenLoaiNGK, NhaCungUng) values (2, 'eco-centric', 4);
+insert into LoaiNGK (id_LoaiNGK, TenLoaiNGK, NhaCungUng) values (3, 'Profound', 5);
+insert into LoaiNGK (id_LoaiNGK, TenLoaiNGK, NhaCungUng) values (4, 'Programmable', 1);
+insert into LoaiNGK (id_LoaiNGK, TenLoaiNGK, NhaCungUng) values (5, 'Open-source', 3);
+insert into LoaiNGK (id_LoaiNGK, TenLoaiNGK, NhaCungUng) values (6, 'Synergized', 3);
+insert into LoaiNGK (id_LoaiNGK, TenLoaiNGK, NhaCungUng) values (7, '6th generation', 3);
+insert into LoaiNGK (id_LoaiNGK, TenLoaiNGK, NhaCungUng) values (8, 'Virtual', 5);
+insert into LoaiNGK (id_LoaiNGK, TenLoaiNGK, NhaCungUng) values (9, 'zero tolerance', 5);
+insert into LoaiNGK (id_LoaiNGK, TenLoaiNGK, NhaCungUng) values (10, 'task-force', 2);
+
+/*------- Nước giải khát ------*/
+set identity_insert NuocGK ON
+set identity_insert NuocGK OFF
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (1, 'Decentralized', 14000, 9, 14, 'mission-critical');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (2, 'Compatible', 19000, 7, 7, 'secured line');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (3, 'secondary', 30000, 2, 77, 'Secured');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (4, 'toolset', 21000, 2, 0, 'fault-tolerant');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (5, 'software', 27000, 9, 51, 'dynamic');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (6, 'flexibility', 37000, 3, 4, 'Devolved');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (7, 'solution-oriented', 17000, 8, 67, 'Multi-tiered');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (8, 'Phased', 18000, 8, 7, 'Object-based');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (9, 'extranet', 38000, 9, 40, 'Decentralized');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (10, 'Configurable', 24000, 6, 39, 'throughput');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (11, 'Fundamental', 18000, 2, 71, 'asynchronous');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (12, 'Virtual', 33000, 9, 44, 'global');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (13, 'framework', 28000, 1, 62, 'frame');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (14, 'approach', 29000, 2, 47, 'hardware');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (15, 'Switchable', 21000, 9, 51, 'portal');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (16, 'capacity', 14000, 1, 27, 'Ergonomic');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (17, 'logistical', 9000, 10, 26, 'Vision-oriented');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (18, 'Profound', 9000, 10, 27, 'transitional');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (19, 'Cross-platform', 36000, 5, 83, 'full-range');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (20, 'Adaptive', 92000, 8, 77, 'static');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (21, 'zero tolerance', 72000, 1, 49, 'protocol');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (22, 'coherent', 28000, 6, 44, 'Compatible');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (23, 'capacity', 69000, 7, 37, 'function');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (24, 'motivating', 69000, 2, 74, 'hub');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (25, 'infrastructure', 24000, 3, 9, 'toolset');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (26, '6th generation', 28000, 4, 84, 'definition');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (27, 'executive', 18000, 7, 5, 'Customizable');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (28, 'standardization', 10000, 5, 52, 'optimizing');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (29, 'budgetary management', 9000, 6, 32, 'algorithm');
+insert into NuocGK (id_NuocGK, tenNGK, dongia, nhanhieuNGK, soluongton, hinhanh) values (30, 'groupware', 8000, 8, 4, 'user-facing');
+
+/*------- Khách hàng ----*/
+set identity_insert KhachHang ON
+set identity_insert KhachHang OFF
+
+insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (1, 'Myrilla Cockrill', '9 Burrows Hill', '412-190-7625', 55000, 1);
+insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (2, 'Merla Bewley', '6605 Armistice Park', '912-706-5754', 645000, 0);
+insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (3, 'Barty Trevains', '003 Monica Trail', '764-634-1766', 66000, 0);
+insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (4, 'Simona Hounsham', '52957 Sugar Parkway', '203-691-9073', 560000, 1);
+insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (5, 'Nickola Jacke', '73 Eggendart Point', '286-949-9138', 588000, 0);
+insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (6, 'Harley Hagley', '30073 Stang Plaza', '187-336-5818', 994000, 0);
+insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (7, 'Aguste Brunelleschi', '26555 Hoffman Place', '581-158-7403', 355000, 1);
+insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (8, 'Denny Gregorowicz', '4163 Sycamore Avenue', '582-487-3906', 784000, 1);
+insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (9, 'Elaine Connochie', '64245 Mcbride Hill', '113-860-4534', 475000, 1);
+insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (10, 'Brendan Barensen', '46514 Farragut Parkway', '682-444-7082', 0, 1);
+insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (11, 'Elisa Endrici', '7879 Menomonie Lane', '414-726-9659', 0, 1);
+insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (12, 'Indira Oakman', '75704 Truax Plaza', '578-903-8485', 265000, 0);
+insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (13, 'Brigitte Meecher', '79 Claremont Center', '467-194-0203', 201000, 0);
+insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (14, 'Meade Steketee', '8577 Tony Way', '560-786-7875', 0, 1);
+insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (15, 'Andree Arpur', '0 Lunder Hill', '423-211-4222', 305000, 1);
+insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (16, 'Leoline Royl', '02524 Blackbird Avenue', '545-826-7784', 157000, 0);
+insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (17, 'Marten Ianizzi', '41099 Stuart Avenue', '908-366-8199', 366000, 0);
+insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (18, 'Jana Gravatt', '371 Ridgeview Crossing', '195-352-8441', 0, 0);
+insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (19, 'Vally Mileham', '2 Mayfield Trail', '280-695-6027', 653000, 0);
+insert into KhachHang (id_KhachHang, tenKhachHang, diachi, SoDienThoai, SoTienConNo, daDangKy) values (20, 'Yovonnda Caulton', '4277 Schmedeman Alley', '837-682-1990', 467000, 0);
