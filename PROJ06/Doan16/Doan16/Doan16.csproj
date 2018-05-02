@@ -159,7 +159,6 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhachHangController.cs" />
-    <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -183,15 +182,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\main.css" />
     <Content Include="Content\PagedList.css" />
-    <Content Include="Content\prettyPhoto.css" />
-    <Content Include="Content\price-range.css" />
-    <Content Include="Content\responsive.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -620,23 +613,14 @@
     <Content Include="lib\bower_components\sidebar-nav\README.md" />
     <Content Include="images\large\images - Shortcut.lnk" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\contact.js" />
-    <Content Include="Scripts\gmaps.js" />
-    <Content Include="Scripts\html5shiv.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.js" />
-<<<<<<< HEAD
-=======
-    <Content Include="Scripts\jquery.prettyPhoto.js" />
-    <Content Include="Scripts\jquery.scrollUp.min.js" />
->>>>>>> bba94e603b5b1663d62dcc17fa79d2b824a67fba
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-<<<<<<< HEAD
     <Content Include="lib\js\custom.js" />
     <Content Include="lib\js\custom.min.js" />
     <Content Include="lib\js\dashboard1.js" />
@@ -644,11 +628,7 @@
     <Content Include="lib\js\morris-data.js" />
     <Content Include="lib\js\toastr.js" />
     <Content Include="lib\js\waves.js" />
-=======
-    <Content Include="Scripts\main.js" />
->>>>>>> bba94e603b5b1663d62dcc17fa79d2b824a67fba
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\price-range.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Web.config" />
@@ -667,14 +647,13 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\KhachHang\DangKy.cshtml" />
     <Content Include="Views\KhachHang\DangNhap.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\QLTaikhoanNV.cshtml" />
-    <Content Include="Views\TrangChu\Index.cshtml" />
-    <Content Include="Views\TrangChu\TimKiem.cshtml" />
+    <Content Include="Views\Admin\NhanVien.cshtml" />
+    <Content Include="Views\Admin\KhachHang.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Shared\_LayoutUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="images\" />
     <Folder Include="Views\NhanVien\" />
   </ItemGroup>
   <ItemGroup>
