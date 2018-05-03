@@ -696,6 +696,10 @@
     <Content Include="Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Views\SanPham\Index.cshtml" />
     <Content Include="Views\SanPham\TimKiem.cshtml" />
+    <Content Include="Views\SanPham\NhaCungUng.cshtml" />
+    <Content Include="Views\SanPham\LoaiNGK.cshtml" />
+    <Content Include="Views\SanPham\SPTheoNhaCungUng.cshtml" />
+    <Content Include="Views\SanPham\SPTheoLoaiNGK.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

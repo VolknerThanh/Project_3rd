@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "SPTheoLoaiNGK";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h3>SẢN PHẨM THEO LOẠI NƯỚC GIẢI KHÁT</h3>
+<div class="row">
+    @foreach (var nuoc in Model)
+    {
+        <div class="col-md-4 text-center col-sm-6 col-xs-6">
+            <div class="thumbnail product-box" style="min-height:250px">
+                <div style="min-height:200px;">
+                    <img src="~/images/@nuoc.hinhanh" style="width:200px" />
+                </div>
+                <div class="caption">
+                    <h4><a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })">@nuoc.tenNGK</a></h4>
+                    <p>Price : <strong>@nuoc.dongia VNĐ</strong>  </p>
+
+                    <p>
+                        <a href="#" class="btn btn-success" role="button">Add To Cart</a>
+                        <a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })" class="btn btn-primary" role="button">See Details</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

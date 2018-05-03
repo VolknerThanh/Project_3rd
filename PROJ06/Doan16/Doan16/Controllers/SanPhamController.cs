@@ -39,6 +39,27 @@ namespace Doan16.Controllers
             return PartialView();
         }
 
+        public ActionResult NhaCungUng()
+        {
+            var nhacungung = from ncu in db.NhaCungUngs select ncu;
+            return PartialView(nhacungung);
+        }
 
+        public ActionResult LoaiNGK()
+        {
+            var loaingk = from lngk in db.LoaiNGKs select lngk;
+            return PartialView(loaingk);
+        }
+        public ActionResult SPTheoNhaCungUng(int id)
+        {
+            var ncu = from s in db.NuocGKs where s.LoaiNGK.NhaCungUng1.id_NhaCungUng == id select s;
+            return View(ncu);
+        }
+
+        public ActionResult SPTheoLoaiNGK(int id)
+        {
+            var lngk = from s in db.NuocGKs where s.LoaiNGK.id_LoaiNGK == id select s;
+            return View(lngk);
+        }
     }
 }

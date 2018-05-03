@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Doan16.Models.LoaiNGK>
+@foreach (var item in Model)
+{
+    <li class="list-group-item">
+        <a href="@Url.Action("SPTheoLoaiNGK","SanPham",new { id = item.id_LoaiNGK })">@item.TenLoaiNGK</a>
+    </li>
+}
+
