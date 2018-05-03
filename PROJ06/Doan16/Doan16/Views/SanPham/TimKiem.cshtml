@@ -1,0 +1,12 @@
+﻿<div class="row">
+    @using (Html.BeginForm("Index", "SanPham"))
+    {
+        <div class="navbar-form navbar-right">
+            <div class="form-group">
+                <input type="text" name="SearchString" placeholder="Enter Keyword Here ..." style="width: 300px; letter-spacing:2px;" class="form-control">
+            </div>
+            &nbsp;
+            <button type="submit" class="btn btn-primary" style="width: 100px;">Search</button>
+        </div>
+    }
+</div>

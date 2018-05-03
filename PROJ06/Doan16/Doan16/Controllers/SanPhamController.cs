@@ -15,12 +15,15 @@ namespace Doan16.Controllers
         // GET: TrangChu
         public List<NuocGK> Layngkmoi(int count, string name)
         {
-            if(name!=null && name!= "")
-            {
-                return (from n in db.NuocGKs where n.tenNGK.ToUpper().Contains(name.ToUpper()) orderby n.id_NuocGK descending select n).Take(count).ToList();
-            }
+            if(name != null && name != "")
+                return (from n in db.NuocGKs
+                        where n.tenNGK.ToUpper().Contains(name.ToUpper())
+                        orderby n.id_NuocGK descending
+                        select n).Take(count).ToList();
             else
-                return (from n in db.NuocGKs orderby n.id_NuocGK descending select n).Take(count).ToList();
+                return (from n in db.NuocGKs
+                        orderby n.id_NuocGK descending
+                        select n).Take(count).ToList();
         }
         public ActionResult Index(int ? page, FormCollection fc)
         {

@@ -159,6 +159,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhachHangController.cs" />
+    <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -182,9 +183,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\main.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\prettyPhoto.css" />
+    <Content Include="Content\price-range.css" />
+    <Content Include="Content\responsive.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -206,6 +213,35 @@
     <Content Include="images\users\ritesh.jpg" />
     <Content Include="images\users\sonu.jpg" />
     <Content Include="images\users\varun.jpg" />
+    <Content Include="lib\assets\css\bootstrap.css" />
+    <Content Include="lib\assets\css\font-awesome.min.css" />
+    <Content Include="lib\assets\css\style.css" />
+    <Content Include="lib\assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="lib\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="lib\assets\img\dummyimg.png" />
+    <Content Include="lib\assets\ItemSlider\css\demo.css" />
+    <Content Include="lib\assets\ItemSlider\css\main-style.css" />
+    <Content Include="lib\assets\ItemSlider\images\1.jpg" />
+    <Content Include="lib\assets\ItemSlider\images\10.jpg" />
+    <Content Include="lib\assets\ItemSlider\images\11.jpg" />
+    <Content Include="lib\assets\ItemSlider\images\12.jpg" />
+    <Content Include="lib\assets\ItemSlider\images\13.jpg" />
+    <Content Include="lib\assets\ItemSlider\images\14.jpg" />
+    <Content Include="lib\assets\ItemSlider\images\15.jpg" />
+    <Content Include="lib\assets\ItemSlider\images\2.jpg" />
+    <Content Include="lib\assets\ItemSlider\images\3.jpg" />
+    <Content Include="lib\assets\ItemSlider\images\4.jpg" />
+    <Content Include="lib\assets\ItemSlider\images\5.jpg" />
+    <Content Include="lib\assets\ItemSlider\images\6.jpg" />
+    <Content Include="lib\assets\ItemSlider\images\7.jpg" />
+    <Content Include="lib\assets\ItemSlider\images\8.jpg" />
+    <Content Include="lib\assets\ItemSlider\images\9.jpg" />
+    <Content Include="lib\assets\ItemSlider\index.html" />
+    <Content Include="lib\assets\ItemSlider\js\jquery.catslider.js" />
+    <Content Include="lib\assets\ItemSlider\js\modernizr.custom.63321.js" />
+    <Content Include="lib\assets\js\bootstrap.js" />
+    <Content Include="lib\assets\js\bootstrap.min.js" />
+    <Content Include="lib\assets\js\jquery-1.10.2.js" />
     <Content Include="lib\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="lib\bootstrap\dist\css\bootstrap-theme.min.css" />
     <Content Include="lib\bootstrap\dist\css\bootstrap.css" />
@@ -612,6 +648,13 @@
     <Content Include="lib\bower_components\sidebar-nav\package.json" />
     <Content Include="lib\bower_components\sidebar-nav\README.md" />
     <Content Include="images\large\images - Shortcut.lnk" />
+    <Content Include="lib\assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="lib\assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="lib\assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="lib\assets\fonts\FontAwesome.otf" />
+    <Content Include="lib\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="lib\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="lib\assets\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -651,6 +694,8 @@
     <Content Include="Views\Admin\KhachHang.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutUser.cshtml" />
+    <Content Include="Views\SanPham\Index.cshtml" />
+    <Content Include="Views\SanPham\TimKiem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
