@@ -76,11 +76,13 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-12">
 
                 <div class="main box-border">
                     <div id="mi-slider" class="mi-slider">
                         <ul>
+                            @{Html.RenderAction("SanPhamLon", "SanPham");}
+                            <!--
                             <li>
                                 <a href="#">
                                     <img src="~/images/coca-350ml.jpg" alt="img01"><h4>Coca</h4>
@@ -101,8 +103,11 @@
                                     <img src="~/images/sprite-lon.jpg" alt="img04"><h4>Sprite</h4>
                                 </a>
                             </li>
+                                -->
                         </ul>
                         <ul>
+                            @{Html.RenderAction("SanPhamChai", "SanPham"); }
+                            <!--
                             <li>
                                 <a href="#">
                                     <img src="~/images/coca-chai.jpg" alt="img05"><h4>Coca</h4>
@@ -123,6 +128,7 @@
                                     <img src="~/images/sprite-chai.jpg" alt="img08"><h4>Sprite</h4>
                                 </a>
                             </li>
+                                -->
                         </ul>
                         <ul>
                             <li>
@@ -175,7 +181,7 @@
                 <br />
             </div>
             <!-- /.col -->
-
+            <!--
             <div class="col-md-3 text-center">
                 <div class=" col-md-12 col-sm-6 col-xs-6">
                     <div class="offer-text">

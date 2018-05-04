@@ -61,5 +61,24 @@ namespace Doan16.Controllers
             var lngk = from s in db.NuocGKs where s.LoaiNGK.id_LoaiNGK == id select s;
             return View(lngk);
         }
+
+        public ActionResult SanPhamLon()
+        {
+            var name = "Lon";
+            var item = from sp_lon in db.NuocGKs
+                       where sp_lon.tenNGK.ToUpper().Contains(name.ToUpper())
+                       orderby sp_lon.id_NuocGK descending
+                       select sp_lon;
+            return PartialView(item.Take(4).ToList());
+        }
+        public ActionResult SanPhamChai()
+        {
+            var name = "Chai";
+            var item = from sp_chai in db.NuocGKs
+                       where sp_chai.tenNGK.ToUpper().Contains(name.Trim().ToUpper())
+                       orderby sp_chai.id_NuocGK descending
+                       select sp_chai;
+            return PartialView(item.Take(4).ToList());
+        }
     }
 }

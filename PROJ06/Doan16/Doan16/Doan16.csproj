@@ -718,6 +718,8 @@
     <Content Include="Views\SanPham\LoaiNGK.cshtml" />
     <Content Include="Views\SanPham\SPTheoNhaCungUng.cshtml" />
     <Content Include="Views\SanPham\SPTheoLoaiNGK.cshtml" />
+    <Content Include="Views\SanPham\SanPhamLon.cshtml" />
+    <Content Include="Views\SanPham\SanPhamChai.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

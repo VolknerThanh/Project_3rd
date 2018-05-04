@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Doan16.Models.NuocGK>
+
+@foreach (var item in Model)
+{
+    <li>
+        <a href="#">
+            <img src="~/images/@item.hinhanh" alt="@item.tenNGK"><h4>@item.tenNGK</h4>
+        </a>
+    </li>
+}
+
