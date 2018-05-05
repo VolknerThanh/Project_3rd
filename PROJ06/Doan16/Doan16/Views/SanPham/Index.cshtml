@@ -8,7 +8,8 @@
 
 
 
-<div class="row">
+<div class="row" id="thisPage">
+    
     @foreach (var nuoc in Model)
     {
         <div class="col-md-4 text-center col-sm-6 col-xs-6">
@@ -53,10 +54,33 @@
 
 <div class="row">
     Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
-
     <div class="MenuTrang">
+        @*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
         @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
     </div>
+    <!--
+    <script>
+        $('.pagination li a').click(function () {
+            var url = window.location.href;
+            alert(url);
+            if (url.indexOf("?page=") > -1) {
+                console.log(url);
+                sessionStorage.reloadAfterPageLoad = true;
+            }
+            sessionStorage.reloadAfterPageLoad = false;
+        });
+        $(document).ready( function() {
+        alert(sessionStorage.reloadAfterPageLoad);
+            if (sessionStorage.reloadAfterPageLoad == true) {
+                var url = window.location.href;
+                var newUrl = url + "#thisPage";
+                //alert(newUrl);
+                location.href = newUrl;
+                sessionStorage.reloadAfterPageLoad = false;
+            }
+        });
+    </script>
+        -->
     <style>
         .MenuTrang li {
             display: inline;

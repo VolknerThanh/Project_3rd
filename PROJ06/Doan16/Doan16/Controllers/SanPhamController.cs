@@ -80,5 +80,14 @@ namespace Doan16.Controllers
                        select sp_chai;
             return PartialView(item.Take(4).ToList());
         }
+        //public List<string> ProductNames { set; get }
+        //public ActionResult SanPhamNuocSuoi()
+        //{
+
+        //    string[] name = ["Coca", "Sprite", "Sting", "Pepsi", "Fanta"];
+        //    var item = from sp_nuocSuoi in db.NuocGKs
+        //               where sp_nuocSuoi.tenNGK.ToUpper().
+        //    return PartialView();
+        //}
     }
 }
