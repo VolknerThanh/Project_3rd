@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h4 style="color:red; text-align:center">@ViewBag.Thongbao</h4>
@@ -27,6 +28,11 @@
             <td></td>
             <td>
                 <input type="submit" value="Đăng nhập" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center">
+                <a style="text-decoration: underline" href="@Url.Action("DangKy", "KhachHang")">Chưa có tài khoản? Đăng ký ngay!</a> 
             </td>
         </tr>
     }

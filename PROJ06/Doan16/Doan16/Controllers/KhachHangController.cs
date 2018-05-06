@@ -110,13 +110,21 @@ namespace Doan16.Controllers
                 if (kh != null)
                 {
                     ViewBag.Thongbao = "Chúc mừng đặng nhập thành công";
-                    Session["TenDN"] = kh;
-                    //return RedirectToAction("Index", "BookStore", new { area = "" });
+                    Session["TaiKhoan"] = kh;
+                    Session["TenDangNhap"] = tendn;
+                    return RedirectToAction("Index", "SanPham", new { area = "" });
                 }
                 else
                     ViewBag.Thongbao = "Tên đăng nhập hoặc mật khẩu không đúng";
             }
             return View();
+        }
+        public ActionResult Logout()
+        {
+            Session["TaiKhoan"] = null;
+            Session["TenDangNhap"] = null;
+
+            return RedirectToAction("Index", "SanPham");
         }
     }
 }

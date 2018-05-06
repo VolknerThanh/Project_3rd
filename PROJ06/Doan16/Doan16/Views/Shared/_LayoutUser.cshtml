@@ -35,27 +35,28 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><strong>DIGI</strong> Shop</a>
+                <a class="navbar-brand" style="padding: 15px 20px 0px 20px;" href="@Url.Action("Index", "SanPham")"><strong>SHOP</strong></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
+                <div class=" navbar-right">
+                    @{ Html.RenderAction("TimKiem", "SanPham");}    
+                </div>
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Track Order</a></li>
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Signup</a></li>
-
+                <ul class="nav navbar-nav">
+                    <li><a href="@Url.Action("Index", "SanPham")"><i class="fa fa-home" style="font-size:18px"></i> Trang Chủ</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">24x7 Support <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><strong>Call: </strong>+09-456-567-890</a></li>
-                            <li><a href="#"><strong>Mail: </strong>info@yourdomain.com</a></li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-phone" style="font-size:18px"></i> Liên Hệ<b class="caret"></b></a>
+                        <ul class="dropdown-menu" style="width: 300px;">
+                            <li><p style="margin: 5px 20px"><strong><i class="fa fa-phone" style="font-size:18px"></i> Call: </strong>+09-456-567-890</p></li>
+                            <li class="divider"></li>
+                            <li><p style="margin: 5px 20px"><strong><i class="fa fa-envelope" style="font-size:18px"></i> Mail: </strong>info@nuocgiaikhat.com</p></li>
                             <li class="divider"></li>
                             <li>
                                 <a href="#">
-                                    <strong>Address: </strong>
+                                    <strong><i class="fa fa-map-marker" style="font-size:18px"></i> Address: </strong>
                                     <div>
                                         234, New york Street,<br />
                                         Just Location, USA
@@ -64,10 +65,29 @@
                             </li>
                         </ul>
                     </li>
+                    <li><a href="@Url.Action("DisplayCart", "Cart")"><i class="fa fa-shopping-cart" style="font-size:18px"></i>&nbsp;&nbsp;Giỏ Hàng</a></li>
+                    @if(Session["TenDangNhap"] != null)
+                    {
+                        <li> 
+                            <a href="#"><i class="fa fa-user" style="font-size:18px"></i>&nbsp;&nbsp;<strong>@Session["TenDangNhap"] </strong></a>
+                        </li>
+                            
+                        <li>
+                            @using (Html.BeginForm("Logout", "KhachHang", FormMethod.Post))
+                            {
+                                <button type="submit" class="btn btn-primary" style="margin-top: 8px;"><i class="fa fa-sign-out" style="font-size:18px"></i> Đăng Xuất</button>
+                            }
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("DangKy", "KhachHang")"><i class="fa fa-sign-in" style="font-size:18px"></i> Đăng Ký</a></li>
+                        <li><a href="@Url.Action("DangNhap", "KhachHang")"><i class="fa fa-sign-in" style="font-size:18px"></i> Đăng Nhập</a></li>
+                    }
+
                 </ul>
 
 
-                @{ Html.RenderAction("TimKiem", "SanPham");}    
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -83,53 +103,9 @@
                     <div id="mi-slider" class="mi-slider">
                         <ul>
                             @{Html.RenderAction("SanPhamLon", "SanPham");}
-                            <!--
-                            <li>
-                                <a href="#">
-                                    <img src="~/images/coca-350ml.jpg" alt="img01"><h4>Coca</h4>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="~/images/pepsi-lon.jpg" alt="img02"><h4>Pepsi</h4>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="~/images/fanta-lon.jpg" alt="img03"><h4>Fanta</h4>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="~/images/sprite-lon.jpg" alt="img04"><h4>Sprite</h4>
-                                </a>
-                            </li>
-                                -->
                         </ul>
                         <ul>
                             @{Html.RenderAction("SanPhamChai", "SanPham"); }
-                            <!--
-                            <li>
-                                <a href="#">
-                                    <img src="~/images/coca-chai.jpg" alt="img05"><h4>Coca</h4>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="~/images/pepsi-chai.jpg" alt="img06"><h4>Pepsi &amp; Caps</h4>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="~/images/fanta-chai.jpg" alt="img07"><h4>Fanta</h4>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="~/images/sprite-chai.jpg" alt="img08"><h4>Sprite</h4>
-                                </a>
-                            </li>
-                                -->
                         </ul>
                         <ul>
                             <li>
@@ -234,65 +210,6 @@
 
                     </ul>
                 </div>
-                <!-- /.div 
-                <div>
-                    <a href="#" class="list-group-item active">
-                        Accessaries & Extras
-                    </a>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            Mobile Accessaries
-                            <span class="label label-warning pull-right">456</span>
-                        </li>
-                        <li class="list-group-item">
-                            Men's Accessaries
-                            <span class="label label-success pull-right">156</span>
-                        </li>
-                        <li class="list-group-item">
-                            Women's Accessaries
-                            <span class="label label-info pull-right">400</span>
-                        </li>
-                        <li class="list-group-item">
-                            Kid's Accessaries
-                            <span class="label label-primary pull-right">89</span>
-                        </li>
-                        <li class="list-group-item">
-                            Home Products
-                            <span class="label label-danger pull-right">90</span>
-                        </li>
-                        <li class="list-group-item">
-                            Kitchen Products
-                            <span class="label label-warning pull-right">567</span>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.div
-                <div>
-                    <ul class="list-group">
-                        <li class="list-group-item list-group-item-success"><a href="#">New Offer's Coming </a></li>
-                        <li class="list-group-item list-group-item-info"><a href="#">New Products Added</a></li>
-                        <li class="list-group-item list-group-item-warning"><a href="#">Ending Soon Offers</a></li>
-                        <li class="list-group-item list-group-item-danger"><a href="#">Just Ended Offers</a></li>
-                    </ul>
-                </div>
-                <!-- /.div
-                <div class="well well-lg offer-box offer-colors">
-
-
-                    <span class="glyphicon glyphicon-star-empty"></span>25 % off  , GRAB IT
-
-                    <br />
-                    <br />
-                    <div class="progress progress-striped">
-                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
-                             style="width: 70%">
-                            <span class="sr-only">70% Complete (success)</span>
-                            2hr 35 mins left
-                        </div>
-                    </div>
-                    <a href="#">click here to know more </a>
-                </div>
-                <!-- /.div -->
             </div>
             <!-- /.col -->
             <div class="col-md-9">

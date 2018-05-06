@@ -2,54 +2,120 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/Content/prettyPhoto.css" rel="stylesheet" />
-    <link href="~/Content/price-range.css" rel="stylesheet" />
-    <link href="~/Content/animate.css" rel="stylesheet" />
-    <link href="~/Content/main.css" rel="stylesheet" />
-    <link href="~/Content/responsive.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/jquery.scrollUp.min.js"></script>
-    <script src="~/Scripts/price-range.js"></script>
-    <script src="~/Scripts/jquery.prettyPhoto.js"></script>
-    <script src="~/Scripts/main.js"></script>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Bootstrap E-Commerce Template- DIGI Shop mini</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../../lib/assets/css/bootstrap.css" rel="stylesheet">
+    <!-- Fontawesome core CSS -->
+    <link href="../../lib/assets/css/font-awesome.min.css" rel="stylesheet" />
+    <!--GOOGLE FONT -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <!--Slide Show Css -->
+    <link href="../../lib/assets/ItemSlider/css/main-style.css" rel="stylesheet" />
+    <!-- custom CSS here -->
+    <link href="../../lib/assets/css/style.css" rel="stylesheet" />
+    <script src="../../Scripts/jquery.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a class="navbar-brand" style="padding: 15px 20px 0px 20px;" href="@Url.Action("Index", "SanPham")"><strong>SHOP</strong></a>
             </div>
-            <div class="navbar-collapse collapse">
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <div class=" navbar-right">
+                    @{ Html.RenderAction("TimKiem", "SanPham");}
+                </div>
+
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li><a href="@Url.Action("Index", "SanPham")"><i class="fa fa-home" style="font-size:18px"></i> Trang Chủ</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-phone" style="font-size:18px"></i> Liên Hệ<b class="caret"></b></a>
+                        <ul class="dropdown-menu" style="width: 300px;">
+                            <li><p style="margin: 5px 20px"><strong><i class="fa fa-phone" style="font-size:18px"></i> Call: </strong>+09-456-567-890</p></li>
+                            <li class="divider"></li>
+                            <li><p style="margin: 5px 20px"><strong><i class="fa fa-envelope" style="font-size:18px"></i> Mail: </strong>info@nuocgiaikhat.com</p></li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <strong><i class="fa fa-map-marker" style="font-size:18px"></i> Address: </strong>
+                                    <div>
+                                        234, New york Street,<br />
+                                        Just Location, USA
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="@Url.Action("DisplayCart", "Cart")"><i class="fa fa-shopping-cart" style="font-size:18px"></i>&nbsp;&nbsp;Giỏ Hàng</a></li>
+                    @if (Session["TenDangNhap"] != null)
+                    {
+                        <li>
+                            <a href="#"><i class="fa fa-user" style="font-size:18px"></i>&nbsp;&nbsp;<strong>@Session["TenDangNhap"] </strong></a>
+                        </li>
+
+                        <li>
+                            @using (Html.BeginForm("Logout", "KhachHang", FormMethod.Post))
+                            {
+                                <button type="submit" class="btn btn-primary" style="margin-top: 8px;"><i class="fa fa-sign-out" style="font-size:18px"></i> Đăng Xuất</button>
+                            }
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("DangKy", "KhachHang")"><i class="fa fa-sign-in" style="font-size:18px"></i> Đăng Ký</a></li>
+                        <li><a href="@Url.Action("DangNhap", "KhachHang")"><i class="fa fa-sign-in" style="font-size:18px"></i> Đăng Nhập</a></li>
+                    }
+
                 </ul>
+
+
             </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+        <div style="margin: 5em 10em; border: 1px outset grey; min-height : 400px">
+            @RenderBody()
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <div class="col-md-12 end-box ">
+        &copy; 2018 | &nbsp; All Rights Reserved | &nbsp; www.nuocgiaikhat.com | &nbsp; 24x7 support | &nbsp; Email us: info@nuocgiaikhat.com
+    </div>
+    <!-- /.col -->
+    <!--Footer end -->
+    <!--Core JavaScript file  -->
+    <script src="../../lib/assets/js/jquery-1.10.2.js"></script>
+    <!--bootstrap JavaScript file  -->
+    <script src="../../lib/assets/js/bootstrap.js"></script>
+    <!--Slider JavaScript file  -->
+    <script src="../../lib/assets/ItemSlider/js/modernizr.custom.63321.js"></script>
+    <script src="../../lib/assets/ItemSlider/js/jquery.catslider.js"></script>
+    <script>
+        $(function () {
+
+            $('#mi-slider').catslider();
+
+        });
+    </script>
 </body>
 </html>
