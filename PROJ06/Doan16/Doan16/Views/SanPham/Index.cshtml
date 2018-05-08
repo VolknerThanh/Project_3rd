@@ -6,10 +6,27 @@
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-
+<!-- /.div -->
+<div class="row">
+    <div class="btn-group alg-right-pad">
+        <button type="button" class="btn btn-default"><strong>1235  </strong>items</button>
+        <div class="btn-group">
+            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                Sort Products &nbsp;
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#">By Price Low</a></li>
+                <li class="divider"></li>
+                <li><a href="#">By Price High</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
 
 <div class="row" id="thisPage">
-    
+
     @foreach (var nuoc in Model)
     {
         <div class="col-md-4 text-center col-sm-6 col-xs-6">
@@ -22,7 +39,7 @@
                     <p>Price : <strong>@nuoc.dongia VNĐ</strong>  </p>
 
                     <p>
-                        <a href="#" class="btn btn-success" role="button">Add To Cart</a>
+                        <a href="@Url.Action("DisplayCart", "Cart")" class="btn btn-success" role="button">Add To Cart</a>
                         <a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })" class="btn btn-primary" role="button">See Details</a>
                     </p>
                 </div>

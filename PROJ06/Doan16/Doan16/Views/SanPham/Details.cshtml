@@ -1,0 +1,58 @@
+﻿@model Doan16.Models.NuocGK
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2 style="text-align:center; font-weight:900; text-transform: uppercase;">Chi Tiết Sản Phẩm</h2>
+
+<div style="margin: 2em 0;">
+    <div style="width: 40%; float: left;">
+        <img src="../../images/@Model.hinhanh" style="width: 300px;"/>
+    </div>
+    <div style="width: 50%; float: left;">
+        <table>
+            <tr style="height: 40px;">
+                <td style="width: 150px;">Mã Sản Phẩm : </td>
+                <td>@Model.id_NuocGK</td>
+            </tr>
+            <tr style="height: 40px;">
+                <td>Tên Sản Phẩm : </td>
+                <td>@Model.tenNGK</td>
+            </tr>
+            <tr style="height: 40px;">
+                <td>Loại Nước : </td>
+                <td>@Html.DisplayFor(model => model.LoaiNGK.TenLoaiNGK)</td>
+            </tr>
+            <tr style="height: 40px;">
+                <td>Nhà Cung Ứng : </td>
+                <td>@Html.DisplayFor(model => model.LoaiNGK.NhaCungUng1.TenNhaCungUng)</td>
+            </tr>
+            <tr style="height: 40px;">
+                <td>Đơn Giá : </td>
+                <td>@Model.dongia</td>
+            </tr>
+            <tr style="height: 40px;">
+                <td>Số Lượng Tồn : </td>
+                <td>@Model.soluongton</td>
+            </tr>
+            @using (Html.BeginForm("AddToCart", "Cart", new { id = Model.id_NuocGK, Url = Request.Url.ToString() }))
+            {
+            <tr style="height: 40px;">
+                <td>Số Lượng Mua : </td>
+                <td>
+                    <input type="number" min="1" name="SoLuongMua" required id="SoLuongMua" class="form-control" style="width: 40%" />
+                </td>
+            </tr>
+            <tr style="height: 100px;">
+                <td></td>
+                <td>
+                    <button type="submit" @*onclick="alert(document.getElementById('SoLuongMua').value );"*@ class="btn btn-primary">ĐẶT MUA</button>
+                </td>
+            </tr> 
+            }
+        </table>
+    </div>
+</div>
+

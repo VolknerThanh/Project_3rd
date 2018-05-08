@@ -157,12 +157,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhachHangController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\ChiTietDonDatHang.cs" />
     <Compile Include="Models\ChiTietHoaDon.cs" />
     <Compile Include="Models\ChiTietPhieuGiaoHang.cs" />
@@ -720,6 +722,9 @@
     <Content Include="Views\SanPham\SPTheoLoaiNGK.cshtml" />
     <Content Include="Views\SanPham\SanPhamLon.cshtml" />
     <Content Include="Views\SanPham\SanPhamChai.cshtml" />
+    <Content Include="Views\Cart\DisplayCart.cshtml" />
+    <Content Include="Views\SanPham\Details.cshtml" />
+    <Content Include="Views\SanPham\SanPhamNuocSuoi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

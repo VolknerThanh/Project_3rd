@@ -108,6 +108,8 @@
                             @{Html.RenderAction("SanPhamChai", "SanPham"); }
                         </ul>
                         <ul>
+                            @{Html.RenderAction("SanPhamNuocSuoi", "SanPham");}
+                            <!--
                             <li>
                                 <a href="#">
                                     <img src="~/images/aquafina-chai.jpg" alt="img09"><h4>Aquafina</h4>
@@ -123,6 +125,7 @@
                                     <img src="~/images/ionlife-chai.jpg" alt="img11"><h4>Ion-Life</h4>
                                 </a>
                             </li>
+                                -->
                         </ul>
                         <ul>
                             <li>
@@ -157,35 +160,7 @@
                 </div>
                 <br />
             </div>
-            <!-- /.col -->
-            <!--
-            <div class="col-md-3 text-center">
-                <div class=" col-md-12 col-sm-6 col-xs-6">
-                    <div class="offer-text">
-                        30% off here
-                    </div>
-                    <div class="thumbnail product-box">
-                        <img src="../../lib/assets/img/dummyimg.png" alt="" />
-                        <div class="caption">
-                            <h3><a href="#">Samsung Galaxy </a></h3>
-                            <p><a href="#">Ptional dismiss button </a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class=" col-md-12 col-sm-6 col-xs-6">
-                    <div class="offer-text2">
-                        30% off here
-                    </div>
-                    <div class="thumbnail product-box">
-                        <img src="../../lib/assets/img/dummyimg.png" alt="" />
-                        <div class="caption">
-                            <h3><a href="#">Samsung Galaxy </a></h3>
-                            <p><a href="#">Ptional dismiss button </a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.col -->
+
         </div>
         <!-- /.row -->
         <div class="row">
@@ -219,24 +194,7 @@
                         <li class="active">Electronics</li>
                     </ol>
                 </div>
-                <!-- /.div -->
-                <div class="row">
-                    <div class="btn-group alg-right-pad">
-                        <button type="button" class="btn btn-default"><strong>1235  </strong>items</button>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-                                Sort Products &nbsp;
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">By Price Low</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">By Price High</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
+                
 
                 @RenderBody()
 
@@ -345,7 +303,7 @@
         <hr>
     </div>
     <!-- /.col -->
-    <div class="col-md-12 end-box ">
+    <div class="col-md-12 end-box " style="text-align:center">
         &copy; 2014 | &nbsp; All Rights Reserved | &nbsp; www.yourdomain.com | &nbsp; 24x7 support | &nbsp; Email us: info@yourdomain.com
     </div>
     <!-- /.col -->

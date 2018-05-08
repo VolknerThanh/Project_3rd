@@ -1,0 +1,50 @@
+﻿@using Doan16.Models
+@model List<Cart>
+
+@{
+    ViewBag.Title = "DisplayCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-transform:uppercase; text-align:center;">Thông tin giỏ hàng</h1>
+<br />
+<table align="center" border="1" width="100%">
+    <thead>
+        <tr style="text-align:center; font-weight:900;">
+            <td style="padding: 0.5em; width:10%;">Mã Sản Phẩm</td>
+            <td style="padding: 0.5em; width:22%">Tên Sản Phẩm</td>
+            <td style="padding: 0.5em; width:15%">Ảnh Bìa</td>
+            <td style="padding: 0.5em; width:10%">Đơn Giá</td>
+            <td style="padding: 0.5em; width:8%">Số Lượng</td>
+            <td style="padding: 0.5em; width:12%">Thành Tiền</td>
+            <td style="padding: 0.5em; width:30%"></td>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr style="text-align:right; font-weight:900; color: red;">
+            <td colspan="4" style="padding:0.5em 2em; ">Số lượng sản phẩm: @ViewBag.TongSoLuong</td>
+            <td colspan="3" style="padding:0.5em 2em; ">Tổng Tiền: @String.Format("{0:0,0}", ViewBag.TongThanhTien) VNĐ</td>
+        </tr>
+    </tfoot>
+    <tbody>
+        @foreach(var item in Model)
+        {
+        <tr style="text-align:center">
+            <td>@item.id_NGK</td>
+            <td>@item.name_NGK</td>
+            <td>
+                <img src="../../images/@item.img_NGK" style="width: 100px;" />
+            </td>
+            <td>@String.Format("{0:0,0}", @item.price_NGK) VNĐ</td>
+            <td>@item.quantity_NGK</td>
+            <td>@String.Format("{0:0,0}", @item.totalPrice_NGK) VNĐ</td>
+            <td>
+                <button class="btn btn-primary">Xem Chi Tiết</button>
+                <button class="btn btn-primary">Cập Nhật</button>
+                <button class="btn btn-primary">Xóa</button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+

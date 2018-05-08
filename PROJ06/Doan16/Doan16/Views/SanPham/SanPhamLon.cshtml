@@ -3,7 +3,7 @@
 @foreach (var item in Model)
 {
     <li>
-        <a href="#">
+        <a href="@Url.Action("Details", "SanPham", new { id = item.id_NuocGK })">
             <img src="~/images/@item.hinhanh" alt="@item.tenNGK"><h4>@item.tenNGK</h4>
         </a>
     </li>

@@ -3,6 +3,7 @@
     ViewBag.Title = "DangNhap";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div style="padding: 1em; width: 50%; position:relative; left:20%; border: 1px outset grey;">
 
 <h4 style="color:red; text-align:center">@ViewBag.Thongbao</h4>
 <table align="center">
@@ -13,21 +14,21 @@
         <tr style="height:40px">
             <td> Tên đăng nhập:</td>
             <td>
-                @Html.TextBox("TenDN")
+                @Html.TextBox("TenDN", null, new { @class = "form-control", @style="margin-left:1em" })
                 @ViewData["Loi1"]
             </td>
         </tr>
         <tr style="height:40px">
             <td align="right"> Mật khẩu:</td>
             <td>
-                @Html.Password("Matkhau")
+                @Html.Password("Matkhau", null, new { @class = "form-control", @style = "margin-left:1em" })
                 @ViewData["Loi2"]
             </td>
         </tr>
         <tr style="height:40px">
-            <td></td>
+            <td align="right"></td>
             <td>
-                <input type="submit" value="Đăng nhập" />
+                <input type="submit" value="Đăng nhập" class="btn btn-primary"/>
             </td>
         </tr>
         <tr>
@@ -38,3 +39,4 @@
     }
 </table>
 
+</div>
