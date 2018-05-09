@@ -2,7 +2,7 @@
 @using PagedList.Mvc
 @model PagedList.PagedList<NuocGK>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Trang Chủ";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
@@ -38,10 +38,14 @@
                     <h4><a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })">@nuoc.tenNGK</a></h4>
                     <p>Price : <strong>@nuoc.dongia VNĐ</strong>  </p>
 
-                    <p>
-                        <a href="@Url.Action("DisplayCart", "Cart")" class="btn btn-success" role="button">Add To Cart</a>
+                    <span>
                         <a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })" class="btn btn-primary" role="button">See Details</a>
-                    </p>
+
+                        @using (Html.BeginForm("AddToCart", "Cart", new { id = nuoc.id_NuocGK, Url = Request.Url.ToString() }))
+                        {
+                            <button class="btn btn-success">Add To Cart</button>
+                        }
+                    </span>
                 </div>
             </div>
         </div>
@@ -51,32 +55,9 @@
 <div class="row">
     Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
     <div class="MenuTrang">
-        @*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
         @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
     </div>
-    <!--
-    <script>
-        $('.pagination li a').click(function () {
-            var url = window.location.href;
-            alert(url);
-            if (url.indexOf("?page=") > -1) {
-                console.log(url);
-                sessionStorage.reloadAfterPageLoad = true;
-            }
-            sessionStorage.reloadAfterPageLoad = false;
-        });
-        $(document).ready( function() {
-        alert(sessionStorage.reloadAfterPageLoad);
-            if (sessionStorage.reloadAfterPageLoad == true) {
-                var url = window.location.href;
-                var newUrl = url + "#thisPage";
-                //alert(newUrl);
-                location.href = newUrl;
-                sessionStorage.reloadAfterPageLoad = false;
-            }
-        });
-    </script>
-        -->
+    
     <style>
         .MenuTrang li {
             display: inline;

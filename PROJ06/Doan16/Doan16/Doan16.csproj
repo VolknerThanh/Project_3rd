@@ -725,6 +725,8 @@
     <Content Include="Views\Cart\DisplayCart.cshtml" />
     <Content Include="Views\SanPham\Details.cshtml" />
     <Content Include="Views\SanPham\SanPhamNuocSuoi.cshtml" />
+    <Content Include="Views\Cart\CartInformation.cshtml" />
+    <Content Include="Views\Cart\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,61 @@
+﻿@using Doan16.Models
+@model List<Cart>
+
+@{
+    ViewBag.Title = "Đặt Hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1> hello world ! </h1>
+
+@if (ViewBag.ThongBao == "yes")
+{
+    <h3>San pham KHONG DAT yeu cau : </h3>
+    <style>
+        #soluongsp {
+            background-color: red;
+            color: white;
+            font-weight: 900;
+            width: 5%;
+            padding: 0 1em;
+            border-radius: 5px;
+        }
+    </style>
+}
+else
+{
+    <h3>San pham DAT yeu cau : </h3>
+}
+
+@foreach (var item in Model)
+{
+    <div style="margin: 5em; width: 60%; height: 200px; position:relative">
+        <div style="float: left; width: 40%; position:relative">
+            <img src="../../images/@item.img_NGK" title="@item.name_NGK" width="200px" />
+        </div>
+        <div style="float: right; width:60%; position:relative">
+            <table align="center">
+                <tr style="height: 40px;">
+                    <td style="width: 50%">Mã Sản Phẩm : </td>
+                    <td style="width: 100%">@item.id_NGK</td>
+                </tr>
+                <tr style="height: 40px;">
+                    <td style="width: 50%">Tên Sản Phẩm : </td>
+                    <td>@item.name_NGK</td>
+                </tr>
+                <tr style="height: 40px;">
+                    <td style="width: 50%">Đơn giá : </td>
+                    <td>@item.price_NGK</td>
+                </tr>
+                <tr style="height: 40px;">
+                    <td style="width: 50%">Số Lượng Tồn : </td>
+                    <td>@item.quantity_of_product</td>
+                </tr>
+                <tr style="height: 40px;">
+                    <td style="width: 50%">Số Lượng Khách Mua : </td>
+                    <td id="soluongsp">@item.quantity_NGK</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}

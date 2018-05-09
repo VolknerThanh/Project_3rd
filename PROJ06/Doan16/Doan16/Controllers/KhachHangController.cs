@@ -112,7 +112,7 @@ namespace Doan16.Controllers
                     ViewBag.Thongbao = "Chúc mừng đặng nhập thành công";
                     Session["TaiKhoan"] = kh;
                     Session["TenDangNhap"] = tendn;
-                    return RedirectToAction("Index", "SanPham", new { area = "" });
+                    return RedirectToAction("DisplayCart", "Cart", new { area = "" });
                 }
                 else
                     ViewBag.Thongbao = "Tên đăng nhập hoặc mật khẩu không đúng";

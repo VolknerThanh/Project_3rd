@@ -21,80 +21,103 @@
     <!-- custom CSS here -->
     <link href="../../lib/assets/css/style.css" rel="stylesheet" />
     <script src="../../Scripts/jquery.js"></script>
-
+    
+    <script>
+        var first_scroll_position = 0;
+        /* the menu bar become transparent when it hits the top */
+        
+        window.addEventListener('scroll', function (e) {
+            var after_scroll_position = window.scrollY;
+            /* the menu bar become transparent when it hits the top */
+            
+            if (after_scroll_position > first_scroll_position) {
+                $('#menu').fadeOut(600);
+            } else {
+                $('#menu').fadeIn(600);
+            }
+            // update first position
+            first_scroll_position = after_scroll_position;
+        });
+    </script>
 </head>
 <body>
 
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" style="padding: 15px 20px 0px 20px;" href="@Url.Action("Index", "SanPham")"><strong>SHOP</strong></a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-                <div class=" navbar-right">
-                    @{ Html.RenderAction("TimKiem", "SanPham");}    
+    <div style="position:fixed; z-index:1000; width:100%;">
+        <nav class="navbar navbar-default" role="navigation" id="menu">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" style="padding: 15px 20px 0px 20px;" href="@Url.Action("Index", "SanPham")"><strong>SHOP</strong></a>
                 </div>
 
-                <ul class="nav navbar-nav">
-                    <li><a href="@Url.Action("Index", "SanPham")"><i class="fa fa-home" style="font-size:18px"></i> Trang Chủ</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-phone" style="font-size:18px"></i> Liên Hệ<b class="caret"></b></a>
-                        <ul class="dropdown-menu" style="width: 300px;">
-                            <li><p style="margin: 5px 20px"><strong><i class="fa fa-phone" style="font-size:18px"></i> Call: </strong>+09-456-567-890</p></li>
-                            <li class="divider"></li>
-                            <li><p style="margin: 5px 20px"><strong><i class="fa fa-envelope" style="font-size:18px"></i> Mail: </strong>info@nuocgiaikhat.com</p></li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <strong><i class="fa fa-map-marker" style="font-size:18px"></i> Address: </strong>
-                                    <div>
-                                        234, New york Street,<br />
-                                        Just Location, USA
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href="@Url.Action("DisplayCart", "Cart")"><i class="fa fa-shopping-cart" style="font-size:18px"></i>&nbsp;&nbsp;Giỏ Hàng</a></li>
-                    @if(Session["TenDangNhap"] != null)
-                    {
-                        <li> 
-                            <a href="#"><i class="fa fa-user" style="font-size:18px"></i>&nbsp;&nbsp;<strong>@Session["TenDangNhap"] </strong></a>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <div class=" navbar-right">
+                        @{ Html.RenderAction("TimKiem", "SanPham");}    
+                    </div>
+
+                    <ul class="nav navbar-nav">
+                        <li><a href="@Url.Action("Index", "SanPham")"><i class="fa fa-home" style="font-size:18px"></i> Trang Chủ</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-phone" style="font-size:18px"></i> Liên Hệ<b class="caret"></b></a>
+                            <ul class="dropdown-menu" style="width: 300px;">
+                                <li><p style="margin: 5px 20px"><strong><i class="fa fa-phone" style="font-size:18px"></i> Call: </strong>+09-456-567-890</p></li>
+                                <li class="divider"></li>
+                                <li><p style="margin: 5px 20px"><strong><i class="fa fa-envelope" style="font-size:18px"></i> Mail: </strong>info@nuocgiaikhat.com</p></li>
+                                <li class="divider"></li>
+                                <li>
+                                    <p style="margin: 5px 20px">
+                                        <strong><i class="fa fa-map-marker" style="font-size:18px"></i> Address: </strong>
+                                        <div style="margin: 5px 20px">
+                                            234, New york Street,<br />
+                                            Just Location, USA
+                                        </div>
+                                    </p>
+                                </li>
+                            </ul>
                         </li>
-                            
                         <li>
-                            @using (Html.BeginForm("Logout", "KhachHang", FormMethod.Post))
-                            {
-                                <button type="submit" class="btn btn-primary" style="margin-top: 8px;"><i class="fa fa-sign-out" style="font-size:18px"></i> Đăng Xuất</button>
-                            }
+                            <a href="@Url.Action("DisplayCart", "Cart")">
+                                <i class="fa fa-shopping-cart" style="font-size:18px"></i>
+                                &nbsp;&nbsp;Giỏ Hàng @{ Html.RenderAction("CartInformation", "Cart");}
+                            </a>
                         </li>
-                    }
-                    else
-                    {
-                        <li><a href="@Url.Action("DangKy", "KhachHang")"><i class="fa fa-sign-in" style="font-size:18px"></i> Đăng Ký</a></li>
-                        <li><a href="@Url.Action("DangNhap", "KhachHang")"><i class="fa fa-sign-in" style="font-size:18px"></i> Đăng Nhập</a></li>
-                    }
+                        @if(Session["TenDangNhap"] != null)
+                        {
+                            <li> 
+                                <a href="#"><i class="fa fa-user" style="font-size:18px"></i>&nbsp;&nbsp;<strong>@Session["TenDangNhap"] </strong></a>
+                            </li>
+                            
+                            <li>
+                                @using (Html.BeginForm("Logout", "KhachHang", FormMethod.Post))
+                                {
+                                    <button type="submit" class="btn btn-primary" style="margin-top: 8px;"><i class="fa fa-sign-out" style="font-size:18px"></i> Đăng Xuất</button>
+                                }
+                            </li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("DangNhap", "KhachHang")"><i class="fa fa-sign-in" style="font-size:18px"></i> Đăng Nhập</a></li>
+                        }
 
-                </ul>
+                    </ul>
 
 
+                </div>
+                <!-- /.navbar-collapse -->
             </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
+            <!-- /.container-fluid -->
+        </nav>
+    </div>
 
-    <div class="container">
+    <div class="container" style="position:relative;">
 
         <div class="row">
             <div class="col-md-12">
@@ -109,23 +132,6 @@
                         </ul>
                         <ul>
                             @{Html.RenderAction("SanPhamNuocSuoi", "SanPham");}
-                            <!--
-                            <li>
-                                <a href="#">
-                                    <img src="~/images/aquafina-chai.jpg" alt="img09"><h4>Aquafina</h4>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="~/images/Lavie-chai.png" alt="img10"><h4>Lavie</h4>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="~/images/ionlife-chai.jpg" alt="img11"><h4>Ion-Life</h4>
-                                </a>
-                            </li>
-                                -->
                         </ul>
                         <ul>
                             <li>
@@ -207,7 +213,7 @@
     </div>
 
 
-    <div class="col-md-12 footer-box">
+    <div class="col-md-12 footer-box" style="position:relative;">
 
 
         <div class="row small-box ">
