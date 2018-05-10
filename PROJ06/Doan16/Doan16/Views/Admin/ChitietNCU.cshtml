@@ -1,0 +1,43 @@
+﻿@model Doan16.Models.NhaCungUng
+
+@{
+    ViewBag.Title = "ChitietNCU";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="margin-left:.3em">ChitietNCU</h2>
+
+<div>
+    <h4 style="margin-left:.5em">Thông Tin Nhà Cung Ứng</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="margin-left:1em; font-weight:bold">
+            Tên nhà cung ứng
+        </dt>
+
+        <dd style="margin-left:1em">
+            @Html.DisplayFor(model => model.TenNhaCungUng)
+        </dd>
+
+        <dt style="margin-left:1em; font-weight:bold">
+            Địa chỉ
+        </dt>
+
+        <dd style="margin-left:1em">
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+
+        <dt style="margin-left:1em; font-weight:bold">
+            Số điện thoại
+        </dt>
+
+        <dd style="margin-left:1em">
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+    </dl>
+</div>
+<p style="margin-left:1em">
+    @Html.ActionLink("SỬA", "SuaNCU", new { id = Model.id_NhaCungUng }) |
+    @Html.ActionLink("VỀ TRANG QUẢN LÝ NHÀ CUNG ỨNG", "NhaCungUng")
+</p>

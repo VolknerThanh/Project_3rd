@@ -1,0 +1,51 @@
+﻿@model Doan16.Models.NhaCungUng
+
+@{
+    ViewBag.Title = "XoaNCU";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>XÓA NHÀ CUNG ỨNG</h2>
+
+<h3>Bạn muốn xóa nhà cung ứng này?</h3>
+<div>
+    <h4>THÔNG TIN NHÀ CUNG ỨNG</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            TÊN NHÀ CUNG ỨNG
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenNhaCungUng)
+        </dd>
+
+        <dt>
+            ĐỊA CHỈ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+
+        <dt>
+            SỐ ĐIỆN THOẠI
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("TRỞ VỀ TRANG QUẢN LÝ NHÀ CUNG ỨNG", "NhaCungUng")
+        </div>
+    }
+</div>
+

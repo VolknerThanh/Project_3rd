@@ -1,0 +1,77 @@
+﻿@model Doan16.Models.NuocGK
+
+@{
+    ViewBag.Title = "SuaSP";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("SuaSP", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>NuocGK</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_NuocGK)
+
+        <div class="form-group">
+            <div style="margin:0.5em 1em; font-weight:bold">
+                TÊN NƯỚC GIẢI KHÁT
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tenNGK, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tenNGK)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div style="margin:0.5em 1em; font-weight:bold">
+                ĐƠN GIÁ
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dongia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dongia)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div style="margin:0.5em 1em; font-weight:bold">
+                LOẠI NƯỚC GIẢI KHÁT
+            </div>
+            <div class="col-md-10">
+                @Html.DropDownList("nhanhieuNGK")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div style="margin:0.5em 1em; font-weight:bold">
+                SỐ LƯỢNG TỒN
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.soluongton, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.soluongton)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div style="margin:0.5em 1em; font-weight:bold">
+                HÌNH ẢNH
+            </div>
+            <div class="col-md-10">
+                <input type="file" name="fileupload" />
+                @Html.ValidationMessageFor(model => model.hinhanh)
+                @ViewBag.Thongbao
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("VỀ TRANG QUẢN LÝ SẢN PHẨM", "SanPham")
+</div>

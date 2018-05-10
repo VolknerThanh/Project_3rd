@@ -6,51 +6,134 @@
 }
 
 
-<h2>QUẢN LÝ TÀI KHOẢN NHÂN VIÊN</h2>
-
-<table class="table" border="1">
-    <tr>
-        <th style="width:200px">
-            Tên đăng nhập
-        </th>
-        <th style="width:100px">
-            Mật khẩu
-        </th>
-        <th style="width:100px">
-            Số điện thoại
-        </th>
-        <th style="width:120px">
-            Địa chỉ
-        </th>
-
-        <th style="width:120px">Phê duyệt</th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenDangNhap)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MatKhau)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SDT)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiaChi)
-            </td>
-            <td>
-                <input type="button" name="duyet" value="Duyệt" /> <input type="button" name="Huy" value="Hủy" />
-            </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.solanxem)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.moi)
-                </td>*@
-
-        </tr>
-    }
-</table>
+<h2 style="margin-left:0.5em">QUẢN LÝ TÀI KHOẢN NHÂN VIÊN</h2>
+<div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Tables</li>
+    </ol>
+    <!-- Example DataTables Card-->
+    <div class="card mb-0">
+        <div class="card-header">
+            <i class="fa fa-table"></i> TÀI KHOẢN NHÂN VIÊN CHỜ XÉT DUYỆT
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div style="margin-left:2em; margin-bottom:1em; font-weight:bold">
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr style="text-align:center">
+                            <th style="width:10%;">Tên đăng nhập</th>
+                            <th style="width:10%">Mật khẩu</th>
+                            <th style="width:5%">Phân quyền</th>
+                            <th style="width:25%">Địa chỉ</th>
+                            <th style="width:10%">Số điện thoại</th>
+                            <th style="width:40%">Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr style="text-align:center">
+                            <th style="width:10%;">Tên đăng nhập</th>
+                            <th style="width:10%">Mật khẩu</th>
+                            <th style="width:5%">Phân quyền</th>
+                            <th style="width:25%">Địa chỉ</th>
+                            <th style="width:10%">Số điện thoại</th>
+                            <th style="width:40%">Chức năng</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (item.Duyet == false)
+                            {
+                                <tr style="text-align:center">
+                                    <td>@item.TenDangNhap</td>
+                                    <td>@item.MatKhau</td>
+                                    <td>@item.PhanQuyen</td>
+                                    <td>@item.DiaChi</td>
+                                    <td>@item.SDT</td>
+                                    <td>
+                                        @using (Html.BeginForm())
+                                        {
+                                            <button class="btn" style="width:120px; margin:0.3em; margin-left:3em;"> @Html.ActionLink("Duyệt", "DuyetNV", new { id = item.id })</button>
+                                            <button class="btn" style="width:120px; margin:0.3em; margin-left:3em;">@Html.ActionLink("Xóa", "XoaNV", new { id = item.id })</button>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-3">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Tables</li>
+        </ol>
+        <div class="card-header">
+            <i class="fa fa-table"></i> TÀI KHOẢN NHÂN VIÊN
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div style="margin-left:2em; margin-bottom:1em; font-weight:bold">
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr style="text-align:center">
+                            <th style="width:10%;">Tên đăng nhập</th>
+                            <th style="width:10%">Mật khẩu</th>
+                            <th style="width:5%">Phân quyền</th>
+                            <th style="width:25%">Địa chỉ</th>
+                            <th style="width:10%">Số điện thoại</th>
+                            <th style="width:40%">Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr style="text-align:center">
+                            <th style="width:10%;">Tên đăng nhập</th>
+                            <th style="width:10%">Mật khẩu</th>
+                            <th style="width:5%">Phân quyền</th>
+                            <th style="width:25%">Địa chỉ</th>
+                            <th style="width:10%">Số điện thoại</th>
+                            <th style="width:40%">Chức năng</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (item.Duyet == true)
+                            {
+                                <tr style="text-align:center">
+                                    <td>@item.TenDangNhap</td>
+                                    <td>@item.MatKhau</td>
+                                    <td>@item.PhanQuyen</td>
+                                    <td>@item.DiaChi</td>
+                                    <td>@item.SDT</td>
+                                    <td>
+                                        @using (Html.BeginForm())
+                                        {
+                                            <button class="btn" style="width:120px; margin:0.3em; margin-left:3em;"> @Html.ActionLink("Sửa", "SuaNV", new { id = item.id })</button>
+                                            <button class="btn" style="width:120px; margin:0.3em; margin-left:3em;">@Html.ActionLink("Xóa", "XoaNV", new { id = item.id })</button>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

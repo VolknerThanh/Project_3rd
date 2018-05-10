@@ -6,63 +6,133 @@
 
 <h2> QUẢN LÝ THÔNG TÀI KHOẢN KHÁCH HÀNG</h2>
 
-<table class="table" border="1">
-    <tr>
-        <th style="width:200px">
-            Tên khách hàng
-        </th>
-        <th style="width:100px">
-            Tên đăng nhập
-        </th>
-        <th style="width:100px">
-            Mật khẩu
-        </th>
-        <th style="width:120px">
-            Địa chỉ
-        </th>
-        <th style="width:120px">
-            Ngày sinh
-        </th>
-        <th style="width:120px">
-            Số điện thoại
-        </th>
-        <th style="width:120px">Phê duyệt</th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.tenKhachHang)
-            </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.Donvitinh)
-                </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.TenDN)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Matkhau)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.diachi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ngaysinh)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SoDienThoai)
-            </td>
-            <td>
-                <input type="button" name="duyet" value="Duyệt" /> <input type="button" name="Huy" value="Hủy" />
-            </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.solanxem)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.moi)
-                </td>*@
-
-        </tr>
-    }
-</table>
+<div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Tables</li>
+    </ol>
+    <!-- Example DataTables Card-->
+    <div class="card mb-0">
+        <div class="card-header">
+            <i class="fa fa-table"></i> TÀI KHOẢN KHÁCH HÀNG CHỜ XÉT DUYỆT
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div style="margin-left:2em; margin-bottom:1em; font-weight:bold">
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr style="text-align:center">
+                            <th style="width:10%;">Tên khách hàng</th>
+                            <th style="width:10%;">Tên đăng nhập</th>
+                            <th style="width:10%">Mật khẩu</th>
+                            <th style="width:20%">Địa chỉ</th>
+                            <th style="width:10%">Số điện thoại</th>
+                            <th style="width:40%">Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr style="text-align:center">
+                            <th style="width:10%;">Tên khách hàng</th>
+                            <th style="width:10%;">Tên đăng nhập</th>
+                            <th style="width:10%">Mật khẩu</th>
+                            <th style="width:20%">Địa chỉ</th>
+                            <th style="width:10%">Số điện thoại</th>
+                            <th style="width:40%">Chức năng</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (item.Duyet == false)
+                            {
+                                <tr style="text-align:center">
+                                    <td>@item.tenKhachHang</td>
+                                    <td>@item.TenDN</td>
+                                    <td>@item.Matkhau</td>
+                                    <td>@item.diachi</td>
+                                    <td>@item.SoDienThoai</td>
+                                    <td>
+                                        @using (Html.BeginForm())
+                                        {
+                                            <button class="btn" style="width:120px; margin:0.3em; margin-left:3em;"> @Html.ActionLink("Duyệt", "DuyetKH", new { id = item.id_KhachHang })</button>
+                                            <button class="btn" style="width:120px; margin:0.3em; margin-left:3em;">@Html.ActionLink("Xóa", "XoaKH", new { id = item.id_KhachHang })</button>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-3">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Tables</li>
+        </ol>
+        <div class="card-header">
+            <i class="fa fa-table"></i> TÀI KHOẢN KHÁCH HÀNG
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div style="margin-left:2em; margin-bottom:1em; font-weight:bold">
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr style="text-align:center">
+                            <th style="width:10%;">Tên khách hàng</th>
+                            <th style="width:10%;">Tên đăng nhập</th>
+                            <th style="width:10%">Mật khẩu</th>
+                            <th style="width:20%">Địa chỉ</th>
+                            <th style="width:10%">Số điện thoại</th>
+                            <th style="width:40%">Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr style="text-align:center">
+                            <th style="width:10%;">Tên khách hàng</th>
+                            <th style="width:10%;">Tên đăng nhập</th>
+                            <th style="width:10%">Mật khẩu</th>
+                            <th style="width:20%">Địa chỉ</th>
+                            <th style="width:10%">Số điện thoại</th>
+                            <th style="width:40%">Chức năng</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (item.Duyet == true)
+                            {
+                                <tr style="text-align:center">
+                                    <td>@item.tenKhachHang</td>
+                                    <td>@item.TenDN</td>
+                                    <td>@item.Matkhau</td>
+                                    <td>@item.diachi</td>
+                                    <td>@item.SoDienThoai</td>
+                                    <td>
+                                        @using (Html.BeginForm())
+                                        {
+                                            <button class="btn" style="width:120px; margin:0.3em; margin-left:3em;"> @Html.ActionLink("Sửa", "SuaKH", new { id = item.id_KhachHang })</button>
+                                            <button class="btn" style="width:120px; margin:0.3em; margin-left:3em;">@Html.ActionLink("Xóa", "XoaKH", new { id = item.id_KhachHang })</button>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

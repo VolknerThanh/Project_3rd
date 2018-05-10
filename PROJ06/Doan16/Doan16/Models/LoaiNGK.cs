@@ -1,4 +1,4 @@
-namespace Doan16.Models
+﻿namespace Doan16.Models
 {
     using System;
     using System.Collections.Generic;
@@ -18,7 +18,7 @@ namespace Doan16.Models
         [Key]
         public int id_LoaiNGK { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Bạn chưa nhập tên loại nước giải khát")]
         [StringLength(100)]
         public string TenLoaiNGK { get; set; }
 

@@ -1,4 +1,4 @@
-namespace Doan16.Models
+﻿namespace Doan16.Models
 {
     using System;
     using System.Collections.Generic;
@@ -19,15 +19,15 @@ namespace Doan16.Models
         [Key]
         public int id_NhaCungUng { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Bạn chưa nhập tên nhà cung ứng!")]
         [StringLength(200)]
         public string TenNhaCungUng { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Bạn chưa nhập địa chỉ!")]
         [StringLength(100)]
         public string DiaChi { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Bạn chưa nhập số điện thoại!")]
         [StringLength(20)]
         public string SDT { get; set; }
 

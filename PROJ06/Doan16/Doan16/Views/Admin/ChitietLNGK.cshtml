@@ -1,0 +1,35 @@
+﻿@model Doan16.Models.LoaiNGK
+
+@{
+    ViewBag.Title = "ChitietLNGK";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="margin-left:.3em">CHI TIẾT LOẠI NƯỚC GIẢI KHÁT</h2>
+
+<div>
+    <h4 style="margin-left:.5em">Thông Tin Loại Nước Giải Khát</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="margin-left:1em; font-weight:bold">
+            Tên nhà cung ứng
+        </dt>
+
+        <dd style="margin-left:1em">
+            @Html.DisplayFor(model => model.NhaCungUng1.TenNhaCungUng)
+        </dd>
+
+        <dt style="margin-left:1em; font-weight:bold">
+            Tên loại nước giải khát
+        </dt>
+
+        <dd style="margin-left:1em">
+            @Html.DisplayFor(model => model.TenLoaiNGK)
+        </dd>
+
+    </dl>
+</div>
+<p style="margin-left:1em">
+    @Html.ActionLink("SỬA", "SuaLNGK", new { id = Model.id_LoaiNGK }) |
+    @Html.ActionLink("VỀ TRANG QUẢN LÝ LOẠI NGK", "LoaiNGK")
+</p>

@@ -1,0 +1,74 @@
+﻿@model Doan16.Models.KhachHang
+
+@{
+    ViewBag.Title = "XoaKH";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="margin-left:.5em">Xóa Thông Tin Khách Hàng</h2>
+
+<h3 style="margin-left:.5em">Are you sure you want to delete this?</h3>
+<div>
+    <h4 style="margin-left:.5em">THÔNG TIN KHÁCH HÀNG</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="margin-left:1em">
+            Tên khách hàng
+        </dt>
+
+        <dd style="margin-left:1em">
+            @Html.DisplayFor(model => model.tenKhachHang)
+        </dd>
+
+        <dt style="margin-left:1em">
+            Địa chỉ
+        </dt>
+
+        <dd style="margin-left:1em">
+            @Html.DisplayFor(model => model.diachi)
+        </dd>
+
+        <dt style="margin-left:1em">
+            Ngày sinh
+        </dt>
+
+        <dd style="margin-left:1em">
+            @Html.DisplayFor(model => model.Ngaysinh)
+        </dd>
+
+        <dt style="margin-left:1em">
+            Email
+        </dt>
+
+        <dd style="margin-left:1em">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt style="margin-left:1em">
+            Giới tính
+        </dt>
+
+        <dd style="margin-left:1em">
+            @Html.DisplayFor(model => model.Gioitinh)
+        </dd>
+
+        <dt style="margin-left:1em">
+            Số điện thoại
+        </dt>
+
+        <dd style="margin-left:1em">
+            @Html.DisplayFor(model => model.SoDienThoai)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="margin-left:1em">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("TRỞ VỀ TRANG QUẢN LÝ KH", "KhachHang")
+        </div>
+    }
+</div>

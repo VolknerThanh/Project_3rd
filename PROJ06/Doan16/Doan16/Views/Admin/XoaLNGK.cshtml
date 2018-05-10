@@ -1,0 +1,43 @@
+﻿@model Doan16.Models.LoaiNGK
+
+@{
+    ViewBag.Title = "XoaLNGK";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="margin-left:0.3em">XÓA THÔNG TIN LOẠI NƯỚC GIẢI KHÁT</h2>
+
+<h3 style="margin-left:.3em">Bạn có muốn xóa loại nước giải khát này?</h3>
+<div>
+    <h4 style="margin-left:.5em">Thông Tin Loại Nước Giải Khát</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="margin-left:1em; font-weight:bold">
+            TÊN NHÀ CUNG ỨNG
+        </dt>
+
+        <dd style="margin-left:1em">
+            @Html.DisplayFor(model => model.NhaCungUng1.TenNhaCungUng)
+        </dd>
+
+        <dt style="margin-left:1em; font-weight:bold">
+            TÊN LOẠI NƯỚC GIẢI KHÁT
+        </dt>
+
+        <dd style="margin-left:1em">
+            @Html.DisplayFor(model => model.TenLoaiNGK)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="margin-left:1em">
+            <input type="submit" value="XÓA" class="btn btn-default" /> |
+            @Html.ActionLink("VỀ TRANG QUẢN LÝ LOẠI NƯỚC GIẢI KHÁT", "LoaiNGK")
+        </div>
+    }
+</div>
+

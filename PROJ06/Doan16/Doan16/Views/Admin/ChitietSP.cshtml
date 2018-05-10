@@ -1,0 +1,59 @@
+﻿@model Doan16.Models.NuocGK
+
+@{
+    ViewBag.Title = "ChitietSP";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>THÔNG TIN CHI TIẾT SẢN PHẨM</h2>
+
+<div>
+    <h4>NuocGK</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            TÊN LOẠI NƯỚC GIẢI KHÁT
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiNGK.TenLoaiNGK)
+        </dd>
+
+        <dt>
+            TÊN NƯỚC GIẢI KHÁT
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenNGK)
+        </dd>
+
+        <dt>
+            ĐƠN GIÁ
+        </dt>
+
+        <dd>
+            @String.Format("{0:0,0}", Model.dongia) VNĐ
+        </dd>
+
+        <dt>
+            SỐ LƯỢNG TỒN
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soluongton)
+        </dd>
+
+        <dt>
+            HÌNH ẢNH
+        </dt>
+
+        <dd>
+            <img src="@Url.Content("~/images/"+ Model.hinhanh)" width="150px" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("SỬA", "SuaSP", new { id = Model.id_NuocGK }) |
+    @Html.ActionLink("VỀ TRANG QUẢN LÝ SẢN PHẨM", "SanPham")
+</p>

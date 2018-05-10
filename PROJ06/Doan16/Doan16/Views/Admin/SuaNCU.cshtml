@@ -1,0 +1,54 @@
+﻿@model Doan16.Models.NhaCungUng
+
+@{
+    ViewBag.Title = "SuaNCU";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="margin-left:.3em">SỬA THÔNG TIN NHÀ CUNG ỨNG</h2>
+
+@using (Html.BeginForm("SuaNCU", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4 style="margin-left:.5em">Thông Tin Nhà Cung Ứng</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_NhaCungUng)
+
+        <div class="form-group">
+            <div style="margin-left:1em">Tên nhà cung ứng</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenNhaCungUng, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenNhaCungUng, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div style="margin-left:1em">Địa chỉ</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div style="margin-left:1em">Số điện thoại</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div style="margin-left:.5em">
+    @Html.ActionLink("VỀ TRANG QUẢN LÝ NHÀ CUNG ỨNG", "NhaCungUng")
+</div>

@@ -16,7 +16,7 @@ namespace Doan16.Models
         public string TenDangNhap { get; set; }
 
         [Required]
-        [StringLength(100)]
+        [StringLength(32)]
         public string MatKhau { get; set; }
 
         public bool? PhanQuyen { get; set; }

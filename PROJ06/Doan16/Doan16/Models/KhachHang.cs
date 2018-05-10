@@ -28,7 +28,7 @@ namespace Doan16.Models
         public string TenDN { get; set; }
 
         [Required]
-        [StringLength(15)]
+        [StringLength(32)]
         public string Matkhau { get; set; }
 
         [Required]

@@ -70,7 +70,7 @@ namespace Doan16.Controllers
             {
                 kh.tenKhachHang = hoten;
                 kh.TenDN = tendn;
-                kh.Matkhau = matkhau;
+                kh.Matkhau = MaHoa.Encryptor.MD5Hash(matkhau);
                 kh.Email = email;
                 kh.diachi = diachi;
                 kh.SoDienThoai = dienthoai;
@@ -95,7 +95,7 @@ namespace Doan16.Controllers
         public ActionResult Dangnhap(FormCollection col)
         {
             var tendn = col["TenDN"];
-            var matkhau = col["Matkhau"];
+            var matkhau = MaHoa.Encryptor.MD5Hash(col["Matkhau"]);
             if (String.IsNullOrEmpty(tendn))
             {
                 ViewData["Loi1"] = "Phải nhập tên đăng nhập";

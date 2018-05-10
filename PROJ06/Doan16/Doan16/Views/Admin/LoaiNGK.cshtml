@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Doan16.Models.LoaiNGK>
+@{
+    ViewBag.Title = "LoaiNGK";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="margin-left:0.5em">QUẢN LÝ LOẠI NƯỚC GIẢI KHÁT</h2>
+<div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Tables</li>
+    </ol>
+    <!-- Example DataTables Card-->
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> Data Table Example
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div style="margin-left:2em; margin-bottom:1em; font-weight:bold">
+                    @using (Html.BeginForm("ThemmoiLNGK", "Admin", FormMethod.Get))
+                    {
+                        <button type="submit" class="btn btn-primary" name="themmoi">THÊM MỚI</button>
+                    }
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr style="text-align:center">
+                            <th style="width:7%;">Mã NGK</th>
+                            <th style="width:25%">Tên loại NGK</th>
+                            <th style="width:25%">Nhà cung ứng</th>
+                            <th style="width:43%">Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr style="text-align:center">
+                            <th style="width:7%;">Mã NGK</th>
+                            <th style="width:25%">Tên loại NGK</th>
+                            <th style="width:25%">Nhà cung ứng</th>
+                            <th style="width:43%">Chức năng</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr style="text-align:center">
+                                <td>@item.id_LoaiNGK</td>
+                                <td>@item.TenLoaiNGK</td>
+                                <td>@Html.DisplayFor(modelItem => item.NhaCungUng1.TenNhaCungUng)
+                                <td>
+                                    @using (Html.BeginForm())
+                                    {
+                                        <button class="btn" style="width:120px; margin:0.3em; margin-left:3em;"> @Html.ActionLink("Xem chi tiết", "ChitietLNGK", new { id = item.id_LoaiNGK })</button>
+                                        <button class="btn" style="width:120px; margin:0.3em; margin-left:3em;">@Html.ActionLink("Sửa", "SuaLNGK", new { id = item.id_LoaiNGK })</button>
+                                        <button class="btn" style="width:120px; margin:0.3em; margin-left:3em;">@Html.ActionLink("Xóa", "XoaLNGK", new { id = item.id_LoaiNGK })</button><br />
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    </div>
+</div>
+
+
