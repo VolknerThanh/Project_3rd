@@ -479,5 +479,14 @@ namespace Doan16.Controllers
             return View(lngk);
         }
         #endregion
+        
+
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            Session["TaiKhoanAdmin"] = null;
+
+            return RedirectToAction("Index", "SanPham");
+        }
     }
 }

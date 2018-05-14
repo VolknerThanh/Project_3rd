@@ -26,15 +26,15 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="@Url.Action("SanPham", "Admin")">
                         <i class="fa fa-fw fa-dashboard"></i>
-                        <span class="nav-link-text">Dashboard</span>
+                        <span class="nav-link-text">Trang Chủ</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
                     <a class="nav-link" href="charts.html">
                         <i class="fa fa-fw fa-area-chart"></i>
-                        <span class="nav-link-text">Charts</span>
+                        <span class="nav-link-text">Thống Kê</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
@@ -46,14 +46,29 @@
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
                         <i class="fa fa-fw fa-wrench"></i>
-                        <span class="nav-link-text">Components</span>
+                        <span class="nav-link-text">Quản Lý</span>
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseComponents">
                         <li>
-                            <a href="navbar.html">Navbar</a>
+                            <a href="@Url.Action("KhachHang", "Admin")">Quản Lý Khách Hàng</a>
                         </li>
                         <li>
-                            <a href="cards.html">Cards</a>
+                            <a href="@Url.Action("NhanVien", "Admin")">Quản Lý Nhân Viên</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("NhaCungUng", "Admin")">Quản Lý Nhà Cung Ứng</a>
+                        </li>
+                        <li>
+                            <a href="#">Quản Lý Phiếu Hẹn</a>
+                        </li>
+                        <li>
+                            <a href="#">Quản Lý Phiếu Nợ</a>
+                        </li>
+                        <li>
+                            <a href="#">Quản Lý Đơn Đặt Hàng</a>
+                        </li>
+                        <li>
+                            <a href="#">Quản Lý Phiếu Giao Hàng</a>
                         </li>
                     </ul>
                 </li>
@@ -253,7 +268,11 @@
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                        @using (Html.BeginForm("Logout", "Admin", FormMethod.Post))
+                        {
+                            <button class="btn btn-primary" type="submit">Logout</button>
+                        }
+
                     </div>
                 </div>
             </div>

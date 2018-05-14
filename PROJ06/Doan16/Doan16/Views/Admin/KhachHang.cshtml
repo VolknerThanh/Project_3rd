@@ -123,7 +123,7 @@
                                     <td>
                                         @using (Html.BeginForm())
                                         {
-                                            <button class="btn" style="width:120px; margin:0.3em; margin-left:3em;"> @Html.ActionLink("Sửa", "SuaKH", new { id = item.id_KhachHang })</button>
+                                            <button class="btn" style="width:120px; margin:0.3em; margin-left:3em;"> @Html.ActionLink("Khóa", "KhoaKH", new { id = item.id_KhachHang })</button>
                                             <button class="btn" style="width:120px; margin:0.3em; margin-left:3em;">@Html.ActionLink("Xóa", "XoaKH", new { id = item.id_KhachHang })</button>
                                         }
                                     </td>
