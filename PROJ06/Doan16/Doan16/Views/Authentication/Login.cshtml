@@ -1,0 +1,53 @@
+﻿@using Doan16.Models
+@model TaiKhoan
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h1 style="text-align:center; margin:1em ; text-transform:uppercase">đăng nhập vào hệ thống</h1>
+<div style="display:flex; justify-content:center; align-items:center">
+    <br />
+    @using (Html.BeginForm("DoLogin", "Authentication", FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <td colspan="2" align="center">
+                    @Html.ValidationMessage("CredentialError", new { style = "color:red" })
+                    @Html.ValidationMessage("Perrmission", new { style = "color:red" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(c => c.TenDangNhap)
+                </td>
+                <td>
+                    <input type="text" name="TenDN" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    @Html.ValidationMessageFor(x => x.TenDangNhap)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(c => c.MatKhau)
+                </td>
+                <td>
+                    <input type="password" name="Matkhau" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    @Html.ValidationMessageFor(x => x.MatKhau)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" name="BtnSubmit" value="Login" />
+                </td>
+            </tr>
+        </table>
+    }
+</div>

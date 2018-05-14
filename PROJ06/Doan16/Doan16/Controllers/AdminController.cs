@@ -5,10 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Doan16.Filters;
 using Doan16.Models;
 
 namespace Doan16.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         QLCuaHangDBManage db = new QLCuaHangDBManage();
@@ -21,6 +23,7 @@ namespace Doan16.Controllers
                       select s).ToList();
             return kh;
         }
+        [AdminFilters]
         public ActionResult KhachHang()
         {
             var kh = laykhachhang();
@@ -61,6 +64,7 @@ namespace Doan16.Controllers
             db.SaveChanges();
             return RedirectToAction("KhachHang");
         }
+
 
         #region Quản lý tài khoản nhân viên
         public List<TaiKhoan> laynhanvien()
@@ -487,6 +491,10 @@ namespace Doan16.Controllers
             Session["TaiKhoanAdmin"] = null;
 
             return RedirectToAction("Index", "SanPham");
+        }
+        public ActionResult NotAuthentication()
+        {
+            return View();
         }
     }
 }
