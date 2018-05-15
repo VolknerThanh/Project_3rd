@@ -126,6 +126,9 @@ namespace Doan16.Controllers
             if (Session["Cart"] == null)
                 return RedirectToAction("Index", "SanPham");
 
+            if (Session["TaiKhoan"] == null)
+                return RedirectToAction("DangNhap", "KhachHang");
+
             List<Cart> listCart = getCart();
             List<Cart> SanPhamVuotSoLuong = new List<Cart>(CheckQuantity(listCart));
             

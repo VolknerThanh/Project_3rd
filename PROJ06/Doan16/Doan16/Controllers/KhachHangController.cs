@@ -123,6 +123,7 @@ namespace Doan16.Controllers
         {
             Session["TaiKhoan"] = null;
             Session["TenDangNhap"] = null;
+            Session.Clear();
 
             return RedirectToAction("Index", "SanPham");
         }

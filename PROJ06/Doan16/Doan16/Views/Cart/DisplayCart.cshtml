@@ -65,9 +65,11 @@
     </tbody>
 </table>
 
+@*
 <div class="alert alert-info">
     <strong>Thông báo !</strong> Bạn có tài khoản chưa? Nếu có hãy đăng nhập<a href="@Url.Action("DangNhap", "KhachHang")" class="alert-link"> tại đây</a>.
 </div>
+*@
 
 @using (Html.BeginForm("Order", "Cart"))
 {
@@ -81,7 +83,7 @@
     @*@using (Html.BeginForm("Appointment", "Cart"))
     {*@
         <button type="submit" class="btn btn-warning" style="width: 15%; padding: 0.6em; margin:0 0.5em; float: right">
-            Hẹn
+            Nợ
         </button>
     //}
 }
