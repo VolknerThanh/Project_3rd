@@ -167,6 +167,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MaHoa\Encryptor.cs" />
+    <Compile Include="Migrations\201805151520080_add_prop_to_model.cs" />
+    <Compile Include="Migrations\201805151520080_add_prop_to_model.Designer.cs">
+      <DependentUpon>201805151520080_add_prop_to_model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\ChiTietDonDatHang.cs" />
     <Compile Include="Models\ChiTietHoaDon.cs" />
@@ -873,6 +878,11 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201805151520080_add_prop_to_model.resx">
+      <DependentUpon>201805151520080_add_prop_to_model.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

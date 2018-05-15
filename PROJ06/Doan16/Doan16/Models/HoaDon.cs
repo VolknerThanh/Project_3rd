@@ -28,6 +28,7 @@ namespace Doan16.Models
         public string soHD { get; set; }
 
         public int? TongTien { get; set; }
+        public int Status { set; get; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }

@@ -57,9 +57,9 @@ namespace Doan16.Controllers
 
             return sum;
         }
-        public double TotalPrice()
+        public int TotalPrice()
         {
-            double total = 0;
+            int total = 0;
             List<Cart> listCart = Session["Cart"] as List<Cart>;
             if (listCart != null)
                 total = listCart.Sum(n => n.totalPrice_NGK);
@@ -139,13 +139,47 @@ namespace Doan16.Controllers
             ViewBag.TongThanhTien = TotalPrice();
             return View(listCart);
         }
+        public int GetIdPhieuHoaDon()
+        {
+            var id = (from hd in data.HoaDons
+                      orderby hd.id_HoaDon descending
+                      select hd.id_HoaDon).Take(1).ToList();
+            if (id.Count == 0)
+                return 1;
+            return id[0];
+        }
+
         [HttpPost]
         public ActionResult Agree()
         {
             KhachHang kh = (KhachHang)Session["TaiKhoan"];
+            List<Cart> listCart = getCart();
 
+            int sohd = GetIdPhieuHoaDon() + 1;
 
+            data.HoaDons.Add(new HoaDon {
+                NgayXuatHD = DateTime.Now,
+                id_KhachHang = kh.id_KhachHang,
+                soHD = "HD" + sohd,
+                TongTien = TotalPrice(),
+                Status = 3
+            });
+            data.SaveChanges();
 
+            foreach(var item in listCart)
+            {
+                data.ChiTietHoaDons.Add(new ChiTietHoaDon {
+                    id_HoaDon = GetIdPhieuHoaDon(),
+                    id_NuocGK = item.id_NGK,
+                    soluongmua = item.quantity_NGK,
+                    dongiaban = item.price_NGK,
+                    thanhtien = item.totalPrice_NGK
+                });
+                data.SaveChanges();
+
+            }
+            data.SaveChanges();
+            Session["Cart"] = null;
 
             return RedirectToAction("Index", "SanPham");
         }

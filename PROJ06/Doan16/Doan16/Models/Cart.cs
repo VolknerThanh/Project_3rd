@@ -15,15 +15,15 @@ namespace Doan16.Models
         public string img_NGK { set; get; }
         public int quantity_NGK { set; get; }
         public int quantity_of_product { set; get; }
-        public Double price_NGK { set; get; }
-        public Double totalPrice_NGK { get { return quantity_NGK * price_NGK; } }
+        public int price_NGK { set; get; }
+        public int totalPrice_NGK { get { return quantity_NGK * price_NGK; } }
         public Cart(int id)
         {
             id_NGK = id;
             NuocGK item = data.NuocGKs.Single(n => n.id_NuocGK == id_NGK);
             name_NGK = item.tenNGK;
             img_NGK = item.hinhanh;
-            price_NGK = double.Parse(item.dongia.ToString());
+            price_NGK = item.dongia;
             quantity_of_product = int.Parse(item.soluongton.ToString()) ;
             quantity_NGK = 1;
         }
