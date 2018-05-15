@@ -131,19 +131,22 @@ namespace Doan16.Controllers
 
             List<Cart> listCart = getCart();
             List<Cart> SanPhamVuotSoLuong = new List<Cart>(CheckQuantity(listCart));
+
+            Tuple<List<Cart>, List<Cart>> danhsachsp = new Tuple<List<Cart>, List<Cart>>(listCart, SanPhamVuotSoLuong);
             
+
             if (SanPhamVuotSoLuong.Count() != 0)
             {
-                // co ton tai san pham vuot qua so luong ton
-                ViewBag.ThongBao = "yes";
-                return View(SanPhamVuotSoLuong);
+                // co ton tai san pham > so luong ton
+                ViewBag.ThongBao = "notEnough";
+                //return View(SanPhamVuotSoLuong);
             }
 
             ViewBag.TongSoLuong = SumQuantity();
             ViewBag.TongThanhTien = TotalPrice();
 
-            ViewBag.ThongBao = "no";
-            return View(listCart);
+            ViewBag.ThongBao = "Enough";
+            return View(danhsachsp);
         }
     }
 }

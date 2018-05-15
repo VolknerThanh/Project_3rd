@@ -29,26 +29,55 @@
 
     @foreach (var nuoc in Model)
     {
-        <div class="col-md-4 text-center col-sm-6 col-xs-6">
-            <div class="thumbnail product-box" style="min-height:250px">
-                <div style="min-height:200px;">
-                    <img src="~/images/@nuoc.hinhanh" style="width:200px;" />
-                </div>
-                <div class="caption">
-                    <h4><a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })">@nuoc.tenNGK</a></h4>
-                    <p>Price : <strong>@nuoc.dongia VNĐ</strong>  </p>
+        if (Session["TaiKhoan"] != null && bool.Parse(Session["LoaiTaiKhoan"].ToString()))
+        {
+            <div class="col-md-4 text-center col-sm-6 col-xs-6">
+                <div class="thumbnail product-box" style="min-height:250px">
+                    <div style="min-height:200px;">
+                        <img src="~/images/@nuoc.hinhanh" style="width:200px;" />
+                    </div>
+                    <div class="caption">
+                        <h4><a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })">@nuoc.tenNGK</a></h4>
+                        <p>Price : <strong>@nuoc.dongia VNĐ</strong>  </p>
 
-                    <span>
-                        <a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })" class="btn btn-primary" role="button">See Details</a>
+                        <span>
+                            <a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })" class="btn btn-primary" role="button">See Details</a>
 
-                        @using (Html.BeginForm("AddToCart", "Cart", new { id = nuoc.id_NuocGK, Url = Request.Url.ToString() }))
-                        {
-                            <button class="btn btn-success">Add To Cart</button>
-                        }
-                    </span>
+                            @using (Html.BeginForm("AddToCart", "Cart", new { id = nuoc.id_NuocGK, Url = Request.Url.ToString() }))
+                            {
+                                <button class="btn btn-success">Add To Cart</button>
+                            }
+                        </span>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
+        else
+        {
+            if (nuoc.soluongton > 0)
+            {
+                <div class="col-md-4 text-center col-sm-6 col-xs-6">
+                    <div class="thumbnail product-box" style="min-height:250px">
+                        <div style="min-height:200px;">
+                            <img src="~/images/@nuoc.hinhanh" style="width:200px;" />
+                        </div>
+                        <div class="caption">
+                            <h4><a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })">@nuoc.tenNGK</a></h4>
+                            <p>Price : <strong>@nuoc.dongia VNĐ</strong>  </p>
+
+                            <span>
+                                <a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })" class="btn btn-primary" role="button">See Details</a>
+
+                                @using (Html.BeginForm("AddToCart", "Cart", new { id = nuoc.id_NuocGK, Url = Request.Url.ToString() }))
+                                {
+                                    <button class="btn btn-success">Add To Cart</button>
+                                }
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
     }
 </div>
 

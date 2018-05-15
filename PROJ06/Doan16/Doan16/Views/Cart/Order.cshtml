@@ -1,5 +1,5 @@
 ﻿@using Doan16.Models
-@model List<Cart>
+@model Tuple<List<Cart>, List<Cart>>
 
 @{
     ViewBag.Title = "Đặt Hàng";
@@ -8,9 +8,10 @@
 
 <h1> hello world ! </h1>
 
-@if (ViewBag.ThongBao == "yes")
+@* Khach thuong | khong du hang  *@
+@if (ViewBag.ThongBao == "notEnough" && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == false)
 {
-    <h3>San pham KHONG DAT yeu cau : </h3>
+    /*
     <style>
         #soluongsp {
             background-color: red;
@@ -21,13 +22,57 @@
             border-radius: 5px;
         }
     </style>
+    */
+
+    <div class="alert alert-danger">
+        <strong>Sản phẩm không đủ hàng !</strong> Khách hàng vui lòng chọn sản phẩm khác !
+    </div>
 }
-else
+@* Khach thuong | du hang *@
+else if (ViewBag.ThongBao == "Enough" && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == false)
 {
-    <h3>San pham DAT yeu cau : </h3>
+    //thanh toan ngay
+    //in ra list san pham
+    //luu vao hoa don
+
 }
 
-@foreach (var item in Model)
+@foreach (var item in Model.Item1)
+{
+    <div style="margin: 5em; width: 60%; height: 200px; position:relative">
+        <div style="float: left; width: 40%; position:relative">
+            <img src="../../images/@item.img_NGK" title="@item.name_NGK" width="200px" />
+        </div>
+        <div style="float: right; width:60%; position:relative">
+            <table align="center">
+                <tr style="height: 40px;">
+                    <td style="width: 50%">Mã Sản Phẩm : </td>
+                    <td style="width: 100%">@item.id_NGK</td>
+                </tr>
+                <tr style="height: 40px;">
+                    <td style="width: 50%">Tên Sản Phẩm : </td>
+                    <td>@item.name_NGK</td>
+                </tr>
+                <tr style="height: 40px;">
+                    <td style="width: 50%">Đơn giá : </td>
+                    <td>@item.price_NGK</td>
+                </tr>
+                <tr style="height: 40px;">
+                    <td style="width: 50%">Số Lượng Tồn : </td>
+                    <td>@item.quantity_of_product</td>
+                </tr>
+                <tr style="height: 40px;">
+                    <td style="width: 50%">Số Lượng Khách Mua : </td>
+                    <td id="soluongsp">@item.quantity_NGK</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}
+
+<h1>Danh Sach San Pham Khong Hop Le</h1>
+
+@foreach (var item in Model.Item2)
 {
     <div style="margin: 5em; width: 60%; height: 200px; position:relative">
         <div style="float: left; width: 40%; position:relative">

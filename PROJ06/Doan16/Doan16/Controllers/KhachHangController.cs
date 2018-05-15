@@ -111,6 +111,7 @@ namespace Doan16.Controllers
                 {
                     ViewBag.Thongbao = "Chúc mừng đặng nhập thành công";
                     Session["TaiKhoan"] = kh;
+                    Session["LoaiTaiKhoan"] = kh.Duyet;
                     Session["TenDangNhap"] = tendn;
                     return RedirectToAction("DisplayCart", "Cart", new { area = "" });
                 }
@@ -123,6 +124,7 @@ namespace Doan16.Controllers
         {
             Session["TaiKhoan"] = null;
             Session["TenDangNhap"] = null;
+            Session["LoaiTaiKhoan"] = null;
             Session.Clear();
 
             return RedirectToAction("Index", "SanPham");
