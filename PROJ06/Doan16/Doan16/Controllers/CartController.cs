@@ -68,10 +68,13 @@ namespace Doan16.Controllers
         public ActionResult DisplayCart()
         {
             List<Cart> listCart = getCart();
+            List<Cart> SanPhamVuotSoLuong = new List<Cart>(CheckQuantity(listCart));
+
+            Tuple<List<Cart>, List<Cart>> danhsachsp = new Tuple<List<Cart>, List<Cart>>(listCart, SanPhamVuotSoLuong);
 
             ViewBag.TongSoLuong = SumQuantity();
             ViewBag.TongThanhTien = TotalPrice();
-            return View(listCart);
+            return View(danhsachsp);
         }
         public ActionResult CartInformation()
         {
@@ -120,7 +123,6 @@ namespace Doan16.Controllers
             }
             return dssp;
         }
-        //[HttpGet]
         public ActionResult Order()
         {
             if (Session["Cart"] == null)
@@ -130,23 +132,22 @@ namespace Doan16.Controllers
                 return RedirectToAction("DangNhap", "KhachHang");
 
             List<Cart> listCart = getCart();
-            List<Cart> SanPhamVuotSoLuong = new List<Cart>(CheckQuantity(listCart));
-
-            Tuple<List<Cart>, List<Cart>> danhsachsp = new Tuple<List<Cart>, List<Cart>>(listCart, SanPhamVuotSoLuong);
+            //List<Cart> SanPhamVuotSoLuong = new List<Cart>(CheckQuantity(listCart));
+            //Tuple<List<Cart>, List<Cart>> danhsachsp = new Tuple<List<Cart>, List<Cart>>(listCart, SanPhamVuotSoLuong);
             
-
-            if (SanPhamVuotSoLuong.Count() != 0)
-            {
-                // co ton tai san pham > so luong ton
-                ViewBag.ThongBao = "notEnough";
-                //return View(SanPhamVuotSoLuong);
-            }
-
             ViewBag.TongSoLuong = SumQuantity();
             ViewBag.TongThanhTien = TotalPrice();
+            return View(listCart);
+        }
+        [HttpPost]
+        public ActionResult Agree()
+        {
+            KhachHang kh = (KhachHang)Session["TaiKhoan"];
 
-            ViewBag.ThongBao = "Enough";
-            return View(danhsachsp);
+
+
+
+            return RedirectToAction("Index", "SanPham");
         }
     }
 }

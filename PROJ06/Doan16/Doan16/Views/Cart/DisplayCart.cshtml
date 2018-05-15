@@ -1,5 +1,5 @@
 ﻿@using Doan16.Models
-@model List<Cart>
+@model Tuple<List<Cart>, List<Cart>>
 
 @{
     ViewBag.Title = "DisplayCart";
@@ -34,56 +34,145 @@
         </tr>
     </tfoot>
     <tbody>
-        @foreach(var item in Model)
+        @foreach (var item in Model.Item1)
         {
-        <tr style="text-align:center">
-            <td>@item.id_NGK</td>
-            <td>@item.name_NGK</td>
-            <td>
-                <img src="../../images/@item.img_NGK" style="width: 100px;" />
-            </td>
-            <td>@String.Format("{0:0,0}", @item.price_NGK) VNĐ</td>
-            <td>@item.quantity_of_product</td>
-            @using (Html.BeginForm("UpdateCart", "Cart", new { @id = item.id_NGK }))
-            {
-                <td align="center">
-                    <input type="number" class="form-control" name="txtQuantity" style="text-align:center; width:65%;" min="1" value="@item.quantity_NGK" />
-                </td>
-                <td>@String.Format("{0:0,0}", @item.totalPrice_NGK) VNĐ</td>
+            <tr style="text-align:center">
+                <td>@item.id_NGK</td>
+                <td>@item.name_NGK</td>
                 <td>
-                    <a href="@Url.Action("Details", "SanPham", new { id = item.id_NGK })">
-                        <div class="btn btn-primary">Chi Tiết</div>
-                    </a>
-                    <input class="btn btn-success" type="submit" value="Cập Nhật">
-                    <a href="@Url.Action("RemoveCart", "Cart", new { @id = item.id_NGK })">
-                        <div class="btn btn-danger">Xóa</div>
-                    </a>
+                    <img src="../../images/@item.img_NGK" style="width: 100px;" />
                 </td>
-            }
-        </tr>
+                <td>@String.Format("{0:0,0}", @item.price_NGK) VNĐ</td>
+                <td>@item.quantity_of_product</td>
+                @using (Html.BeginForm("UpdateCart", "Cart", new { @id = item.id_NGK }))
+                {
+                    <td align="center">
+                        <input type="number" class="form-control" name="txtQuantity" style="text-align:center; width:65%;" min="1" value="@item.quantity_NGK" />
+                    </td>
+                    <td>@String.Format("{0:0,0}", @item.totalPrice_NGK) VNĐ</td>
+                    <td>
+                        <a href="@Url.Action("Details", "SanPham", new { id = item.id_NGK })">
+                            <div class="btn btn-primary">Chi Tiết</div>
+                        </a>
+                        <input class="btn btn-success" type="submit" value="Cập Nhật">
+                        <a href="@Url.Action("RemoveCart", "Cart", new { @id = item.id_NGK })">
+                            <div class="btn btn-danger">Xóa</div>
+                        </a>
+                    </td>
+                }
+            </tr>
         }
     </tbody>
 </table>
 
-@*
-<div class="alert alert-info">
-    <strong>Thông báo !</strong> Bạn có tài khoản chưa? Nếu có hãy đăng nhập<a href="@Url.Action("DangNhap", "KhachHang")" class="alert-link"> tại đây</a>.
-</div>
-*@
-
-@using (Html.BeginForm("Order", "Cart"))
+@if (Model.Item2.Count != 0)
 {
-    <button type="submit" class="btn btn-primary" style="width: 15%; padding: 0.6em; margin:0 0.5em; float: right">
-        Thanh Toán
-    </button>
+    <h1 style="text-align:center; text-transform: uppercase; margin: 2em 0 0 1em;">Danh Sách các sản phẩm </h1>
+
+    <br />
+    <div class="alert alert-danger">
+        <strong>Thông báo !</strong> Số lượng những sản phẩm này không đủ trong kho hàng! Hãy cập nhật lại số lượng trong giỏ hàng ở trên.
+    </div>
+    <br />
+    <table align="center" border="1" width="100%" style="margin-bottom: 3em;">
+        <thead>
+            <tr style="text-align:center; font-weight:900; background-color:lightblue">
+                <td style="padding: 0.5em; width:9.5%;">Mã Sản Phẩm</td>
+                <td style="padding: 0.5em; width:18%">Tên Sản Phẩm</td>
+                <td style="padding: 0.5em; width:12%">Ảnh Bìa</td>
+                <td style="padding: 0.5em; width:10%">Đơn Giá</td>
+                <td style="padding: 0.5em; width:9.5%">Số Lượng Tồn</td>
+                <td style="padding: 0.5em; width:8%">Số Lượng</td>
+                <td style="padding: 0.5em; width:12%">Thành Tiền</td>
+                <td style="padding: 0.5em; width:30%"></td>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr style="text-align: right; ">
+                <td colspan="5" style="padding:0.5em 2em; font-weight:900; color: red;">Số lượng sản phẩm: @ViewBag.TongSoLuong</td>
+                <td colspan="3" style="padding:0.5em 2em; font-weight:900; color: red;">Tổng Tiền: @String.Format("{0:0,0}", ViewBag.TongThanhTien) VNĐ</td>
+            </tr>
+        </tfoot>
+        <tbody>
+            @foreach (var item in Model.Item2)
+            {
+                <tr style="text-align:center">
+                    <td>@item.id_NGK</td>
+                    <td>@item.name_NGK</td>
+                    <td>
+                        <img src="../../images/@item.img_NGK" style="width: 100px;" />
+                    </td>
+                    <td>@String.Format("{0:0,0}", @item.price_NGK) VNĐ</td>
+                    <td>@item.quantity_of_product</td>
+                    @using (Html.BeginForm("UpdateCart", "Cart", new { @id = item.id_NGK }))
+                    {
+                        <td align="center">
+                            <input type="number" class="form-control" name="txtQuantity" style="text-align:center; width:65%;" min="1" value="@item.quantity_NGK" />
+                        </td>
+                        <td>@String.Format("{0:0,0}", @item.totalPrice_NGK) VNĐ</td>
+                        <td>
+                            <a href="@Url.Action("Details", "SanPham", new { id = item.id_NGK })">
+                                <div class="btn btn-primary">Chi Tiết</div>
+                            </a>
+                            <input class="btn btn-success" type="submit" value="Cập Nhật">
+                            <a href="@Url.Action("RemoveCart", "Cart", new { @id = item.id_NGK })">
+                                <div class="btn btn-danger">Xóa</div>
+                            </a>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
 }
 
-@if(Session["TaiKhoan"] != null)
+@if (Model.Item2.Count != 0)
 {
-    @*@using (Html.BeginForm("Appointment", "Cart"))
-    {*@
+    if (Session["TaiKhoan"] != null && Session["LoaiTaiKhoan"] != null && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == false)
+    {
+        <button type="submit" class="btn btn-primary" style="width: 15%; padding: 0.6em; margin:0 0.5em; float: right" onclick="alert('Xin cập nhật lại số lượng hàng !');">
+            Thanh Toán
+        </button>
+    }
+    else
+    {
+        using (Html.BeginForm("Order", "Cart"))
+        {
+            <button type="submit" class="btn btn-primary" style="width: 15%; padding: 0.6em; margin:0 0.5em; float: right">
+                Thanh Toán
+            </button>
+        }
+
+        if (Session["LoaiTaiKhoan"] != null && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == true)
+        {
+            @*@using (Html.BeginForm("Appointment", "Cart"))
+                {*@
+            <button type="submit" class="btn btn-warning" style="width: 15%; padding: 0.6em; margin:0 0.5em; float: right">
+                Hẹn
+            </button>
+            //}
+        }
+    }
+}
+else
+{
+    using (Html.BeginForm("Order", "Cart"))
+    {
+        <button type="submit" class="btn btn-primary" style="width: 15%; padding: 0.6em; margin:0 0.5em; float: right">
+            Thanh Toán
+        </button>
+    }
+
+    if (Session["LoaiTaiKhoan"] != null && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == true)
+    {
+        @*@using (Html.BeginForm("Appointment", "Cart"))
+            {*@
         <button type="submit" class="btn btn-warning" style="width: 15%; padding: 0.6em; margin:0 0.5em; float: right">
             Nợ
         </button>
-    //}
+        //}
+    }
 }
+

@@ -1,106 +1,56 @@
 ﻿@using Doan16.Models
-@model Tuple<List<Cart>, List<Cart>>
+@model List<Cart>
 
 @{
     ViewBag.Title = "Đặt Hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1> hello world ! </h1>
+<h1 style="text-align:center; text-transform:uppercase; font-size:1.5em; margin: 1.5em; font-weight:900;">
+    Xác nhận giỏ hàng trước khi thanh toán
+</h1>
 
-@* Khach thuong | khong du hang  *@
-@if (ViewBag.ThongBao == "notEnough" && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == false)
-{
-    /*
-    <style>
-        #soluongsp {
-            background-color: red;
-            color: white;
-            font-weight: 900;
-            width: 5%;
-            padding: 0 1em;
-            border-radius: 5px;
+<table align="center" width="100%" style="margin-bottom: 3em;">
+    <thead>
+        <tr style="text-align:center; font-weight:900; background-color:lightblue">
+            <td style="padding: 0.5em; width:9.5%;">Mã Sản Phẩm</td>
+            <td style="padding: 0.5em; width:18%">Tên Sản Phẩm</td>
+            <td style="padding: 0.5em; width:12%">Ảnh Bìa</td>
+            <td style="padding: 0.5em; width:10%">Đơn Giá</td>
+            <td style="padding: 0.5em; width:9.5%">Số Lượng Tồn</td>
+            <td style="padding: 0.5em; width:8%">Số Lượng</td>
+            <td style="padding: 0.5em; width:12%">Thành Tiền</td>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr style="text-align: right; ">
+            <td colspan="5" style="padding:0.5em 2em; font-weight:900; color: red;">Số lượng sản phẩm: @ViewBag.TongSoLuong</td>
+            <td colspan="2" style="padding:0.5em 2em; font-weight:900; color: red;">Tổng Tiền: @String.Format("{0:0,0}", ViewBag.TongThanhTien) VNĐ</td>
+        </tr>
+    </tfoot>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr style="text-align:center; border-bottom: 1px solid black;">
+                <td>@item.id_NGK</td>
+                <td>@item.name_NGK</td>
+                <td>
+                    <img src="../../images/@item.img_NGK" style="width: 100px;" />
+                </td>
+                <td>@String.Format("{0:0,0}", @item.price_NGK) VNĐ</td>
+                <td>@item.quantity_of_product</td>
+                <td>@item.quantity_NGK</td>
+                <td>@String.Format("{0:0,0}", @item.totalPrice_NGK) VNĐ</td>
+
+            </tr>
         }
-    </style>
-    */
+    </tbody>
+</table>
 
-    <div class="alert alert-danger">
-        <strong>Sản phẩm không đủ hàng !</strong> Khách hàng vui lòng chọn sản phẩm khác !
-    </div>
-}
-@* Khach thuong | du hang *@
-else if (ViewBag.ThongBao == "Enough" && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == false)
+@using (Html.BeginForm("Agree","Cart"))
 {
-    //thanh toan ngay
-    //in ra list san pham
-    //luu vao hoa don
 
-}
-
-@foreach (var item in Model.Item1)
-{
-    <div style="margin: 5em; width: 60%; height: 200px; position:relative">
-        <div style="float: left; width: 40%; position:relative">
-            <img src="../../images/@item.img_NGK" title="@item.name_NGK" width="200px" />
-        </div>
-        <div style="float: right; width:60%; position:relative">
-            <table align="center">
-                <tr style="height: 40px;">
-                    <td style="width: 50%">Mã Sản Phẩm : </td>
-                    <td style="width: 100%">@item.id_NGK</td>
-                </tr>
-                <tr style="height: 40px;">
-                    <td style="width: 50%">Tên Sản Phẩm : </td>
-                    <td>@item.name_NGK</td>
-                </tr>
-                <tr style="height: 40px;">
-                    <td style="width: 50%">Đơn giá : </td>
-                    <td>@item.price_NGK</td>
-                </tr>
-                <tr style="height: 40px;">
-                    <td style="width: 50%">Số Lượng Tồn : </td>
-                    <td>@item.quantity_of_product</td>
-                </tr>
-                <tr style="height: 40px;">
-                    <td style="width: 50%">Số Lượng Khách Mua : </td>
-                    <td id="soluongsp">@item.quantity_NGK</td>
-                </tr>
-            </table>
-        </div>
-    </div>
-}
-
-<h1>Danh Sach San Pham Khong Hop Le</h1>
-
-@foreach (var item in Model.Item2)
-{
-    <div style="margin: 5em; width: 60%; height: 200px; position:relative">
-        <div style="float: left; width: 40%; position:relative">
-            <img src="../../images/@item.img_NGK" title="@item.name_NGK" width="200px" />
-        </div>
-        <div style="float: right; width:60%; position:relative">
-            <table align="center">
-                <tr style="height: 40px;">
-                    <td style="width: 50%">Mã Sản Phẩm : </td>
-                    <td style="width: 100%">@item.id_NGK</td>
-                </tr>
-                <tr style="height: 40px;">
-                    <td style="width: 50%">Tên Sản Phẩm : </td>
-                    <td>@item.name_NGK</td>
-                </tr>
-                <tr style="height: 40px;">
-                    <td style="width: 50%">Đơn giá : </td>
-                    <td>@item.price_NGK</td>
-                </tr>
-                <tr style="height: 40px;">
-                    <td style="width: 50%">Số Lượng Tồn : </td>
-                    <td>@item.quantity_of_product</td>
-                </tr>
-                <tr style="height: 40px;">
-                    <td style="width: 50%">Số Lượng Khách Mua : </td>
-                    <td id="soluongsp">@item.quantity_NGK</td>
-                </tr>
-            </table>
-        </div>
-    </div>
+    <button type="submit" class="btn btn-success" style="text-transform:uppercase; float:right">
+        Đồng ý đặt hàng
+    </button>
 }
