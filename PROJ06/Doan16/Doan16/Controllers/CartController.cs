@@ -202,7 +202,7 @@ namespace Doan16.Controllers
             data.SaveChanges();
             Session["Cart"] = null;
 
-            return RedirectToAction("Index", "SanPham");
+            return RedirectToAction("ConfirmOrder", "Cart");
         }
         public ActionResult Appointment()
         {
@@ -227,9 +227,9 @@ namespace Doan16.Controllers
             {
                 var NgayHen = DateTime.Parse(collector["NgayHen"]);
                 ViewBag.ErrorDate = "Nhập ngày từ hôm nay trở đi !";
-                if(NgayHen < DateTime.Now)
+                if(NgayHen.Day < DateTime.Now.Day || NgayHen.Month < DateTime.Now.Month || NgayHen.Year < DateTime.Now.Year)
                 {
-                    ModelState.AddModelError("ErrorDateTime", "Chọn ngày sai !");
+                    Session["ErrorDateTime"] = true;
                     return RedirectToAction("Appointment", "Cart");
                 }
                 else
@@ -291,13 +291,86 @@ namespace Doan16.Controllers
                     data.SaveChanges();
                     Session["Cart"] = null;
 
-                    return RedirectToAction("Index", "SanPham");
+                    return RedirectToAction("ConfirmOrder", "Cart");
                 }
             }
             else
             {
                 return RedirectToAction("Appointment", "Cart");
             }
+        }
+        public bool CheckStillDebt(int id)
+        {
+            // kiem tra khach hang nay dang no
+            var user = (from kh in data.HoaDons
+                       where kh.id_KhachHang == id && kh.Status == 2
+                       select kh).ToList();
+            // neu ton tai
+            if (user.Count != 0)
+                return true;
+            // khong ton tai
+            return false;
+        }
+        public ActionResult Debt()
+        {
+            if (Session["Cart"] == null)
+                return RedirectToAction("Index", "SanPham");
+
+            if (Session["TaiKhoan"] == null)
+                return RedirectToAction("DangNhap", "KhachHang");
+
+            KhachHang kh = (KhachHang)Session["TaiKhoan"];
+
+            if (CheckStillDebt(kh.id_KhachHang))
+            {
+                Session["ConNo"] = true;
+                return RedirectToAction("DisplayCart", "Cart");
+            }
+            else
+            {
+                List<Cart> listCart = getCart();
+
+                ViewBag.TongSoLuong = SumQuantity();
+                ViewBag.TongThanhTien = TotalPrice();
+                return View(listCart);
+            }
+        }
+        [HttpPost]
+        public ActionResult AddToDebtList()
+        {
+            List<Cart> listCart = getCart();
+            KhachHang kh = (KhachHang)Session["TaiKhoan"];
+            int sohd = GetIdPhieuHoaDon() + 1;
+            // luu vao hoa don
+            data.HoaDons.Add(new HoaDon
+            {
+                NgayXuatHD = DateTime.Now,
+                id_KhachHang = kh.id_KhachHang,
+                soHD = "HD" + sohd,
+                TongTien = TotalPrice(),
+                Status = 2
+            });
+            data.SaveChanges();
+            foreach (var item in listCart)
+            {
+                data.ChiTietHoaDons.Add(new ChiTietHoaDon
+                {
+                    id_HoaDon = GetIdPhieuHoaDon(),
+                    id_NuocGK = item.id_NGK,
+                    soluongmua = item.quantity_NGK,
+                    dongiaban = item.price_NGK,
+                    thanhtien = item.totalPrice_NGK
+                });
+                data.SaveChanges();
+            }
+            data.SaveChanges();
+            Session["Cart"] = null;
+
+            return RedirectToAction("ConfirmOrder", "Cart");
+        }
+        public ActionResult ConfirmOrder()
+        {
+            return View();
         }
     }
 }

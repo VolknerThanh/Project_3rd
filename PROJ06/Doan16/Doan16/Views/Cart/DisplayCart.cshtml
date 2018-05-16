@@ -6,7 +6,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+
 <h1 style="text-transform:uppercase; text-align:center;">Thông tin giỏ hàng</h1>
+<br />
+@if (Session["ConNo"] != null)
+{
+    <div class="alert alert-warning">
+        <strong>Thông báo !</strong> Quý khách vẫn còn nợ hóa đơn của đợt thanh toán trước, xin hãy thanh toán để tiếp tục mua hàng! Xin cảm ơn!
+    </div>
+}
 <br />
 <table align="center" border="1" width="100%" style="margin-bottom: 3em;">
     <thead>
@@ -148,10 +157,10 @@
         if (Session["LoaiTaiKhoan"] != null && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == true)
         {
             using (Html.BeginForm("Appointment", "Cart"))
-                {
-            <button type="submit" class="btn btn-warning" style="width: 15%; padding: 0.6em; margin:0 0.5em; float: right">
-                Hẹn
-            </button>
+            {
+                <button type="submit" class="btn btn-warning" style="width: 15%; padding: 0.6em; margin:0 0.5em; float: right">
+                    Hẹn
+                </button>
             }
         }
     }
@@ -167,12 +176,21 @@ else
 
     if (Session["LoaiTaiKhoan"] != null && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == true)
     {
-        @*@using (Html.BeginForm("Appointment", "Cart"))
-            {*@
-        <button type="submit" class="btn btn-warning" style="width: 15%; padding: 0.6em; margin:0 0.5em; float: right">
-            Nợ
-        </button>
-        //}
+        if (Session["ConNo"] != null)
+        {
+            <button class="btn btn-warning" style="width: 15%; padding: 0.6em; margin:0 0.5em; float: right" onclick="alert('Quý khách vẫn còn nợ đợt trước ! Hãy thanh toán để tiếp tục mua hàng !');">
+                Nợ
+            </button>
+        }
+        else
+        {
+            using (Html.BeginForm("Debt", "Cart"))
+            {
+            <button type="submit" class="btn btn-warning" style="width: 15%; padding: 0.6em; margin:0 0.5em; float: right">
+                Nợ
+            </button>
+            }
+        }
     }
 }
 

@@ -2,8 +2,10 @@
 @model Tuple<List<Cart>, List<Cart>>
 
 @{
-    ViewBag.Title = "Appointment";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+                /**/
+
+                ViewBag.Title = "Appointment";
+                Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
@@ -105,29 +107,31 @@
 
 <br />
 
+@if (Session["ErrorDateTime"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Thông báo !</strong> Không được chọn ngày trước ngày " @DateTime.Now.ToShortDateString() "
+    </div>
+}
+
 @using (Html.BeginForm("AppointmentOder", "Cart", FormMethod.Post))
 {
     <table>
-        <tr>
+        <tr style="height: 40px;">
             <td>
-                Chọn ngày hẹn : 
+                Chọn ngày hẹn :
             </td>
         </tr>
-        <tr>
+        <tr style="height: 60px;">
             <td>
                 <input type="date" name="NgayHen" min="@datetime" required class="form-control" style="display: inline-block;width:100%" />
             </td>
         </tr>
-        <tr>
-            <td>
-                @Html.ValidationMessage("ErrorDateTime", new { style = "color:red" })
-            </td>
-        </tr>
-        <tr>
+        <tr style="height: 40px;">
             <td>
                 <button type="submit" class="btn btn-success" style="display: inline-block;width:100%">Hẹn</button>
             </td>
         </tr>
     </table>
-    
+
 }

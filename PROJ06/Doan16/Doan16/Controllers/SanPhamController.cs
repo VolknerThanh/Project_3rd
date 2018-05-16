@@ -15,6 +15,33 @@ namespace Doan16.Controllers
         // GET: TrangChu
         public List<NuocGK> Layngkmoi(int count, string name)
         {
+            if (Session["LoaiTaiKhoan"] != null && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == true)
+            {
+                if (name != null && name != "")
+                    return (from n in db.NuocGKs
+                            where n.tenNGK.ToUpper().Contains(name.ToUpper())
+                            orderby n.id_NuocGK descending
+                            select n).Take(count).ToList();
+                else
+                    return (from n in db.NuocGKs
+                            orderby n.id_NuocGK descending
+                            select n).Take(count).ToList();
+            }
+            else
+            {
+                if (name != null && name != "")
+                    return (from n in db.NuocGKs
+                            where n.tenNGK.ToUpper().Contains(name.ToUpper()) && n.soluongton > 0
+                            orderby n.id_NuocGK descending
+                            select n).Take(count).ToList();
+                else
+                    return (from n in db.NuocGKs
+                            where n.soluongton > 0
+                            orderby n.id_NuocGK descending
+                            select n).Take(count).ToList();
+            }
+
+            /*
             if(name != null && name != "")
                 return (from n in db.NuocGKs
                         where n.tenNGK.ToUpper().Contains(name.ToUpper())
@@ -24,6 +51,7 @@ namespace Doan16.Controllers
                 return (from n in db.NuocGKs
                         orderby n.id_NuocGK descending
                         select n).Take(count).ToList();
+            */
         }
         public ActionResult Index(int ? page, FormCollection fc)
         {
