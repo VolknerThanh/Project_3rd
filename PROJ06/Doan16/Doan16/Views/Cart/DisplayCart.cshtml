@@ -147,12 +147,12 @@
 
         if (Session["LoaiTaiKhoan"] != null && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == true)
         {
-            @*@using (Html.BeginForm("Appointment", "Cart"))
-                {*@
+            using (Html.BeginForm("Appointment", "Cart"))
+                {
             <button type="submit" class="btn btn-warning" style="width: 15%; padding: 0.6em; margin:0 0.5em; float: right">
                 Hẹn
             </button>
-            //}
+            }
         }
     }
 }

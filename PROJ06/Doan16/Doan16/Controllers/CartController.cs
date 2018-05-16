@@ -123,6 +123,18 @@ namespace Doan16.Controllers
             }
             return dssp;
         }
+        public List<Cart> EnoughListCart(List<Cart> ds)
+        {
+            List<Cart> listCart = new List<Cart>();
+
+            foreach (var item in ds)
+            {
+                if (item.quantity_NGK <= item.quantity_of_product)
+                    listCart.Add(item);
+            }
+
+            return listCart;
+        }
         public ActionResult Order()
         {
             if (Session["Cart"] == null)
@@ -135,6 +147,7 @@ namespace Doan16.Controllers
             //List<Cart> SanPhamVuotSoLuong = new List<Cart>(CheckQuantity(listCart));
             //Tuple<List<Cart>, List<Cart>> danhsachsp = new Tuple<List<Cart>, List<Cart>>(listCart, SanPhamVuotSoLuong);
             
+
             ViewBag.TongSoLuong = SumQuantity();
             ViewBag.TongThanhTien = TotalPrice();
             return View(listCart);
@@ -148,7 +161,15 @@ namespace Doan16.Controllers
                 return 1;
             return id[0];
         }
-
+        public int GetIdPhieuHen()
+        {
+            var id = (from hen in data.PhieuHens
+                      orderby hen.id_PhieuHen descending
+                      select hen.id_PhieuHen).Take(1).ToList();
+            if (id.Count == 0)
+                return 1;
+            return id[0];
+        }
         [HttpPost]
         public ActionResult Agree()
         {
@@ -182,6 +203,101 @@ namespace Doan16.Controllers
             Session["Cart"] = null;
 
             return RedirectToAction("Index", "SanPham");
+        }
+        public ActionResult Appointment()
+        {
+            if (Session["Cart"] == null)
+                return RedirectToAction("Index", "SanPham");
+
+            if (Session["TaiKhoan"] == null)
+                return RedirectToAction("DangNhap", "KhachHang");
+
+            List<Cart> listCart = getCart();
+            List<Cart> SanPhamVuotSoLuong = new List<Cart>(CheckQuantity(listCart));
+            Tuple<List<Cart>, List<Cart>> danhsachsp = new Tuple<List<Cart>, List<Cart>>(listCart, SanPhamVuotSoLuong);
+
+            ViewBag.TongSoLuong = SumQuantity();
+            ViewBag.TongThanhTien = TotalPrice();
+            return View(danhsachsp);
+        }
+        [HttpPost]
+        public ActionResult AppointmentOder(FormCollection collector)
+        {
+            if (ModelState.IsValid)
+            {
+                var NgayHen = DateTime.Parse(collector["NgayHen"]);
+                ViewBag.ErrorDate = "Nhập ngày từ hôm nay trở đi !";
+                if(NgayHen < DateTime.Now)
+                {
+                    ModelState.AddModelError("ErrorDateTime", "Chọn ngày sai !");
+                    return RedirectToAction("Appointment", "Cart");
+                }
+                else
+                {
+                    KhachHang kh = (KhachHang)Session["TaiKhoan"];
+                    List<Cart> ds = getCart();
+                    List<Cart> SanPhamVuotSoLuong = new List<Cart>(CheckQuantity(ds));
+
+                    // luu vao hoa don (full gio hang)
+                    int sohd = GetIdPhieuHoaDon() + 1;
+                    data.HoaDons.Add(new HoaDon
+                    {
+                        NgayXuatHD = DateTime.Now,
+                        id_KhachHang = kh.id_KhachHang,
+                        soHD = "HD" + sohd,
+                        TongTien = TotalPrice(),
+                        Status = 1
+                    });
+                    data.SaveChanges();
+                    // luu vao chi tiet hoa don
+                    foreach (var item in ds)
+                    {
+                        data.ChiTietHoaDons.Add(new ChiTietHoaDon
+                        {
+                            id_HoaDon = GetIdPhieuHoaDon(),
+                            id_NuocGK = item.id_NGK,
+                            soluongmua = item.quantity_NGK,
+                            dongiaban = item.price_NGK,
+                            thanhtien = item.totalPrice_NGK
+                        });
+                        data.SaveChanges();
+                    }
+                    data.SaveChanges();
+                    // luu vao phieu hen
+                    data.PhieuHens.Add(new PhieuHen
+                    {
+                        id_KhachHang = kh.id_KhachHang,
+                        ngaylapphieu = DateTime.Now,
+                        ngayhen = NgayHen
+                    });
+                    data.SaveChanges();
+                    //luu vao chi tiet phieu hen
+                    foreach (var item in ds)
+                    {
+                        int SLH = 0;
+                        if (item.quantity_of_product > 0)
+                            SLH = item.quantity_NGK - item.quantity_of_product;
+                        else // SLT <= 0
+                            SLH = item.quantity_NGK;
+
+                        data.ChiTietPhieuHens.Add(new ChiTietPhieuHen
+                        {
+                            id_PhieuHen = GetIdPhieuHen(),
+                            id_NuocGK = item.id_NGK,
+                            soluongHang = SLH
+                        });
+                        data.SaveChanges();
+                    }
+                    data.SaveChanges();
+                    Session["Cart"] = null;
+
+                    return RedirectToAction("Index", "SanPham");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Appointment", "Cart");
+            }
         }
     }
 }

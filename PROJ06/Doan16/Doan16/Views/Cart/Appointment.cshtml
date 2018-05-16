@@ -1,0 +1,133 @@
+﻿@using Doan16.Models
+@model Tuple<List<Cart>, List<Cart>>
+
+@{
+    ViewBag.Title = "Appointment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h1 style="text-align:center; text-transform:uppercase; font-size:1.5em; margin: 1.5em; font-weight:900;">
+    Xác nhận giỏ hàng trước khi thanh toán
+</h1>
+
+<table align="center" width="100%" style="margin-bottom: 3em;">
+    <thead>
+        <tr style="text-align:center; font-weight:900; background-color:lightblue">
+            <td style="padding: 0.5em; width:9.5%;">Mã Sản Phẩm</td>
+            <td style="padding: 0.5em; width:18%">Tên Sản Phẩm</td>
+            <td style="padding: 0.5em; width:12%">Ảnh Bìa</td>
+            <td style="padding: 0.5em; width:10%">Đơn Giá</td>
+            <td style="padding: 0.5em; width:9.5%">Số Lượng Tồn</td>
+            <td style="padding: 0.5em; width:8%">Số Lượng Mua</td>
+            <td style="padding: 0.5em; width:12%">Thành Tiền</td>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr style="text-align: right; ">
+            <td colspan="5" style="padding:0.5em 2em; font-weight:900; color: red;">Số lượng sản phẩm: @ViewBag.TongSoLuong</td>
+            <td colspan="2" style="padding:0.5em 2em; font-weight:900; color: red;">Tổng Tiền: @String.Format("{0:0,0}", ViewBag.TongThanhTien) VNĐ</td>
+        </tr>
+    </tfoot>
+    <tbody>
+        @foreach (var item in Model.Item1)
+        {
+            <tr style="text-align:center; border-bottom: 1px solid black;">
+                <td>@item.id_NGK</td>
+                <td>@item.name_NGK</td>
+                <td>
+                    <img src="../../images/@item.img_NGK" style="width: 100px;" />
+                </td>
+                <td>@String.Format("{0:0,0}", @item.price_NGK) VNĐ</td>
+                <td>@item.quantity_of_product</td>
+                <td>@item.quantity_NGK</td>
+                <td>@String.Format("{0:0,0}", @item.totalPrice_NGK) VNĐ</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<br />
+<h1 style="text-align:center; text-transform:uppercase; font-size:1.5em; margin: 1.5em; font-weight:900;">
+    Xác nhận phiếu hẹn
+</h1>
+
+<table align="center" width="100%" style="margin-bottom: 3em;">
+    <thead>
+        <tr style="text-align:center; font-weight:900; background-color:lightblue">
+            <td style="padding: 0.5em; width:9.5%;">Mã Sản Phẩm</td>
+            <td style="padding: 0.5em; width:18%">Tên Sản Phẩm</td>
+            <td style="padding: 0.5em; width:12%">Ảnh Bìa</td>
+            <td style="padding: 0.5em; width:10%">Đơn Giá</td>
+            <td style="padding: 0.5em; width:8%">Số Lượng Hẹn</td>
+            <td style="padding: 0.5em; width:12%">Thành Tiền</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Item2)
+        {
+            <tr style="text-align:center; border-bottom: 1px solid black;">
+                <td>@item.id_NGK</td>
+                <td>@item.name_NGK</td>
+                <td>
+                    <img src="../../images/@item.img_NGK" style="width: 100px;" />
+                </td>
+                <td>@String.Format("{0:0,0}", @item.price_NGK) VNĐ</td>
+                <td>
+                    @{
+                        int soluonghen = item.quantity_NGK - item.quantity_of_product;
+                    }
+                    @soluonghen
+                </td>
+                <td>
+                    @{
+                        int tongtienhen = soluonghen * item.price_NGK;
+                    }
+                    @String.Format("{0:0,0}", tongtienhen) VNĐ
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    int nam = DateTime.Now.Year;
+    int thang = DateTime.Now.Month;
+    int ngay = DateTime.Now.Day;
+    int gio = DateTime.Now.Hour;
+    int phut = DateTime.Now.Minute;
+    int giay = DateTime.Now.Second;
+    string datetime = nam.ToString() + "-" + thang.ToString() + "-" + ngay.ToString() + "T10:10:10";
+}
+
+<br />
+
+@using (Html.BeginForm("AppointmentOder", "Cart", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>
+                Chọn ngày hẹn : 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="date" name="NgayHen" min="@datetime" required class="form-control" style="display: inline-block;width:100%" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ValidationMessage("ErrorDateTime", new { style = "color:red" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit" class="btn btn-success" style="display: inline-block;width:100%">Hẹn</button>
+            </td>
+        </tr>
+    </table>
+    
+}
