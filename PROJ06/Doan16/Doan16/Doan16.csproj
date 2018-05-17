@@ -877,6 +877,7 @@
     <Content Include="Views\PhieuHen\ChiTietPH.cshtml" />
     <Content Include="Views\PhieuNo\Index.cshtml" />
     <Content Include="Views\NhanVien\DangKy.cshtml" />
+    <Content Include="Views\DonDatHang\DonDatHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -5,34 +5,34 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>XÓA NHÀ CUNG ỨNG</h2>
+<h2 style="margin-left:.3em">XÓA NHÀ CUNG ỨNG</h2>
 
-<h3>Bạn muốn xóa nhà cung ứng này?</h3>
+<h3 style="margin-left:.3em">Bạn muốn xóa nhà cung ứng này?</h3>
 <div>
-    <h4>THÔNG TIN NHÀ CUNG ỨNG</h4>
+    <h4 style="margin-left:.5em">THÔNG TIN NHÀ CUNG ỨNG</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        <dt style="margin-left:.5em">
             TÊN NHÀ CUNG ỨNG
         </dt>
 
-        <dd>
+        <dd style="margin-left:.5em">
             @Html.DisplayFor(model => model.TenNhaCungUng)
         </dd>
 
-        <dt>
+        <dt style="margin-left:.5em">
             ĐỊA CHỈ
         </dt>
 
-        <dd>
+        <dd style="margin-left:.5em">
             @Html.DisplayFor(model => model.DiaChi)
         </dd>
 
-        <dt>
+        <dt style="margin-left:.5em">
             SỐ ĐIỆN THOẠI
         </dt>
 
-        <dd>
+        <dd style="margin-left:.5em">
             @Html.DisplayFor(model => model.SDT)
         </dd>
 
@@ -42,7 +42,7 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
+        <div class="form-actions no-color" style="margin-left:.5em">
             <input type="submit" value="Delete" class="btn btn-default" /> |
             @Html.ActionLink("TRỞ VỀ TRANG QUẢN LÝ NHÀ CUNG ỨNG", "NhaCungUng")
         </div>

@@ -5,56 +5,56 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>ChiTietHD</h2>
+<h2 style="margin-left:0.3em">CHI TIẾT HÓA ĐƠN</h2>
 
 <div>
-    <h4>HoaDon</h4>
+    <h4 style="margin-left:0.3em">Thông tin hóa đơn</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        <dt style="margin-left:0.5em; font-weight:bold">
             Tên khách hàng
         </dt>
 
-        <dd>
+        <dd style="margin-left:0.5em">
             @Html.DisplayFor(model => model.KhachHang.tenKhachHang)
         </dd>
 
-        <dt>
+        <dt style="margin-left:0.5em; font-weight:bold">
             Ngày xuất hóa đơn
         </dt>
 
-        <dd>
+        <dd style="margin-left:0.5em">
             @Model.NgayXuatHD.ToString("dd / MM / yyyy")
         </dd>
 
-        <dt>
+        <dt style="margin-left:0.5em ; font-weight:bold">
             Số hóa đơn
         </dt>
 
-        <dd>
+        <dd style="margin-left:0.5em">
             @Html.DisplayFor(model => model.soHD)
         </dd>
 
-        <dt>
+        <dt style="margin-left:0.5em ; font-weight:bold">
             Tổng tiền
         </dt>
 
-        <dd>
+        <dd style="margin-left:0.5em">
             @Html.DisplayFor(model => model.TongTien)
         </dd>
 
-        <dt>
+        <dt style="margin-left:0.5em; font-weight:bold">
             Trạng thái
         </dt>
 
-        <dd>
+        <dd style="margin-left:0.5em">
             @Html.DisplayFor(model => model.Status)
         </dd>
 
     </dl>
 </div>
 
-<table class="table table-bordered" style="table-layout:fixed">
+<table class="table table-bordered" style="table-layout:fixed; margin-left:0.5em">
     <tr>
         <th>
             Số hóa đơn

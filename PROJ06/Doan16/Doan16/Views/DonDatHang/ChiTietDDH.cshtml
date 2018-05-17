@@ -5,31 +5,31 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>ChiTietDDH</h2>
+<h2 style="margin-left:0.3em">CHI TIẾT ĐƠN ĐẶT HÀNG</h2>
 
 <div>
-    <h4>DonDatHang</h4>
+    <h4 style="margin-left:0.3em">Thông tin đơn đặt hàng</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        <dt style="margin-left:0.5em">
             Tên nhà cung ứng
         </dt>
 
-        <dd>
+        <dd style="margin-left:0.5em">
             @Html.DisplayFor(model => model.NhaCungUng1.TenNhaCungUng)
         </dd>
 
-        <dt>
+        <dt style="margin-left:0.5em">
             Ngày đặt hàng
         </dt>
 
-        <dd>
+        <dd style="margin-left:0.5em">
             @Model.NgayDatHang.ToString("dd / MM / yyyy")
         </dd>
 
     </dl>
 </div>
-<table class="table table-bordered" style="table-layout:fixed">
+<table class="table table-bordered" style="table-layout:fixed; margin-left:.5em">
     <tr>
         <th>
             ID Đơn đặt hàng
@@ -56,7 +56,7 @@
         </tr>
     }
 </table>
-<p>
+<p style="margin-left:0.5em">
     @Html.ActionLink("Edit", "SuaDDH", new { id = Model.id_DonDatHang }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "DonDatHang")
 </p>
