@@ -1,0 +1,98 @@
+﻿@model Doan16.Models.HoaDon
+
+@{
+    ViewBag.Title = "ChiTietHD";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>ChiTietHD</h2>
+
+<div>
+    <h4>HoaDon</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên khách hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KhachHang.tenKhachHang)
+        </dd>
+
+        <dt>
+            Ngày xuất hóa đơn
+        </dt>
+
+        <dd>
+            @Model.NgayXuatHD.ToString("dd / MM / yyyy")
+        </dd>
+
+        <dt>
+            Số hóa đơn
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soHD)
+        </dd>
+
+        <dt>
+            Tổng tiền
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TongTien)
+        </dd>
+
+        <dt>
+            Trạng thái
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+</div>
+
+<table class="table table-bordered" style="table-layout:fixed">
+    <tr>
+        <th>
+            Số hóa đơn
+        </th>
+        <th>
+            Sản phẩm
+        </th>
+        <th>
+            Số lượng mua
+        </th>
+        <th>
+            Đơn giá bán
+        </th>
+        <th>
+            Thành tiền
+        </th>
+    </tr>
+    @foreach (var item in Model.ChiTietHoaDons)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoaDon.soHD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NuocGK.tenNGK)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.soluongmua)
+            </td>
+            <td>
+                @String.Format("{0:0,0}", item.dongiaban) VNĐ
+            </td>
+            <td>
+                @String.Format("{0:0,0}", item.thanhtien) VNĐ
+            </td>
+        </tr>
+    }
+</table>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

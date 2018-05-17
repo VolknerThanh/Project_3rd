@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Doan16.Models.DonDatHang>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="card mb-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Tables</li>
+    </ol>
+    <div class="card-header">
+        <i class="fa fa-table"></i> DANH SÁCH ĐƠN ĐẶT HÀNG
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div style="margin-left:2em; margin-bottom:1em; font-weight:bold">
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr style="text-align:center">
+                        <th style="width:15%;">ID</th>
+                        <th style="width:20%;">Ngày đặt hàng</th>
+                        <th style="width:20%">Nhà cung ứng</th>
+                        <th style="width:20%">Chức năng</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr style="text-align:center">
+                        <th style="width:15%;">ID</th>
+                        <th style="width:20%;">Ngày đặt hàng</th>
+                        <th style="width:20%">Nhà cung ứng</th>
+                        <th style="width:20%">Chức năng</th>>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr style="text-align:center">
+                            <td>@item.id_DonDatHang</td>
+                            <td>@item.NgayDatHang.ToString("dd / mm / yyyy")</td>
+                            <td>@item.NhaCungUng1.TenNhaCungUng</td>
+                            <td>
+                                @using (Html.BeginForm())
+                                {
+                                    <button class="btn" style="width:120px; margin:0.3em; margin-left:3em;"> @Html.ActionLink("Xem chi tiết", "ChiTietDDH", new { id = item.id_DonDatHang })</button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>s
+

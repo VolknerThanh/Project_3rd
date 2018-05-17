@@ -20,7 +20,7 @@ namespace Doan16.Models
         public int id_DonDatHang { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? NgayDatHang { get; set; }
+        public DateTime NgayDatHang { get; set; }
 
         public int? NhaCungUng { get; set; }
 

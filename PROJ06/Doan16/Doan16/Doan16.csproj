@@ -159,8 +159,12 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\DonDatHangController.cs" />
+    <Compile Include="Controllers\HoaDonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhachHangController.cs" />
+    <Compile Include="Controllers\PhieuHenController.cs" />
+    <Compile Include="Controllers\PhieuNoController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Filters\AdminFilters.cs" />
     <Compile Include="Global.asax.cs">
@@ -864,6 +868,13 @@
     <Content Include="Views\Cart\Appointment.cshtml" />
     <Content Include="Views\Cart\Debt.cshtml" />
     <Content Include="Views\Cart\ConfirmOrder.cshtml" />
+    <Content Include="Views\HoaDon\Index.cshtml" />
+    <Content Include="Views\HoaDon\ChiTietHD.cshtml" />
+    <Content Include="Views\DonDatHang\Index.cshtml" />
+    <Content Include="Views\DonDatHang\ChiTietDDH.cshtml" />
+    <Content Include="Views\PhieuHen\Index.cshtml" />
+    <Content Include="Views\PhieuHen\ChiTietPH.cshtml" />
+    <Content Include="Views\PhieuNo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,62 @@
+﻿@model Doan16.Models.DonDatHang
+
+@{
+    ViewBag.Title = "ChiTietDDH";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>ChiTietDDH</h2>
+
+<div>
+    <h4>DonDatHang</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên nhà cung ứng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhaCungUng1.TenNhaCungUng)
+        </dd>
+
+        <dt>
+            Ngày đặt hàng
+        </dt>
+
+        <dd>
+            @Model.NgayDatHang.ToString("dd / MM / yyyy")
+        </dd>
+
+    </dl>
+</div>
+<table class="table table-bordered" style="table-layout:fixed">
+    <tr>
+        <th>
+            ID Đơn đặt hàng
+        </th>
+        <th>
+            Nước giải khát
+        </th>
+        <th>
+            Số lượng Đặt
+        </th>
+    </tr>
+    @foreach (var item in Model.ChiTietDonDatHangs)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_DonDatHang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NuocGK.tenNGK)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuongDat)
+            </td>
+        </tr>
+    }
+</table>
+<p>
+    @Html.ActionLink("Edit", "SuaDDH", new { id = Model.id_DonDatHang }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

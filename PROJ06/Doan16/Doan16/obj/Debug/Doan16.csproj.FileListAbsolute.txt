@@ -495,3 +495,5 @@ C:\Users\ASUS\Desktop\Doan16\Doan16\obj\Debug\Doan16.dll
 C:\Users\ASUS\Desktop\Doan16\Doan16\obj\Debug\Doan16.pdb
 C:\Users\ASUS\Desktop\Doan16\Doan16\obj\Debug\Doan16.Migrations.add_prop_to_model.resources
 C:\Users\ASUS\Desktop\Doan16\Doan16\obj\Debug\Doan16.csproj.GenerateResource.cache
+E:\GitHUb\Project_3rd\PROJ06\Doan16\Doan16\obj\Debug\Doan16.Migrations.add_prop_to_model.resources
+E:\GitHUb\Project_3rd\PROJ06\Doan16\Doan16\obj\Debug\Doan16.csproj.GenerateResource.cache

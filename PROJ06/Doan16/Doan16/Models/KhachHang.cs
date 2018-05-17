@@ -46,8 +46,8 @@ namespace Doan16.Models
         [Required]
         [StringLength(20)]
         public string SoDienThoai { get; set; }
-
-        public int? SoTienConNo { get; set; }
+        [Required]
+        public int SoTienConNo { get; set; }
 
         public bool? Duyet { get; set; }
 
