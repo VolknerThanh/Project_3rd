@@ -103,7 +103,43 @@ namespace Doan16.Controllers
                 db.SaveChanges();
             }
 
-            return RedirectToAction("DonDatHang", "DonDatHang", new { @id = idNCU });
+            return RedirectToAction("DonDatHang", "DonDatHang");
+        }
+        public ActionResult XoaDDH(int id)
+        {
+            var ctddh = (from a in db.ChiTietDonDatHangs
+                         where a.id_DonDatHang == id
+                         select a).ToList();
+
+            if (ctddh != null)
+                ctddh.RemoveAll(n => n.id_DonDatHang == id);
+
+            DonDatHang ddh = db.DonDatHangs.SingleOrDefault(n => n.id_DonDatHang == id);
+
+            if (ddh != null)
+                db.DonDatHangs.Remove(ddh);
+
+            db.SaveChanges();
+
+            return RedirectToAction("DonDatHang", "DonDatHang");
+        }
+        public ActionResult UpdateSLD(int idDon, int idNGk, FormCollection collector)
+        {
+            var soluongDAT = int.Parse(collector["SLD"].ToString());
+
+            ChiTietDonDatHang ctddh = db.ChiTietDonDatHangs.Single(n => n.id_DonDatHang == idDon && n.id_NuocGK == idNGk);
+            ctddh.SoLuongDat = soluongDAT;
+            db.SaveChanges();
+
+            return RedirectToAction("ChiTietDDH", "DonDatHang", new { id = idDon });
+        }
+        public ActionResult XoaCTDDH(int idDon, int idNGk)
+        {
+            ChiTietDonDatHang ctddh = db.ChiTietDonDatHangs.Single(n => n.id_DonDatHang == idDon && n.id_NuocGK == idNGk);
+            db.ChiTietDonDatHangs.Remove(ctddh);
+            db.SaveChanges();
+            
+            return RedirectToAction("ChiTietDDH", "DonDatHang", new { id = idDon });
         }
         public List<DonDatHang> laydondathang()
         {

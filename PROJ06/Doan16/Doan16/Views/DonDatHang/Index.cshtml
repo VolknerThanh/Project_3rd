@@ -15,7 +15,7 @@
         <li class="breadcrumb-item active">Tables</li>
     </ol>
     <div class="card-header">
-        <i class="fa fa-table"></i> DANH SÁCH CÁC SẢN PHẨM HẾT HÀNG
+        <i class="fa fa-table"></i> DANH SÁCH CÁC SẢN PHẨM SẮP HOẶC ĐÃ HẾT HÀNG
     </div>
     <div class="card-body">
         <div class="row">
@@ -59,15 +59,22 @@
     </div>
 </div>
 
-<div style="margin: 2em;">
-    <span>Chọn nhà cung ứng: </span>
+<div class="alert alert-info" style="text-align:center;">
+    <strong>Tip ! </strong>Chọn một trong các nhà cung ứng khả dụng dưới đây để đặt hàng
+</div>
 
-    @using (Html.BeginForm("AddToDDH", "DonDatHang"))
+<div style="margin: 2em;">
+    <span>Danh sách cách nhà cung ứng : </span>
+    <br>
+    @using (Html.BeginForm())
     {
         @Html.DropDownList("id_NhaCungUng", null, new { @class = "form-control", @style = "width:20%;" })
 
-        <button class="btn btn-success" type="submit" style="margin-top: 0.5em">
-            Chọn
+        <button class="btn btn-success" formaction="@Url.Action("AddToDDH")" type="submit" style="margin-top: 0.5em">
+            Đặt hàng
         </button>
+        <button class="btn btn-primary" formaction="@Url.Action("DonDatHang")" type="submit" style="margin-top: 0.5em">
+            Xem chi tiết
+        </button> 
     }
 </div>

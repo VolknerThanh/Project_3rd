@@ -29,31 +29,47 @@
 
     </dl>
 </div>
-<table class="table table-bordered" style="table-layout:fixed; margin-left:.5em">
+<table class="table table-bordered" style="table-layout:fixed; margin-left:.5em; text-align:center">
     <tr>
-        <th>
-            ID Đơn đặt hàng
+        <th style="width: 10%;">
+            Mã đơn
         </th>
-        <th>
+        <th style="width: 30%;">
             Nước giải khát
         </th>
-        <th>
+        <th style="width: 20%;">
             Số lượng Đặt
+        </th>
+        <th style="width: 30%;">
+            Chức năng
         </th>
     </tr>
     @foreach (var item in Model.ChiTietDonDatHangs)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.id_DonDatHang)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NuocGK.tenNGK)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SoLuongDat)
-            </td>
-        </tr>
+        using (Html.BeginForm())
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id_DonDatHang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NuocGK.tenNGK)
+                </td>
+                <td>
+                    <div style="display:flex; align-items:center; justify-content:center">
+                        <input type="number" name="SLD" min="0" value="@item.SoLuongDat" class="form-control" style="width: 70%; text-align:center" />
+                    </div>
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-success" formaction="@Url.Action("UpdateSLD", "DonDatHang", new { @idDon = item.id_DonDatHang, @idNGK = item.id_NuocGK })" style="margin-right: 1em; width: 35%;">
+                        Cập nhật
+                    </button>
+                    <button type="submit" class="btn btn-danger" formaction="@Url.Action("XoaCTDDH", "DonDatHang", new { @idDon = item.id_DonDatHang, @idNGK = item.id_NuocGK })" style="width: 35%;">
+                        Xóa
+                    </button>
+                </td>
+            </tr>
+        }
     }
 </table>
 <p style="margin-left:0.5em">
