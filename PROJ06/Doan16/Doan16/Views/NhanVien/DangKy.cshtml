@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div style="margin: 5em 10em;">
+    <table align="center">
+        <h2 style="text-align:center">ĐĂNG KÝ TÀI KHOẢN</h2>
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <tr style="height:40px">
+                <td> Tên đăng nhập:</td>
+                <td>
+                    @Html.TextBox("TenDN", null, new { @class = "form-control", @style = "margin-left:1em" })
+                    @ViewData["Loi1"]
+                    @ViewData["Loi6"]
+                </td>
+            </tr>
+            <tr style="height:40px">
+                <td> Mật khẩu:</td>
+                <td>
+                    @Html.Password("Matkhau", null, new { @class = "form-control", @style = "margin-left:1em" })
+                    @ViewData["Loi2"]
+                </td>
+            </tr>
+            <tr style="height:40px">
+                <td> Mật khẩu nhập lại:</td>
+                <td>
+                    @Html.Password("Matkhaunhaplai", null, new { @class = "form-control", @style = "margin-left:1em" })
+                    @ViewData["Loi3"]
+                </td>
+            </tr>
+            <tr style="height:40px">
+                <td> Địa chỉ:</td>
+                <td>
+                    @Html.TextBox("Diachi", null, new { @class = "form-control", @style = "margin-left:1em" })
+                    @ViewData["Loi4"]
+                </td>
+            </tr>
+            <tr style="height:40px">
+                <td> Điện thoại:</td>
+                <td>
+                    @Html.TextBox("Dienthoai", null, new { @class = "form-control", @style = "margin-left:1em", @type = "number" })
+                    @ViewData["Loi5"]
+                </td>
+            </tr>
+            <tr style="height:40px">
+                <td></td>
+                <td style="margin-top:1em">
+                    <input type="submit" value="Đăng ký" class="btn btn-primary" />
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

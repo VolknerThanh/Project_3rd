@@ -163,6 +163,7 @@
     <Compile Include="Controllers\HoaDonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhachHangController.cs" />
+    <Compile Include="Controllers\NhanVienController.cs" />
     <Compile Include="Controllers\PhieuHenController.cs" />
     <Compile Include="Controllers\PhieuNoController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
@@ -875,10 +876,10 @@
     <Content Include="Views\PhieuHen\Index.cshtml" />
     <Content Include="Views\PhieuHen\ChiTietPH.cshtml" />
     <Content Include="Views\PhieuNo\Index.cshtml" />
+    <Content Include="Views\NhanVien\DangKy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\NhanVien\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

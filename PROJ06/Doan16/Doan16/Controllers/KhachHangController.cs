@@ -16,6 +16,16 @@ namespace Doan16.Controllers
         {
             return View();
         }
+        public bool CheckExistUsername(string username)
+        {
+            var tendn = (from tk in db.KhachHangs
+                         where tk.TenDN == username
+                         select tk).ToList();
+
+            if (tendn.Count != 0) // tim duoc
+                return false;
+            return true;
+        }
         [HttpGet]
         public ActionResult DangKy()
         {
@@ -34,6 +44,11 @@ namespace Doan16.Controllers
             var gioitinh = col["Gioitinh"];
             var ngaysinh = String.Format("{0:MM/dd/yyyy}", col["Ngaysinh"]);
 
+            if (!CheckExistUsername(tendn))
+            {
+                ViewData["Loi9"] = "Trùng tên đăng nhập !";
+                return this.DangKy();
+            }
             if (String.IsNullOrEmpty(hoten))
             {
                 ViewData["Loi1"] = "Họ tên khách hàng không được để trống";

@@ -39,6 +39,7 @@ namespace Doan16.Models
         public DateTime? Ngaysinh { get; set; }
 
         [StringLength(50)]
+        [EmailAddress(ErrorMessage ="Invalid mail format")]
         public string Email { get; set; }
 
         public bool? Gioitinh { get; set; }

@@ -74,6 +74,7 @@ namespace Doan16.Controllers
                       select s).ToList();
             return nv;
         }
+        [AdminFilters]
         public ActionResult NhanVien()
         {
             var nv = laynhanvien();
@@ -137,6 +138,7 @@ namespace Doan16.Controllers
         }
         #endregion
         #region Thêm mới sản phẩm
+        [AdminFilters]
         [HttpGet]
         public ActionResult ThemmoiSP()
         {
@@ -185,7 +187,9 @@ namespace Doan16.Controllers
             return View(ngk);
         }
         #endregion
+
         #region Xóa sản phẩm
+        [AdminFilters]
         public ActionResult XoaSP(int id)
         {
             NuocGK ngk = db.NuocGKs.SingleOrDefault(n => n.id_NuocGK == id);
@@ -212,7 +216,9 @@ namespace Doan16.Controllers
             return RedirectToAction("SanPham");
         }
         #endregion
+
         #region Sửa sản phẩm
+        [AdminFilters]
         [HttpGet]
         public ActionResult SuaSP(int id)
         {
@@ -280,6 +286,7 @@ namespace Doan16.Controllers
             return model.id_NhaCungUng;
         }
         #endregion
+        [AdminFilters]
         #region Thêm mới nhà cung ứng
         public ActionResult ThemmoiNCU()
         {
@@ -304,6 +311,7 @@ namespace Doan16.Controllers
             return View(ncu);
         }
         #endregion
+        [AdminFilters]
         #region Sửa nhà cung ứng
         [HttpGet]
         public ActionResult SuaNCU(int id)
@@ -331,6 +339,7 @@ namespace Doan16.Controllers
             return RedirectToAction("NhaCungUng");
         }
         #endregion
+        [AdminFilters]
         #region Xóa nhà cung ứng
         public ActionResult XoaNCU(int id)
         {
@@ -393,6 +402,7 @@ namespace Doan16.Controllers
         }
         #endregion
         #region Thêm loại nước giải khát
+        [AdminFilters]
         public ActionResult ThemmoiLNGK()
         {
             ViewBag.NhaCungUng = new SelectList(db.NhaCungUngs.ToList().OrderBy(n => n.TenNhaCungUng), "id_NhaCungUng", "TenNhaCungUng");
@@ -419,6 +429,7 @@ namespace Doan16.Controllers
         }
         #endregion
         #region Sửa loại nước giải khát
+        [AdminFilters]
         public ActionResult SuaLNGK(int id)
         {
             LoaiNGK lngk = db.LoaiNGKs.SingleOrDefault(x => x.id_LoaiNGK == id);
@@ -445,6 +456,7 @@ namespace Doan16.Controllers
         }
         #endregion
         #region Xóa loại nước giải khát
+        [AdminFilters]
         public ActionResult XoaLNGK(int id)
         {
             LoaiNGK lngk = db.LoaiNGKs.SingleOrDefault(n => n.id_LoaiNGK == id);

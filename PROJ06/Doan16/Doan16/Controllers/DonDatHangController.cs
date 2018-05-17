@@ -7,6 +7,7 @@ using Doan16.Models;
 
 namespace Doan16.Controllers
 {
+    [Authorize]
     public class DonDatHangController : Controller
     {
         QLCuaHangDBManage db = new QLCuaHangDBManage();

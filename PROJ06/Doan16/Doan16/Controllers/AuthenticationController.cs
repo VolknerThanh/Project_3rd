@@ -62,7 +62,7 @@ namespace Doan16.Controllers
             Session["TenDNAdmmin"] = null;
             Session["IsAdmin"] = null;
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login");
+            return RedirectToAction("Login","Authentication");
         }
     }
 }

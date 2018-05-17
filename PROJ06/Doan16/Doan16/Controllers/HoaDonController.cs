@@ -4,10 +4,12 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Doan16.Filters;
 using Doan16.Models;
 
 namespace Doan16.Controllers
 {
+    [Authorize]
     public class HoaDonController : Controller
     {
         // GET: HoaDon
@@ -40,7 +42,7 @@ namespace Doan16.Controllers
             }
             return View(hoaDon);
         }
-
+        [AdminFilters]
         public ActionResult HenHD(int id)
         {
             HoaDon hd = db.HoaDons.Find(id);
@@ -57,6 +59,7 @@ namespace Doan16.Controllers
                       select s).Take(1).ToList();
             return pn;
         }
+        [AdminFilters]
         public ActionResult NoHD(int id)
         {
             HoaDon hd = db.HoaDons.Find(id);
@@ -74,7 +77,7 @@ namespace Doan16.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [AdminFilters]
         public ActionResult HuyHD(int id)
         {
             HoaDon hd = db.HoaDons.Find(id);
