@@ -290,7 +290,7 @@ namespace Doan16.Controllers
                     }
                     data.SaveChanges();
                     Session["Cart"] = null;
-
+                    Session["ErrorDateTime"] = null;
                     return RedirectToAction("ConfirmOrder", "Cart");
                 }
             }
@@ -365,7 +365,7 @@ namespace Doan16.Controllers
             }
             data.SaveChanges();
             Session["Cart"] = null;
-
+            Session["ConNo"] = null;
             return RedirectToAction("ConfirmOrder", "Cart");
         }
         public ActionResult ConfirmOrder()
