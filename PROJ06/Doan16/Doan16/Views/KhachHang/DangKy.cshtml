@@ -12,7 +12,7 @@
             <tr style="height:40px">
                 <td> Họ tên khách hàng:</td>
                 <td>
-                    @Html.TextBox("Hoten", null, new { @class = "form-control", @style = "margin-left:1em" })
+                    @Html.TextBox("Hoten", null, new { @class = "form-control", @style = "margin-left:1em", @required = "true" })
                     @ViewData["Loi1"]
                     @ViewData["Loi9"]
                 </td>
@@ -20,42 +20,43 @@
             <tr style="height:40px">
                 <td> Tên đăng nhập:</td>
                 <td>
-                    @Html.TextBox("TenDN", null, new { @class = "form-control", @style = "margin-left:1em" })
+                    @Html.TextBox("TenDN", null, new { @class = "form-control", @style = "margin-left:1em", @required = "true" })
                     @ViewData["Loi2"]
                 </td>
             </tr>
             <tr style="height:40px">
                 <td> Mật khẩu:</td>
                 <td>
-                    @Html.Password("Matkhau", null, new { @class = "form-control", @style = "margin-left:1em" })
+                    @Html.Password("Matkhau", null, new { @class = "form-control", @style = "margin-left:1em", @required = "true" })
                     @ViewData["Loi3"]
                 </td>
             </tr>
             <tr style="height:40px">
                 <td> Mật khẩu nhập lại:</td>
                 <td>
-                    @Html.Password("Matkhaunhaplai", null, new { @class = "form-control", @style = "margin-left:1em" })
+                    @Html.Password("Matkhaunhaplai", null, new { @class = "form-control", @style = "margin-left:1em", @required = "true" })
                     @ViewData["Loi4"]
                 </td>
             </tr>
             <tr style="height:40px">
                 <td> Địa chỉ:</td>
                 <td>
-                    @Html.TextBox("Diachi", null, new { @class = "form-control", @style = "margin-left:1em" })
+                    @Html.TextBox("Diachi", null, new { @class = "form-control", @style = "margin-left:1em", @required ="true" })
                     @ViewData["Loi5"]
                 </td>
             </tr>
             <tr style="height:40px">
                 <td> Email:</td>
                 <td>
-                    @Html.TextBox("Email", null, new { @class = "form-control", @style = "margin-left:1em" })
+                    <input type="email" id="Email" pattern="^[a-zA-Z0-9._+-]+&#64;[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" required class="form-control" style="margin-left:1em" />
+                    @*@Html.TextBox("Email", null, new { @class = "form-control", @style = "margin-left:1em" })*@
                     @ViewData["Loi6"]
                 </td>
             </tr>
             <tr style="height:40px">
                 <td> Điện thoại:</td>
                 <td>
-                    @Html.TextBox("Dienthoai", null, new { @class = "form-control", @style = "margin-left:1em", @type="number" })
+                    @Html.TextBox("Dienthoai", null, new { @class = "form-control", @style = "margin-left:1em", @type="number", @required = "true" })
                     @ViewData["Loi7"]
                 </td>
             </tr>
@@ -69,7 +70,8 @@
             <tr style="height:40px">
                 <td> Ngày sinh:</td>
                 <td>
-                    <input type="date" name="Ngaysinh" required/>
+                    <input type="date" name="Ngaysinh" required />
+                    @ViewData["Loi10"]
                 </td>
             </tr>
             <tr style="height:40px">

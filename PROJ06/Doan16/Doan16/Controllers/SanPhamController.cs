@@ -92,30 +92,60 @@ namespace Doan16.Controllers
 
         public ActionResult SanPhamLon()
         {
+            // nuoc co ga
+            /*
             var name = "Lon";
             var item = from sp_lon in db.NuocGKs
                        where sp_lon.tenNGK.ToUpper().Contains(name.ToUpper())
                        orderby sp_lon.id_NuocGK descending
                        select sp_lon;
+            */
+            var item = from sp in db.NuocGKs
+                       where sp.LoaiNGK.id_LoaiNGK == 1
+                       orderby sp.id_NuocGK descending
+                       select sp;
+
             return PartialView(item.Take(4).ToList());
         }
         public ActionResult SanPhamChai()
         {
+            /*
             var name = "Chai";
             var item = from sp_chai in db.NuocGKs
                        where sp_chai.tenNGK.ToUpper().Contains(name.Trim().ToUpper())
                        orderby sp_chai.id_NuocGK descending
                        select sp_chai;
+            */
+            // nuoc suoi
+            var item = from sp in db.NuocGKs
+                       where sp.LoaiNGK.id_LoaiNGK == 2
+                       orderby sp.id_NuocGK descending
+                       select sp;
+
             return PartialView(item.Take(4).ToList());
         }
         public ActionResult SanPhamNuocSuoi()
         {
+            /*
             var sanpham = from sp in db.NuocGKs
                           where !(sp.tenNGK.ToUpper().Contains("chai".Trim().ToUpper()) || sp.tenNGK.ToUpper().Contains("lon".Trim().ToUpper()))
                           orderby sp.id_NuocGK descending
                           select sp;
-
-            return PartialView(sanpham.Take(4).ToList());
+            */
+            // nuoc tang luc
+            var item = from sp in db.NuocGKs
+                       where sp.LoaiNGK.id_LoaiNGK == 3
+                       orderby sp.id_NuocGK descending
+                       select sp;
+            return PartialView(item.Take(4).ToList());
+        }
+        public ActionResult SanPhamConLai()
+        {
+            var item = from sp in db.NuocGKs
+                       where sp.LoaiNGK.id_LoaiNGK == 4
+                       orderby sp.id_NuocGK descending
+                       select sp;
+            return PartialView(item.Take(2).ToList());
         }
         public ActionResult Details(int id)
         {

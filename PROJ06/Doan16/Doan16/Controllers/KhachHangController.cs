@@ -42,13 +42,19 @@ namespace Doan16.Controllers
             var email = col["Email"];
             var dienthoai = col["Dienthoai"];
             var gioitinh = col["Gioitinh"];
-            var ngaysinh = String.Format("{0:MM/dd/yyyy}", col["Ngaysinh"]);
-
+            DateTime ngaysinh = DateTime.Parse(col["Ngaysinh"]);
+            
             if (!CheckExistUsername(tendn))
             {
                 ViewData["Loi9"] = "Trùng tên đăng nhập !";
                 return this.DangKy();
             }
+            if(DateTime.Now.Year - ngaysinh.Year < 15 || (ngaysinh.Day > DateTime.Now.Day && ngaysinh.Month > DateTime.Now.Month && ngaysinh.Year > DateTime.Now.Year))
+            {
+                ViewData["Loi10"] = "Tuổi người dùng quá nhỏ!";
+                return this.DangKy();
+            }
+
             if (String.IsNullOrEmpty(hoten))
             {
                 ViewData["Loi1"] = "Họ tên khách hàng không được để trống";
@@ -89,7 +95,7 @@ namespace Doan16.Controllers
                 kh.Email = email;
                 kh.diachi = diachi;
                 kh.SoDienThoai = dienthoai;
-                kh.Ngaysinh = DateTime.Parse(ngaysinh);
+                kh.Ngaysinh = ngaysinh;
                 kh.Gioitinh = bool.Parse(gioitinh);
                 kh.SoTienConNo = 0;
                 kh.Duyet = false;
