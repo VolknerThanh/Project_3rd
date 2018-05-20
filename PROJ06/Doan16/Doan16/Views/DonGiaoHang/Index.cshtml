@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("Index", "DonGiaoHang"))
+{
+    @Html.DropDownList("id_DonDatHang", null, new { @class = "form-control", @style = "width:10%;" })
+    
+    <button class="btn btn-primary" type="submit" style="margin: 1em 0;">
+        Xem đơn hàng
+    </button>
+}
+
+
+
+@if (!ViewBag.Null)
+{
+
+    <div class="card mb-3">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Mã Đơn Đặt Hàng</a>
+            </li>
+            <li class="breadcrumb-item active">@ViewBag.ID_DDH</li>
+        </ol>
+        <div class="card-header">
+            <i class="fa fa-table"></i> DANH SÁCH CÁC CHI TIẾT ĐƠN ĐẶT HÀNG
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div style="margin-left:2em; margin-bottom:1em; font-weight:bold">
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr style="text-align:center">
+                            <th style="width:10%;">ID</th>
+                            <th style="width:20%;">Tên sản phẩm</th>
+                            <th style="width:15%;">Nhà cung ứng</th>
+                            <th style="width:15%;">Số Lượng Đặt</th>
+                            <th style="width:20%;">Số lượng tồn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr style="text-align:center">
+                                <td>@item.id_NuocGK</td>
+                                <td>@item.NuocGK.tenNGK</td>
+                                <td>@item.NuocGK.LoaiNGK.NhaCungUng1.TenNhaCungUng</td>
+                                <td>@item.SoLuongDat</td>
+                                <td></td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr style="text-align:center">
+                            <th colspan="3">ID</th>
+                            <th colspan="2">@ViewBag.TongTienDat</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+}

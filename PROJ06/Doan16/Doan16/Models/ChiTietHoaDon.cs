@@ -18,8 +18,8 @@ namespace Doan16.Models
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id_NuocGK { get; set; }
-
-        public int? soluongmua { get; set; }
+        [Required]
+        public int soluongmua { get; set; }
 
         public int? dongiaban { get; set; }
 

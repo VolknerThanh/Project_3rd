@@ -134,7 +134,7 @@ namespace Doan16.Controllers
             */
             // nuoc tang luc
             var item = from sp in db.NuocGKs
-                       where sp.LoaiNGK.id_LoaiNGK == 4
+                       where sp.LoaiNGK.id_LoaiNGK == 3
                        orderby sp.id_NuocGK descending
                        select sp;
             return PartialView(item.Take(4).ToList());
@@ -142,7 +142,7 @@ namespace Doan16.Controllers
         public ActionResult SanPhamConLai()
         {
             var item = from sp in db.NuocGKs
-                       where sp.LoaiNGK.id_LoaiNGK == 3
+                       where sp.LoaiNGK.id_LoaiNGK == 4
                        orderby sp.id_NuocGK descending
                        select sp;
             return PartialView(item.Take(2).ToList());

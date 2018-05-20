@@ -18,10 +18,10 @@ namespace Doan16.Models
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id_NuocGK { get; set; }
-
-        public int? SoLuongGiao { get; set; }
-
-        public int? DonGiaGiao { get; set; }
+        [Required]
+        public int SoLuongGiao { get; set; }
+        [Required]
+        public int DonGiaGiao { get; set; }
 
         public virtual NuocGK NuocGK { get; set; }
 

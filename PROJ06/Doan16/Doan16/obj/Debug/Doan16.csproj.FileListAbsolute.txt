@@ -497,3 +497,6 @@ C:\Users\ASUS\Desktop\Doan16\Doan16\obj\Debug\Doan16.Migrations.add_prop_to_mode
 C:\Users\ASUS\Desktop\Doan16\Doan16\obj\Debug\Doan16.csproj.GenerateResource.cache
 E:\GitHUb\Project_3rd\PROJ06\Doan16\Doan16\obj\Debug\Doan16.Migrations.add_prop_to_model.resources
 E:\GitHUb\Project_3rd\PROJ06\Doan16\Doan16\obj\Debug\Doan16.csproj.GenerateResource.cache
+C:\Users\ASUS\Desktop\Doan16\Doan16\obj\Debug\Doan16.Migrations.removeNullDonGiaoHang.resources
+C:\Users\ASUS\Desktop\Doan16\Doan16\obj\Debug\Doan16.Migrations.RemoveNull_CTPGH.resources
+C:\Users\ASUS\Desktop\Doan16\Doan16\obj\Debug\Doan16.Migrations.RemoveNull_CTDDH.resources

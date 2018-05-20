@@ -28,8 +28,8 @@
         public int dongia { get; set; }
 
         public int? nhanhieuNGK { get; set; }
-
-        public int? soluongton { get; set; }
+        [Required]
+        public int soluongton { get; set; }
 
         [StringLength(200)]
         public string hinhanh { get; set; }

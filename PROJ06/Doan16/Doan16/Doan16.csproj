@@ -160,6 +160,7 @@
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\DonDatHangController.cs" />
+    <Compile Include="Controllers\DonGiaoHangController.cs" />
     <Compile Include="Controllers\HoaDonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhachHangController.cs" />
@@ -175,6 +176,18 @@
     <Compile Include="Migrations\201805151520080_add_prop_to_model.cs" />
     <Compile Include="Migrations\201805151520080_add_prop_to_model.Designer.cs">
       <DependentUpon>201805151520080_add_prop_to_model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805200750498_removeNullDonGiaoHang.cs" />
+    <Compile Include="Migrations\201805200750498_removeNullDonGiaoHang.Designer.cs">
+      <DependentUpon>201805200750498_removeNullDonGiaoHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805201720091_RemoveNull_CTPGH.cs" />
+    <Compile Include="Migrations\201805201720091_RemoveNull_CTPGH.Designer.cs">
+      <DependentUpon>201805201720091_RemoveNull_CTPGH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805201727179_RemoveNull_CTDDH.cs" />
+    <Compile Include="Migrations\201805201727179_RemoveNull_CTDDH.Designer.cs">
+      <DependentUpon>201805201727179_RemoveNull_CTDDH.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -879,6 +892,7 @@
     <Content Include="Views\NhanVien\DangKy.cshtml" />
     <Content Include="Views\DonDatHang\DonDatHang.cshtml" />
     <Content Include="Views\SanPham\SanPhamConLai.cshtml" />
+    <Content Include="Views\DonGiaoHang\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -899,6 +913,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201805151520080_add_prop_to_model.resx">
       <DependentUpon>201805151520080_add_prop_to_model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805200750498_removeNullDonGiaoHang.resx">
+      <DependentUpon>201805200750498_removeNullDonGiaoHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805201720091_RemoveNull_CTPGH.resx">
+      <DependentUpon>201805201720091_RemoveNull_CTPGH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805201727179_RemoveNull_CTDDH.resx">
+      <DependentUpon>201805201727179_RemoveNull_CTDDH.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

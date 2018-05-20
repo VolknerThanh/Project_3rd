@@ -19,7 +19,7 @@ namespace Doan16.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id_PhieuGiao { get; set; }
 
-        public int? id_DonDatHang { get; set; }
+        public int id_DonDatHang { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? NgayGiaoHang { get; set; }
