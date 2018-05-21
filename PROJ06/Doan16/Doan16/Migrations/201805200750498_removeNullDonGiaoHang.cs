@@ -9,7 +9,7 @@ namespace Doan16.Migrations
         {
             DropForeignKey("dbo.PhieuGiaoHang", "id_DonDatHang", "dbo.DonDatHang");
             DropIndex("dbo.PhieuGiaoHang", new[] { "id_DonDatHang" });
-            AlterColumn("dbo.PhieuGiaoHang", "id_DonDatHang", c => c.Int(nullable: false));
+            //AlterColumn("dbo.PhieuGiaoHang", "id_DonDatHang", c => c.Int(nullable: false));
             CreateIndex("dbo.PhieuGiaoHang", "id_DonDatHang");
             AddForeignKey("dbo.PhieuGiaoHang", "id_DonDatHang", "dbo.DonDatHang", "id_DonDatHang", cascadeDelete: true);
         }
@@ -18,7 +18,7 @@ namespace Doan16.Migrations
         {
             DropForeignKey("dbo.PhieuGiaoHang", "id_DonDatHang", "dbo.DonDatHang");
             DropIndex("dbo.PhieuGiaoHang", new[] { "id_DonDatHang" });
-            AlterColumn("dbo.PhieuGiaoHang", "id_DonDatHang", c => c.Int());
+            //AlterColumn("dbo.PhieuGiaoHang", "id_DonDatHang", c => c.Int());
             CreateIndex("dbo.PhieuGiaoHang", "id_DonDatHang");
             AddForeignKey("dbo.PhieuGiaoHang", "id_DonDatHang", "dbo.DonDatHang", "id_DonDatHang");
         }

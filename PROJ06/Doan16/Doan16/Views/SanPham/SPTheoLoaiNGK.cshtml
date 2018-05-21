@@ -17,10 +17,14 @@
                     <h4><a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })">@nuoc.tenNGK</a></h4>
                     <p>Price : <strong>@nuoc.dongia VNĐ</strong>  </p>
 
-                    <p>
-                        <a href="#" class="btn btn-success" role="button">Add To Cart</a>
+                    <span>
                         <a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })" class="btn btn-primary" role="button">See Details</a>
-                    </p>
+
+                        @using (Html.BeginForm("AddToCart", "Cart", new { id = nuoc.id_NuocGK, Url = Request.Url.ToString() }))
+                        {
+                            <button class="btn btn-success">Add To Cart</button>
+                        }
+                    </span>
                 </div>
             </div>
         </div>

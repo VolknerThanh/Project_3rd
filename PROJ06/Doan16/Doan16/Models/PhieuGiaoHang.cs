@@ -16,7 +16,7 @@ namespace Doan16.Models
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id_PhieuGiao { get; set; }
 
         public int id_DonDatHang { get; set; }

@@ -24,6 +24,10 @@
                 <a href="#">Mã Đơn Đặt Hàng</a>
             </li>
             <li class="breadcrumb-item active">@ViewBag.ID_DDH</li>
+            <li class="breadcrumb-item">
+                <a href="#">Tên Nhà Cung Ứng</a>
+            </li>
+            <li class="breadcrumb-item active">@ViewBag.TenNhaCungUng</li>
         </ol>
         <div class="card-header">
             <i class="fa fa-table"></i> DANH SÁCH CÁC CHI TIẾT ĐƠN ĐẶT HÀNG
@@ -37,29 +41,49 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr style="text-align:center">
-                            <th style="width:10%;">ID</th>
-                            <th style="width:20%;">Tên sản phẩm</th>
-                            <th style="width:15%;">Nhà cung ứng</th>
-                            <th style="width:15%;">Số Lượng Đặt</th>
-                            <th style="width:20%;">Số lượng tồn</th>
+                            <th style="width:30%;">Tên sản phẩm</th>
+                            <th style="width:18%;">Số Lượng Đặt</th>
+                            <th style="width:15%;">Đơn Giá</th>
+                            <th style="width:18%;">Số Lượng Giao</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                    @using (Html.BeginForm("ThemPhieuGH", "DonGiaoHang"))
+                    {
+                        <input name="id_dondathang" hidden="hidden" value="@ViewBag.ID_DDH" />
+                        foreach(var item in Model)
                         {
-                            <tr style="text-align:center">
-                                <td>@item.id_NuocGK</td>
-                                <td>@item.NuocGK.tenNGK</td>
-                                <td>@item.NuocGK.LoaiNGK.NhaCungUng1.TenNhaCungUng</td>
-                                <td>@item.SoLuongDat</td>
-                                <td></td>
-                            </tr>
+                        <tr style="text-align:center">
+                            <td hidden="hidden">
+                                <input name="idsp" hidden="hidden" value="@item.NuocGK.id_NuocGK" />
+                            </td>
+                            <td>@item.NuocGK.tenNGK</td>
+                            <td>@item.SoLuongDat</td>
+                            <td hidden="hidden">
+                                <input type="hidden" name="dongia" value="@Convert.ToDouble(item.NuocGK.dongia - item.NuocGK.dongia * 0.1)" />
+                            </td>
+                            <td>
+                                @Convert.ToDouble(item.NuocGK.dongia - item.NuocGK.dongia * 0.1)
+                            </td>
+                            <td style="display:flex; align-items: center; justify-content:center;">
+                                <input name="SLGiao" required type="number" min="0" max="@item.SoLuongDat" class="form-control" style="width: 70%;" />
+                            </td>
+                            
+                        </tr>
                         }
+                        <tr>
+                            <td colspan="4">
+                                <button type="submit" class="btn btn-success">
+                                    Thêm Vào Phiếu Giao
+                                </button>
+                            </td>
+                        </tr>
+                    }
                     </tbody>
                     <tfoot>
-                        <tr style="text-align:center">
-                            <th colspan="3">ID</th>
-                            <th colspan="2">@ViewBag.TongTienDat</th>
+                        <tr>
+                            <th colspan="2"><span style="float:right">Số lượng: @ViewBag.TongSoLuong</span></th>
+                            <th colspan="2"><span style="float:right">Tổng tiền: @ViewBag.TongTienDat</span></th>
                         </tr>
                     </tfoot>
                 </table>

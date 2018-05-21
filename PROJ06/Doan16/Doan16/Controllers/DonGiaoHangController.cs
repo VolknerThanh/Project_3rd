@@ -12,12 +12,30 @@ namespace Doan16.Controllers
     {
         QLCuaHangDBManage db = new QLCuaHangDBManage();
         // GET: DonGiaoHang
+        
+
         public List<DonDatHang> dsDonDatHang()
         {
             var ds = (from ddh in db.DonDatHangs
                       orderby ddh.id_DonDatHang descending
                       select ddh).Distinct().ToList();
             return ds;
+        }
+        public bool CheckReadyDeliveried(List<ChiTietDonDatHang> ds)
+        {
+            foreach(var item in ds)
+            {
+                if (item.SoLuongDat != 0)
+                    return false;
+            }
+            return true;
+        }
+        public List<string> TenNhaCungUng(int id)
+        {
+            var tenNhaCungUng = (from ddh in db.DonDatHangs
+                                 where ddh.id_DonDatHang == id
+                                 select ddh.NhaCungUng1.TenNhaCungUng).ToList();
+            return tenNhaCungUng ;
         }
         public ActionResult Index(FormCollection collector)
         {
@@ -32,23 +50,85 @@ namespace Doan16.Controllers
                           where ctddh.id_DonDatHang == id
                           orderby ctddh.id_DonDatHang descending
                           select ctddh).ToList();
-                double sum = 0;
-                int quantity = 0;
-                foreach(var item in ds)
+                string tenNhaCungUng = TenNhaCungUng(id).First();
+                // kiểm tra đơn đặt hàng đã được giao hết hay chưa
+                if (!CheckReadyDeliveried(ds))
                 {
-                    sum += item.NuocGK.dongia;
-                    quantity += item.SoLuongDat;
-                }
+                    double total = 0;
+                    int quantity = 0;
+                    foreach (var item in ds)
+                    {
+                        double sum = 0;
+                        sum += item.NuocGK.dongia - item.NuocGK.dongia * 0.1;
+                        quantity += item.SoLuongDat;
+                        total += sum;
+                    }
 
-                ViewBag.TongTienDat = sum - sum * 0.1;
-                ViewBag.ID_DDH = id;
-                return View(ds);
+                    ViewBag.TongTienDat = total;
+                    ViewBag.TongSoLuong = quantity;
+                    ViewBag.ID_DDH = id;
+                    ViewBag.TenNhaCungUng = tenNhaCungUng;
+                    return View(ds);
+                }
+                else
+                {
+                    return View();
+                }
             }
             else
             {
                 ViewBag.Null = true;
                 return View();
             }
+        }
+        public int GetIDpgh()
+        {
+            var id = (from ds in db.PhieuGiaoHangs
+                      orderby ds.id_PhieuGiao descending
+                      select ds.id_PhieuGiao).ToList();
+            if (id.Count == 0)
+                return 1;
+            return id[0];
+        }
+        public ActionResult ThemPhieuGH(FormCollection collector, string[] SLGiao, string[] dongia)
+        {
+            int idddh = int.Parse(collector["id_dondathang"].ToString());
+            double total = 0;
+
+            for(int i = 0; i < SLGiao.Length; i++)
+            {
+                double gia = double.Parse(dongia[i]) * double.Parse(SLGiao[i]);
+                total += gia;
+            }
+
+            db.PhieuGiaoHangs.Add(new PhieuGiaoHang
+            {
+                id_DonDatHang = idddh,
+                NgayGiaoHang = DateTime.Now
+            });
+            db.SaveChanges();
+
+            var ds = (from ddh in db.ChiTietDonDatHangs
+                      where ddh.id_DonDatHang == idddh
+                      select ddh).ToList();
+
+            int index = 0;
+            foreach(var item in ds)
+            {
+                db.ChiTietPhieuGiaoHangs.Add(new ChiTietPhieuGiaoHang
+                {
+                    id_PhieuGiao = GetIDpgh(),
+                    id_NuocGK = item.id_NuocGK,
+                    SoLuongGiao = int.Parse(SLGiao[index]),
+                    DonGiaGiao = int.Parse(dongia[index])
+                });
+                index++;
+                db.SaveChanges();
+            }
+
+            ViewBag.TongTienGiao = total;
+            ViewBag.HienThi = idddh;
+            return View();
         }
         public ActionResult ChiTietPhieuGiaoHang()
         {
