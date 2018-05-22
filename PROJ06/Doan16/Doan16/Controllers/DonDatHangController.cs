@@ -23,6 +23,15 @@ namespace Doan16.Controllers
                          select s).ToList();
             return items;
         }
+        public List<NuocGK> OutOfStockListWithID(int id)
+        {
+            // xuat cac san pham co so luong ton <= 0 (het hang)
+            var items = (from s in db.NuocGKs
+                         where s.soluongton <= 10 && s.LoaiNGK.NhaCungUng1.id_NhaCungUng == id
+                         orderby s.id_NuocGK descending
+                         select s).ToList();
+            return items;
+        }
         public List<string> DsNCU()
         {
             var ds = (from s in db.NuocGKs
@@ -83,7 +92,11 @@ namespace Doan16.Controllers
         }
         public ActionResult AddToDDH(FormCollection collector)
         {
+            if (collector["id_NhaCungUng"] == null)
+                return RedirectToAction("Index");
+            
             int idNCU = int.Parse(collector["id_NhaCungUng"].ToString());
+            
             // luu vao don dat hang
             db.DonDatHangs.Add(new DonDatHang
             {
@@ -91,7 +104,7 @@ namespace Doan16.Controllers
                 NgayDatHang = DateTime.Now
             });
             db.SaveChanges();
-            var lsthang = OutOfStockList();
+            var lsthang = OutOfStockListWithID(idNCU);
             foreach (var item in lsthang)
             {
                 db.ChiTietDonDatHangs.Add(new ChiTietDonDatHang
