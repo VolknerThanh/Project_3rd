@@ -1,0 +1,67 @@
+﻿@using Doan16.Models
+@model List<PhieuGiaoHang>
+
+@{
+    ViewBag.Title = "DanhSach";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="card mb-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Danh Sách</a>
+        </li>
+        <li class="breadcrumb-item active"> Đơn Giao Hàng</li>
+    </ol>
+    <div class="card-header">
+        <i class="fa fa-table"></i> DANH SÁCH ĐƠN ĐẶT HÀNG
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div style="margin-left:2em; margin-bottom:1em; font-weight:bold">
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr style="text-align:center">
+                        <th style="width:13%;">ID Phiếu</th>
+                        <th style="width:13%;">ID Đơn Đặt</th>
+                        <td style="width:20%;">Nhà Cung Ứng</td>
+                        <th style="width:20%;">Ngày Đặt Hàng</th>
+                        <th style="width:20%;">Ngày Giao Hàng</th>
+                        <th style="width:40%">Chức năng</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr style="text-align:center">
+                        <th style="width:13%;">ID Phiếu</th>
+                        <th style="width:13%;">ID Đơn Đặt</th>
+                        <td style="width:18%;">Nhà Cung Ứng</td>
+                        <th style="width:18%;">Ngày Đặt Hàng</th>
+                        <th style="width:18%;">Ngày Giao Hàng</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach(var item in Model)
+                    {
+                    <tr style="text-align:center">
+                        <td>@item.id_PhieuGiao</td>
+                        <td>@item.id_DonDatHang</td>
+                        <td>@item.DonDatHang.NhaCungUng1.TenNhaCungUng</td>
+                        <td>@item.DonDatHang.NgayDatHang.ToShortDateString()</td>
+                        <td>@item.NgayGiaoHang.ToShortDateString()</td>
+                        <td>
+                            <button class="btn" style="width:120px; margin-right:1em;"> @Html.ActionLink("Xem chi tiết", "ChiTietPhieuGiaoHang", new { @idDGH = item.id_PhieuGiao })</button>
+                            @*<button class="btn" style="width:120px;"> @Html.ActionLink("Xoá đơn hàng", "XoaDDH", new { @id = item.id_DonDatHang })</button>*@
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@Html.ActionLink("Trở Lại", "Index")

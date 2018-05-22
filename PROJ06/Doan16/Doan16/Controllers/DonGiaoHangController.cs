@@ -19,6 +19,16 @@ namespace Doan16.Controllers
             var ds = (from ddh in db.DonDatHangs
                       orderby ddh.id_DonDatHang descending
                       select ddh).Distinct().ToList();
+            // lọc danh sách đơn đặt hàng có chi tiết đặt hàng có số lượng bằng 0
+            foreach(var item in ds.ToList())
+            {
+                var ctddh = (from ct in db.ChiTietDonDatHangs
+                             where ct.id_DonDatHang == item.id_DonDatHang
+                             select ct).ToList();
+                if (CheckReadyDeliveried(ctddh))
+                    ds.Remove(item);
+            }
+
             return ds;
         }
         public bool CheckReadyDeliveried(List<ChiTietDonDatHang> ds)
@@ -46,6 +56,8 @@ namespace Doan16.Controllers
             if (collector["id_DonDatHang"] != null)
             {
                 id = int.Parse(collector["id_DonDatHang"].ToString());
+                
+
                 var ds = (from ctddh in db.ChiTietDonDatHangs
                           where ctddh.id_DonDatHang == id
                           orderby ctddh.id_DonDatHang descending
@@ -90,7 +102,7 @@ namespace Doan16.Controllers
                 return 1;
             return id[0];
         }
-        public ActionResult ThemPhieuGH(FormCollection collector, string[] SLGiao, string[] dongia)
+        public ActionResult ThemPhieuGH(FormCollection collector, string[] SLGiao, string[] dongia, string[] idsp)
         {
             int idddh = int.Parse(collector["id_dondathang"].ToString());
             double total = 0;
@@ -101,38 +113,129 @@ namespace Doan16.Controllers
                 total += gia;
             }
 
+            #region luu vao phieu giao hang
             db.PhieuGiaoHangs.Add(new PhieuGiaoHang
             {
                 id_DonDatHang = idddh,
                 NgayGiaoHang = DateTime.Now
             });
             db.SaveChanges();
-
-            var ds = (from ddh in db.ChiTietDonDatHangs
+            #endregion
+       
+            #region luu vao chi tiet phieu giao hang
+            var danhsach = (from ddh in db.DonDatHangs
                       where ddh.id_DonDatHang == idddh
                       select ddh).ToList();
 
+            var ds = (from ddh in db.ChiTietDonDatHangs
+                        where ddh.id_DonDatHang == idddh
+                        select ddh).ToList();
             int index = 0;
-            foreach(var item in ds)
+            // kiểm tra số đợt giao hàng
+            // nếu còn 1 đợt thì PHẢI GIAO HẾT
+            if (danhsach.Count >= 2)
             {
-                db.ChiTietPhieuGiaoHangs.Add(new ChiTietPhieuGiaoHang
+                //chỉ còn 1 đợt
+                foreach (var item in ds)
                 {
-                    id_PhieuGiao = GetIDpgh(),
-                    id_NuocGK = item.id_NuocGK,
-                    SoLuongGiao = int.Parse(SLGiao[index]),
-                    DonGiaGiao = int.Parse(dongia[index])
-                });
-                index++;
-                db.SaveChanges();
+                    db.ChiTietPhieuGiaoHangs.Add(new ChiTietPhieuGiaoHang
+                    {
+                        id_PhieuGiao = GetIDpgh(),
+                        id_NuocGK = item.id_NuocGK,
+                        SoLuongGiao = item.SoLuongDat , // gan so luong giao = so luong dat con lai
+                        DonGiaGiao = int.Parse(dongia[index])
+                    });
+                    index++;
+                    db.SaveChanges();
+                }
             }
+            else
+            {
+                foreach (var item in ds)
+                {
+                    db.ChiTietPhieuGiaoHangs.Add(new ChiTietPhieuGiaoHang
+                    {
+                        id_PhieuGiao = GetIDpgh(),
+                        id_NuocGK = item.id_NuocGK,
+                        SoLuongGiao = int.Parse(SLGiao[index]),
+                        DonGiaGiao = int.Parse(dongia[index])
+                    });
+                    index++;
+                    db.SaveChanges();
+                }
+            }
+            //---
+            #endregion
+
+            #region cap nhat so luong dat trong chi tiet dat hang
+            var donHang = (from ddh in db.ChiTietDonDatHangs
+                           where ddh.id_DonDatHang == idddh
+                           select ddh).ToList();
+            int index_1 = 0;
+            foreach(var item in donHang)
+            {
+                item.SoLuongDat -= int.Parse(SLGiao[index_1]);
+                index_1++;
+            }
+            db.SaveChanges();
+            #endregion
+
+            #region luu vao so luong ton trong kho
+            var khoHang = (from kho in db.NuocGKs
+                           orderby kho.id_NuocGK ascending // tang dan
+                           select kho).ToList();
+            int index_2 = 0;
+            foreach(var item in khoHang)
+            {
+                if(item.id_NuocGK == int.Parse(idsp[index_2]))
+                {
+                    item.soluongton += int.Parse(SLGiao[index_2]);
+                    index_2++;
+                    if (index_2 >= idsp.Length) break; // pause khi du so luong
+                }
+            }
+            db.SaveChanges();
+            #endregion
 
             ViewBag.TongTienGiao = total;
             ViewBag.HienThi = idddh;
             return View();
         }
-        public ActionResult ChiTietPhieuGiaoHang()
+        public ActionResult DanhSach()
         {
-            return View();
+            var ds = (from pgh in db.PhieuGiaoHangs
+                      orderby pgh.id_PhieuGiao descending
+                      select pgh).ToList();
+            return View(ds);
+        }
+        public int TongSoLuong(List<ChiTietPhieuGiaoHang> ds)
+        {
+            int sum = 0;
+            foreach(var item in ds)
+            {
+                sum += item.SoLuongGiao;
+            }
+            return sum;
+        }
+        public double TongThanhTien(List<ChiTietPhieuGiaoHang> ds)
+        {
+            double total = 0;
+            foreach(var item in ds)
+            {
+                total += item.DonGiaGiao * item.SoLuongGiao;
+            }
+            return total;
+        }
+        public ActionResult ChiTietPhieuGiaoHang(int idDGH)
+        {
+            var ds = (from a in db.ChiTietPhieuGiaoHangs
+                      where a.id_PhieuGiao == idDGH
+                      orderby a.id_PhieuGiao descending
+                      select a).ToList();
+            ViewBag.ID_giaoHang = idDGH;
+            ViewBag.TongSoLuong = TongSoLuong(ds);
+            ViewBag.TongThanhTien = TongThanhTien(ds);
+            return View(ds);
         }
 
     }

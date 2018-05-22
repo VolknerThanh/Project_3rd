@@ -502,3 +502,4 @@ C:\Users\ASUS\Desktop\Doan16\Doan16\obj\Debug\Doan16.Migrations.RemoveNull_CTPGH
 C:\Users\ASUS\Desktop\Doan16\Doan16\obj\Debug\Doan16.Migrations.RemoveNull_CTDDH.resources
 C:\Users\ASUS\Desktop\Doan16\Doan16\obj\Debug\Doan16.Migrations.EditId.resources
 C:\Users\ASUS\Desktop\Doan16\Doan16\obj\Debug\Doan16.Migrations.fix_1.resources
+C:\Users\ASUS\Desktop\Doan16\Doan16\obj\Debug\Doan16.Migrations.removeNullNgayGiao.resources

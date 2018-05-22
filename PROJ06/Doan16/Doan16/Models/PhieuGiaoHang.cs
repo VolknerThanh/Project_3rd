@@ -22,7 +22,7 @@ namespace Doan16.Models
         public int id_DonDatHang { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? NgayGiaoHang { get; set; }
+        public DateTime NgayGiaoHang { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietPhieuGiaoHang> ChiTietPhieuGiaoHangs { get; set; }

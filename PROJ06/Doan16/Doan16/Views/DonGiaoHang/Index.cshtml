@@ -13,7 +13,9 @@
     </button>
 }
 
-
+<button class="btn btn-success" onclick="location.href='@Url.Action("DanhSach", "DonGiaoHang")';">
+    Xem Các Phiếu Giao Hàng
+</button>
 
 @if (!ViewBag.Null)
 {
@@ -65,10 +67,10 @@
                             <td>
                                 @Convert.ToDouble(item.NuocGK.dongia - item.NuocGK.dongia * 0.1)
                             </td>
+                            
                             <td style="display:flex; align-items: center; justify-content:center;">
                                 <input name="SLGiao" required type="number" min="0" max="@item.SoLuongDat" class="form-control" style="width: 70%;" />
                             </td>
-                            
                         </tr>
                         }
                         <tr>

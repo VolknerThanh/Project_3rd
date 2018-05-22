@@ -197,6 +197,10 @@
     <Compile Include="Migrations\201805211014295_fix_1.Designer.cs">
       <DependentUpon>201805211014295_fix_1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805211622468_removeNullNgayGiao.cs" />
+    <Compile Include="Migrations\201805211622468_removeNullNgayGiao.Designer.cs">
+      <DependentUpon>201805211622468_removeNullNgayGiao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\ChiTietDonDatHang.cs" />
@@ -902,6 +906,8 @@
     <Content Include="Views\SanPham\SanPhamConLai.cshtml" />
     <Content Include="Views\DonGiaoHang\Index.cshtml" />
     <Content Include="Views\DonGiaoHang\ThemPhieuGH.cshtml" />
+    <Content Include="Views\DonGiaoHang\DanhSach.cshtml" />
+    <Content Include="Views\DonGiaoHang\ChiTietPhieuGiaoHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -937,6 +943,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805211014295_fix_1.resx">
       <DependentUpon>201805211014295_fix_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805211622468_removeNullNgayGiao.resx">
+      <DependentUpon>201805211622468_removeNullNgayGiao.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
