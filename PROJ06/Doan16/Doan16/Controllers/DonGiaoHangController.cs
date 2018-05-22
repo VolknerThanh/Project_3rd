@@ -51,6 +51,8 @@ namespace Doan16.Controllers
         {
             ViewBag.id_DonDatHang = new SelectList(dsDonDatHang(), "id_DonDatHang", "id_DonDatHang");
 
+            
+
             var id = 0;
             ViewBag.Null = false;
             if (collector["id_DonDatHang"] != null)
@@ -102,7 +104,7 @@ namespace Doan16.Controllers
                 return 1;
             return id[0];
         }
-        public ActionResult ThemPhieuGH(FormCollection collector, string[] SLGiao, string[] dongia, string[] idsp)
+        public ActionResult ThemPhieuGH(FormCollection collector, string[] SLGiao, string[] SLDat, string[] dongia, string[] idsp)
         {
             int idddh = int.Parse(collector["id_dondathang"].ToString());
             double total = 0;
@@ -123,7 +125,8 @@ namespace Doan16.Controllers
             #endregion
        
             #region luu vao chi tiet phieu giao hang
-            var danhsach = (from ddh in db.DonDatHangs
+            // kiểm tra số đợt giao hàng
+            var danhsach = (from ddh in db.PhieuGiaoHangs
                       where ddh.id_DonDatHang == idddh
                       select ddh).ToList();
 
@@ -131,9 +134,9 @@ namespace Doan16.Controllers
                         where ddh.id_DonDatHang == idddh
                         select ddh).ToList();
             int index = 0;
-            // kiểm tra số đợt giao hàng
+            
             // nếu còn 1 đợt thì PHẢI GIAO HẾT
-            if (danhsach.Count >= 2)
+            if (danhsach.Count > 2)
             {
                 //chỉ còn 1 đợt
                 foreach (var item in ds)
@@ -142,7 +145,7 @@ namespace Doan16.Controllers
                     {
                         id_PhieuGiao = GetIDpgh(),
                         id_NuocGK = item.id_NuocGK,
-                        SoLuongGiao = item.SoLuongDat , // gan so luong giao = so luong dat con lai
+                        SoLuongGiao = int.Parse(SLDat[index]), // gan so luong giao = so luong dat con lai
                         DonGiaGiao = int.Parse(dongia[index])
                     });
                     index++;
@@ -172,10 +175,21 @@ namespace Doan16.Controllers
                            where ddh.id_DonDatHang == idddh
                            select ddh).ToList();
             int index_1 = 0;
-            foreach(var item in donHang)
+            if (danhsach.Count > 2)
             {
-                item.SoLuongDat -= int.Parse(SLGiao[index_1]);
-                index_1++;
+                foreach (var item in donHang)
+                {
+                    item.SoLuongDat -= int.Parse(SLDat[index_1]);
+                    index_1++;
+                }
+            }
+            else
+            {
+                foreach(var item in donHang)
+                {
+                    item.SoLuongDat -= int.Parse(SLGiao[index_1]);
+                    index_1++;
+                }
             }
             db.SaveChanges();
             #endregion
@@ -185,13 +199,29 @@ namespace Doan16.Controllers
                            orderby kho.id_NuocGK ascending // tang dan
                            select kho).ToList();
             int index_2 = 0;
-            foreach(var item in khoHang)
+            if(danhsach.Count > 2)
             {
-                if(item.id_NuocGK == int.Parse(idsp[index_2]))
+                foreach (var item in khoHang)
                 {
-                    item.soluongton += int.Parse(SLGiao[index_2]);
-                    index_2++;
-                    if (index_2 >= idsp.Length) break; // pause khi du so luong
+                    if (item.id_NuocGK == int.Parse(idsp[index_2]))
+                    {
+                        item.soluongton += int.Parse(SLDat[index_2]);
+                        index_2++;
+                        if (index_2 >= idsp.Length) break; // pause khi du so luong
+                    }
+                }
+            }
+            else
+            {
+
+                foreach(var item in khoHang)
+                {
+                    if(item.id_NuocGK == int.Parse(idsp[index_2]))
+                    {
+                        item.soluongton += int.Parse(SLGiao[index_2]);
+                        index_2++;
+                        if (index_2 >= idsp.Length) break; // pause khi du so luong
+                    }
                 }
             }
             db.SaveChanges();

@@ -60,6 +60,9 @@
                                 <input name="idsp" hidden="hidden" value="@item.NuocGK.id_NuocGK" />
                             </td>
                             <td>@item.NuocGK.tenNGK</td>
+                            <td hidden="hidden">
+                                <input hidden="hidden" name="SLDat" value="@item.SoLuongDat" />
+                            </td>
                             <td>@item.SoLuongDat</td>
                             <td hidden="hidden">
                                 <input type="hidden" name="dongia" value="@Convert.ToDouble(item.NuocGK.dongia - item.NuocGK.dongia * 0.1)" />
