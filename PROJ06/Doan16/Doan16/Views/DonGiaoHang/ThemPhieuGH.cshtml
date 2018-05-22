@@ -6,16 +6,25 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-@ViewBag.Hienthi
+<h1 style="text-align:center; margin: 2em; text-transform:uppercase">
+    Thành công !
+</h1>
+
+<div class="alert alert-success">
+    Lưu thành công vào <strong>phiếu giao hàng</strong> !
+</div>
+
+<div class="alert alert-success">
+    Trừ số lượng đặt trong <strong>đơn đặt hàng</strong> !
+</div>
+
+<div class="alert alert-success">
+    Cập nhật số lượng tồn trong <strong>kho hàng</strong> !
+</div>
+
+<h5>ID phiếu giao hàng: @ViewBag.Hienthi</h5>
 <br />
-@ViewBag.TongTienGiao
+<h4>Tổng tiền cần trả của đợt giao hàng : @ViewBag.TongTienGiao </h4>
 <br />
 
-@*
-    @for(int i = 0; i < Model.Length; i++)
-    {
-        <p>@Model[i]</p>
-        <br />
-    }
-*@
 @Html.ActionLink("Trở lại", "Index");

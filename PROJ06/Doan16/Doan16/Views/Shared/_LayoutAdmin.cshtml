@@ -46,16 +46,10 @@
                         <span class="nav-link-text">Thống Kê</span>
                     </a>
                 </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-                    <a class="nav-link" href="#">
-                        <i class="fa fa-fw fa-table"></i>
-                        <span class="nav-link-text">Tables</span>
-                    </a>
-                </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
                         <i class="fa fa-fw fa-wrench"></i>
-                        <span class="nav-link-text">Quản Lý</span>
+                        <span class="nav-link-text">Quản Lý Tài Khoản</span>
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseComponents">
                         <li>
@@ -64,12 +58,28 @@
                         <li>
                             <a href="@Url.Action("NhanVien", "Admin")">Quản Lý Nhân Viên</a>
                         </li>
+                    </ul>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
+                        <i class="fa fa-fw fa-table"></i>
+                        <span class="nav-link-text">Quản Lý Kho</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="collapseExamplePages">
                         <li>
                             <a href="@Url.Action("SanPham", "Admin")">Quản Lý Sản Phẩm</a>
                         </li>
                         <li>
                             <a href="@Url.Action("NhaCungUng", "Admin")">Quản Lý Nhà Cung Ứng</a>
                         </li>
+                    </ul>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
+                        <i class="fa fa-fw fa-sitemap"></i>
+                        <span class="nav-link-text">Quản Lý Phiếu</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="collapseMulti">
                         <li>
                             <a href="@Url.Action("Index", "HoaDon")">Quản Lý Hóa Đơn</a>
                         </li>
@@ -80,59 +90,13 @@
                             <a href="@Url.Action("Index","PhieuNo")">Quản Lý Phiếu Nợ</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Index","DonDatHang")">Quản Lý Đơn Đặt Hàng</a>
-                        </li>
-                        <li>
-                            <a href="#">Quản Lý Phiếu Giao Hàng</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
-                        <i class="fa fa-fw fa-file"></i>
-                        <span class="nav-link-text">Example Pages</span>
-                    </a>
-                    <ul class="sidenav-second-level collapse" id="collapseExamplePages">
-                        <li>
-                            <a href="login.html">Login Page</a>
-                        </li>
-                        <li>
-                            <a href="register.html">Registration Page</a>
-                        </li>
-                        <li>
-                            <a href="forgot-password.html">Forgot Password Page</a>
-                        </li>
-                        <li>
-                            <a href="blank.html">Blank Page</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
-                        <i class="fa fa-fw fa-sitemap"></i>
-                        <span class="nav-link-text">Menu Levels</span>
-                    </a>
-                    <ul class="sidenav-second-level collapse" id="collapseMulti">
-                        <li>
-                            <a href="#">Second Level Item</a>
-                        </li>
-                        <li>
-                            <a href="#">Second Level Item</a>
-                        </li>
-                        <li>
-                            <a href="#">Second Level Item</a>
-                        </li>
-                        <li>
-                            <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">Third Level</a>
+                            <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">Đặt Hàng</a>
                             <ul class="sidenav-third-level collapse" id="collapseMulti2">
                                 <li>
-                                    <a href="#">Third Level Item</a>
+                                    <a href="@Url.Action("Index","DonDatHang")">Quản Lý Đơn Đặt Hàng</a>
                                 </li>
                                 <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Item</a>
+                                    <a href="@Url.Action("Index", "DonGiaoHang")">Quản Lý Phiếu Giao Hàng</a>
                                 </li>
                             </ul>
                         </li>
@@ -237,19 +201,27 @@
                     </div>
                 </li>
                 -->
+            @if(Session["TenDNAdmmin"]!=null)
+            {
                 <li class="nav-item">
-                    @if(Session["TenDNAdmmin"]!=null)
-                    {
                     <a class="nav-link">
                         <i class="fa fa-user-circle"></i> @Session["TenDNAdmmin"]
                     </a>
-                    }
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
                         <i class="fa fa-fw fa-sign-out"></i>Logout
                     </a>
                 </li>
+            }
+            else
+            {
+                 <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Login", "Authentication")">
+                        <i class="fa fa-fw fa-sign-in"></i>Sign in
+                    </a>
+                </li>
+            }
             </ul>
         </div>
     </nav>

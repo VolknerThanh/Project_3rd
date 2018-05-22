@@ -8,6 +8,8 @@ using Doan16.Models;
 
 namespace Doan16.Controllers
 {
+    [Authorize]
+    [AdminFilters]
     public class DonGiaoHangController : Controller
     {
         QLCuaHangDBManage db = new QLCuaHangDBManage();
@@ -51,14 +53,18 @@ namespace Doan16.Controllers
         {
             ViewBag.id_DonDatHang = new SelectList(dsDonDatHang(), "id_DonDatHang", "id_DonDatHang");
 
-            
-
             var id = 0;
             ViewBag.Null = false;
+            ViewBag.ThreeWaves = false;
             if (collector["id_DonDatHang"] != null)
             {
                 id = int.Parse(collector["id_DonDatHang"].ToString());
                 
+                var danhsach = (from ddh in db.PhieuGiaoHangs
+                                where ddh.id_DonDatHang == id
+                                select ddh).ToList();
+                if (danhsach.Count > 2)
+                    ViewBag.ThreeWaves = true;
 
                 var ds = (from ctddh in db.ChiTietDonDatHangs
                           where ctddh.id_DonDatHang == id
