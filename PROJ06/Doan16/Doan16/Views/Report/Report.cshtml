@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using (Html.BeginForm("Report", "Report", FormMethod.Post))
+{
+    <div class="row" style="text-align:center">
+        <input type="date" name="dt1" required />
+        đến
+        <input type="date" name="dt2" required />
+        trạng thái
+        <input type="number" name="stt" min="1" max="4" required />
+        <br />
+        <input type="submit" value="Xuất báo cáo" class="btn btn-primary" />
+    </div>
+}
+
