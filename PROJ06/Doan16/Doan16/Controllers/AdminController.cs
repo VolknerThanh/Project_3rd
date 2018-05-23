@@ -257,7 +257,7 @@ namespace Doan16.Controllers
                 n.nhanhieuNGK = ngk.nhanhieuNGK;
                 n.tenNGK = ngk.tenNGK;
                 n.dongia = ngk.dongia;
-                n.soluongton = ngk.soluongton;
+                //n.soluongton = ngk.soluongton;
                 ngk.hinhanh = filename;
                 db.SaveChanges();
             }
