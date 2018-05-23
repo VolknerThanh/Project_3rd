@@ -29,22 +29,22 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr style="text-align:center">
-                            <th style="width:10%;">Tên đăng nhập</th>
-                            <th style="width:10%">Mật khẩu</th>
+                            <th style="width:15%;">Tên đăng nhập</th>
+                            <th style="width:15%">Mật khẩu</th>
                             <th style="width:5%">Phân quyền</th>
-                            <th style="width:25%">Địa chỉ</th>
+                            <th style="width:15%">Địa chỉ</th>
                             <th style="width:10%">Số điện thoại</th>
-                            <th style="width:40%">Chức năng</th>
+                            <th style="width:20%">Chức năng</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr style="text-align:center">
-                            <th style="width:10%;">Tên đăng nhập</th>
-                            <th style="width:10%">Mật khẩu</th>
+                            <th style="width:15%;">Tên đăng nhập</th>
+                            <th style="width:15%">Mật khẩu</th>
                             <th style="width:5%">Phân quyền</th>
-                            <th style="width:25%">Địa chỉ</th>
+                            <th style="width:15%">Địa chỉ</th>
                             <th style="width:10%">Số điện thoại</th>
-                            <th style="width:40%">Chức năng</th>
+                            <th style="width:20%">Chức năng</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -55,14 +55,21 @@
                                 <tr style="text-align:center">
                                     <td>@item.TenDangNhap</td>
                                     <td>@item.MatKhau</td>
-                                    <td>@item.PhanQuyen</td>
+                                    <td>
+                                        @item.PhanQuyen
+                                        @if(ViewBag.CantChangePermission == true)
+                                        {
+                                            <p style="color: red">Không còn tài khoản admin!</p>
+                                        }
+                                    </td>
                                     <td>@item.DiaChi</td>
                                     <td>@item.SDT</td>
                                     <td>
                                         @using (Html.BeginForm())
                                         {
-                                            <button class="btn" style="width:120px; margin:0.3em; margin-left:3em;"> @Html.ActionLink("Duyệt", "DuyetNV", new { id = item.id })</button>
-                                            <button class="btn" style="width:120px; margin:0.3em; margin-left:3em;">@Html.ActionLink("Xóa", "XoaNV", new { id = item.id })</button>
+                                            <button class="btn" style="width:120px; margin:0.3em;"> @Html.ActionLink("Duyệt", "DuyetNV", new { id = item.id })</button>
+                                            <button class="btn" style="width:120px; margin:0.3em;">@Html.ActionLink("Xóa", "XoaNV", new { id = item.id })</button>
+                                            <button class="btn" style="width:120px; margin:0.3em;">@Html.ActionLink("Đổi quyền", "PhanQuyen", new { id = item.id })</button>
                                         }
                                     </td>
                                 </tr>
@@ -92,22 +99,22 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr style="text-align:center">
-                            <th style="width:10%;">Tên đăng nhập</th>
-                            <th style="width:10%">Mật khẩu</th>
+                            <th style="width:15%;">Tên đăng nhập</th>
+                            <th style="width:15%">Mật khẩu</th>
                             <th style="width:5%">Phân quyền</th>
-                            <th style="width:25%">Địa chỉ</th>
+                            <th style="width:15%">Địa chỉ</th>
                             <th style="width:10%">Số điện thoại</th>
-                            <th style="width:40%">Chức năng</th>
+                            <th style="width:20%">Chức năng</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr style="text-align:center">
-                            <th style="width:10%;">Tên đăng nhập</th>
-                            <th style="width:10%">Mật khẩu</th>
+                            <th style="width:15%;">Tên đăng nhập</th>
+                            <th style="width:15%">Mật khẩu</th>
                             <th style="width:5%">Phân quyền</th>
-                            <th style="width:25%">Địa chỉ</th>
+                            <th style="width:15%">Địa chỉ</th>
                             <th style="width:10%">Số điện thoại</th>
-                            <th style="width:40%">Chức năng</th>
+                            <th style="width:20%">Chức năng</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -118,15 +125,22 @@
                                 <tr style="text-align:center">
                                     <td>@item.TenDangNhap</td>
                                     <td>@item.MatKhau</td>
-                                    <td>@item.PhanQuyen</td>
+                                    <td>
+                                        @item.PhanQuyen
+                                        @if(ViewBag.CantChangePermission == true)
+                                        {
+                                            <p style="color: red">Không còn tài khoản admin!</p>
+                                        }
+                                    </td>
                                     <td>@item.DiaChi</td>
                                     <td>@item.SDT</td>
                                     <td>
                                         @using (Html.BeginForm())
-                                        {
-                                            <button class="btn" style="width:120px; margin:0.3em; margin-left:3em;"> @Html.ActionLink("Khóa", "KhoaNV", new { id = item.id })</button>
-                                            <button class="btn" style="width:120px; margin:0.3em; margin-left:3em;">@Html.ActionLink("Xóa", "XoaNV", new { id = item.id })</button>
-                                        }
+    {
+                                    <button class="btn" style="width:120px; margin:0.3em;"> @Html.ActionLink("Khóa", "KhoaNV", new { id = item.id })</button>
+                                    <button class="btn" style="width:120px; margin:0.3em;">@Html.ActionLink("Xóa", "XoaNV", new { id = item.id })</button>
+                                    <button class="btn" style="width:120px; margin:0.3em;">@Html.ActionLink("Đổi quyền", "PhanQuyen", new { id = item.id })</button>
+}
                                     </td>
                                 </tr>
                             }

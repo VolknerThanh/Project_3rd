@@ -83,6 +83,10 @@ namespace Doan16.Controllers
             {
                 ViewData["Loi7"] = "Phải nhập điện thoại";
             }
+            else if(int.Parse(dienthoai) < 0)
+            {
+                ViewData["Loi7"] = "Sai định dạng số điện thoại";
+            }
             if (matkhaunhaplai != matkhau)
             {
                 ViewData["Loi4"] = "Mật khẩu nhập lại sai!";

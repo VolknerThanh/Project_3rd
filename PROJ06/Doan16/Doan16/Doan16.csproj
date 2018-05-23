@@ -230,6 +230,10 @@
     <Compile Include="Migrations\201805211622468_removeNullNgayGiao.Designer.cs">
       <DependentUpon>201805211622468_removeNullNgayGiao.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805231613508_removeNull_PhanQuyen.cs" />
+    <Compile Include="Migrations\201805231613508_removeNull_PhanQuyen.Designer.cs">
+      <DependentUpon>201805231613508_removeNull_PhanQuyen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\ChiTietDonDatHang.cs" />
@@ -973,6 +977,7 @@
     <Content Include="Views\DonGiaoHang\ChiTietPhieuGiaoHang.cshtml" />
     <Content Include="Views\Report\Report.cshtml" />
     <Content Include="Views\Report\ReportDoanhSo.cshtml" />
+    <Content Include="Views\Admin\ThemmoiLNGK.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1011,6 +1016,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805211622468_removeNullNgayGiao.resx">
       <DependentUpon>201805211622468_removeNullNgayGiao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805231613508_removeNull_PhanQuyen.resx">
+      <DependentUpon>201805231613508_removeNull_PhanQuyen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\BaoCaoDoanhSo.rdlc" />
   </ItemGroup>

@@ -22,6 +22,7 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.tenNGK, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.tenNGK)
+                @ViewBag.TrungTen
             </div>
         </div>
 

@@ -6,6 +6,15 @@
                 Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<h1 style="text-align:center; text-transform:uppercase; margin: 1.5em 1em;">
+    lập phiếu giao hàng
+</h1>
+
+<div class="alert alert-info">
+    Chọn <strong>Đơn Đặt Hàng</strong> khả dụng dưới đây để lập phiếu giao hàng !
+</div>
+
+
 @using (Html.BeginForm("Index", "DonGiaoHang"))
 {
     @Html.DropDownList("id_DonDatHang", null, new { @class = "form-control", @style = "width:10%;" })

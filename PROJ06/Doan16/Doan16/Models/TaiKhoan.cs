@@ -18,8 +18,8 @@ namespace Doan16.Models
         [Required]
         [StringLength(32)]
         public string MatKhau { get; set; }
-
-        public bool? PhanQuyen { get; set; }
+        [Required]
+        public bool PhanQuyen { get; set; }
 
         [Required]
         [StringLength(100)]

@@ -66,6 +66,10 @@ namespace Doan16.Controllers
             {
                 ViewData["Loi5"] = "Phải nhập điện thoại";
             }
+            else if (int.Parse(dienthoai) < 0)
+            {
+                ViewData["Loi5"] = "Sai định dạng số điện thoại";
+            }
             else if (matkhaunhaplai != matkhau)
             {
                 ViewData["Loi3"] = "Mật khẩu nhập lại sai!";
@@ -76,8 +80,19 @@ namespace Doan16.Controllers
                 tk.MatKhau = MaHoa.Encryptor.MD5Hash(matkhau);
                 tk.DiaChi = diachi;
                 tk.SDT = dienthoai;
-                tk.PhanQuyen = false;
-                tk.Duyet = false;
+
+                var dsNv = (from nv in db.TaiKhoans
+                            select nv).ToList();
+                if(dsNv.Count > 0)
+                {
+                    tk.PhanQuyen = false;
+                    tk.Duyet = false;
+                }
+                else // chua co tai khoan nao trong csdl thi tai khoan dau tien la quyen admin
+                {
+                    tk.PhanQuyen = true;
+                    tk.Duyet = true;
+                }
                 db.TaiKhoans.Add(tk);
                 db.SaveChanges();
                 return RedirectToAction("Login", "Authentication");

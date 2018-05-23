@@ -38,6 +38,14 @@ namespace Doan16.Controllers
             db.SaveChanges();
             return RedirectToAction("KhachHang");
         }
+        public ActionResult KhoaKH(int id)
+        {
+            KhachHang kh = db.KhachHangs.SingleOrDefault(n => n.id_KhachHang == id);
+            kh.Duyet = false;
+            db.Entry(kh).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("KhachHang");
+        }
         public ActionResult XoaKH(int id)
         {
             KhachHang kh = db.KhachHangs.SingleOrDefault(n => n.id_KhachHang == id);
@@ -89,6 +97,34 @@ namespace Doan16.Controllers
             db.SaveChanges();
             return RedirectToAction("NhanVien");
         }
+        public ActionResult PhanQuyen(int id)
+        {
+            TaiKhoan tk = db.TaiKhoans.SingleOrDefault(n => n.id == id);
+            ViewBag.CantChangePermission = false;
+            if (tk == null)
+            {
+                Response.StatusCode = 404;
+            }
+            if (tk.PhanQuyen == true)
+            {
+                var dsAdmin = (from ad in db.TaiKhoans
+                               where ad.PhanQuyen == true
+                               select ad).ToList();
+                if (dsAdmin.Count == 1)
+                {
+                    ViewBag.CantChangePermission = true;
+                    return RedirectToAction("NhanVien");
+                }
+                else
+                    tk.PhanQuyen = false;
+            }
+            else
+                tk.PhanQuyen = true;
+            db.Entry(tk).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("NhanVien");
+        }
+        [AdminFilters]
         public ActionResult XoaNV(int id)
         {
             TaiKhoan nv = db.TaiKhoans.SingleOrDefault(n => n.id == id);
@@ -101,6 +137,7 @@ namespace Doan16.Controllers
             return View(nv);
 
         }
+        [AdminFilters]
         [HttpPost, ActionName("XoaNV")]
         public ActionResult XacnhanxoaNV(int id)
         {
@@ -112,6 +149,14 @@ namespace Doan16.Controllers
                 return null;
             }
             db.TaiKhoans.Remove(nv);
+            db.SaveChanges();
+            return RedirectToAction("NhanVien");
+        }
+        public ActionResult KhoaNV(int id)
+        {
+            TaiKhoan nv = db.TaiKhoans.SingleOrDefault(n => n.id == id);
+            nv.Duyet = false;
+            db.Entry(nv).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("NhanVien");
         }
@@ -167,9 +212,21 @@ namespace Doan16.Controllers
                 {
                     fileupload.SaveAs(path);
                 }
-                ngk.hinhanh = filename;
-                db.NuocGKs.Add(ngk);
-                db.SaveChanges();
+
+                var dsTen = (from ten in db.NuocGKs
+                             where ten.tenNGK == ngk.tenNGK
+                             select ten).ToList();
+                if(dsTen.Count == 0)
+                {
+                    ngk.hinhanh = filename;
+                    db.NuocGKs.Add(ngk);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    ViewBag.TrungTen = "Tên Sản Phẩm Đã Tồn Tại";
+                }
+
                 return RedirectToAction("SanPham");
             }
             return View();

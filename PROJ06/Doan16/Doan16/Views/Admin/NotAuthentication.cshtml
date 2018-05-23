@@ -4,7 +4,11 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1 style="text-align:center; text-transform:uppercase; font-size: 2.2em; margin:2em;">BẠN KHÔNG CÓ QUYỀN TẠI TRANG NÀY</h1>
+@Html.ActionLink("< Trang chủ", "Index", "Admin")
+<h1 style="text-align:center; text-transform:uppercase; font-size: 2.2em; color:red; margin:0 2em">BẠN KHÔNG CÓ QUYỀN TẠI TRANG NÀY</h1>
 
-@Html.ActionLink("Trở lại trang quản lý", "Index", "Admin")
+<div style="display:flex; justify-content:center; align-items:center">
+    <img src="~/images/no-permission.jpg" />
+</div>
+
 
