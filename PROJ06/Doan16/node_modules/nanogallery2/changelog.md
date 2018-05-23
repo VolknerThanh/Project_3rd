@@ -1,0 +1,212 @@
+nanogallery2 - ChangeLog
+===========
+
+
+v2.1.0
+------
+- new: API methods 'closeViewer', 'minimizeToolbar', 'maximizeToolbar', 'paginationPreviousPage', 'paginationNextPage', 'paginationGotoPage', 'paginationCountPages'
+- fixed: single touch to open thumbnail when no hover effect defined
+- fixed: lightbox support for empty top-left or top-right toolbar
+- fixed: option 'galleryMosaicL1' renamed to 'galleryL1Mosaic'
+- fixed: options 'touchAnimation' and 'touchAnimationL1'
+- fixed: #82 option 'thumbnailAlbumDisplayImage'
+- fixed: incorrect .nGY2GThumbnailSub size
+- fixed: functions NGY2Item.thumbSet(), NGY2Item.imageSet(), NGY2Item.thumbSetImgHeight(), NGY2Item.thumbSetImgWidth()
+
+
+
+v2.0.0
+------
+- new: mosaic layout
+- new: video support (Youtube, Vimeo and Dailymotion)
+- new: image slider in thumbnail (see option 'thumbnailSliderDelay')
+- new: value 'fillWidth' for option 'thumbnailAlignment' (is also the new default value)
+- new: option 'thumbnailBaseGridHeight' for cascading layout
+- new: markup content source supports the ID attribute
+- new: option 'viewerTransitionMediaKind' to enable/disable media transition in lightbox
+- new: module support
+- new: callback fnProcessData for Flickr data
+- enhanced: option 'thumbnailOpenOriginal' for all data types 
+- enhanced: added keyword 'auto backup' to default value for 'blackList'
+- enhanced: loading.gif embeded in CSS file
+- changed: the lightbox is nor more closed when the user clicks/touches the area outside the image
+- fixed: #67 viewer opens even if cutom viewer defined (broken in v1.5.0)
+- fixed: image swipe left/right closes the lightbox
+- fixed: #56 #68 destroy method issue -> warning: browser back to non existing location could happen
+- fixed: #70 overflow-x: hidden; not working after exit gallery
+- fixed: Flickr - album list blocked by hidden albums 
+- fixed: #69 message 'error: no image to process.' no more displayed
+- fixed: #77 link to the photo on flickr leads to photostream instead of album
+- fixed: #78 exif time now handeld as string format
+- fixed: image on selected thumbnail not visible
+  
+  
+v1.5.0
+------
+- new: swipe down to close lightbox
+- new: thumbnail image dominant color in stacks
+- new: thumbnail gradient color during image download (see galleryTheme)
+- new: lightbox option 'viewerImageDisplay'
+  Possible values : 'upscale' to upscale images to fullscreen, 'bestImageQuality' for highest quality on high DPI screens like retina
+- new: define multiple thumbnails per item (url and size) - API and markup content source
+- enhanced: lightbox image zoom and swipe
+- removed: open image in Google Photos (broken since changes by Google)
+- fixed: #51 - thumbnail to navigate up not displayed correctly
+- fixed: Flickr incorrect image resolution
+- fixed: thumbnail to navigate up displayed even without parent album
+- fixed: option 'photoset' not a real alias of 'album'
+- fixed: sorting for images/albums defined with HTML markup or javascript
+- fixed: package manager compatibility
+- fixed: incorrect cursor pointer when lightbox disabled
+- fixed: endless loop if image/gallery in location hash does not exit (markup or javascript content)
+- fixed: internal lightbox started although third party lightbox defined
+- misc performance enhancements and bugfixes
+  
+  
+v1.4.1
+------
+- fixed: incorrect font embedded in nanogallery2.woff.css
+  
+  
+v1.4.0
+------
+- new: display thumbnail's images smoothly when fully downloaded (option 'thumbnailWaitImageLoaded')
+- new: gallery display animations (options 'galleryDisplayTransition' and 'galleryDisplayTransitionDuration')
+- new: tags support with nanoPhotosProvider2
+- new: API functions to search in title and tags ('search2', 'search2Execute')
+- enhanced: blurred image display during image download (thumbnails)
+- enhanced: thumbnails display animations
+- changed: default thumbnail background color from black to gray
+- fixed: #46 rotate internal viewer doesn't resize gallery
+- fixed: #46 hover effect 'toolsAppear' works only with one toolbar
+- fixed: #46 hover effect issue on touch/mobile device
+- fixed: #48 browser navigation back to root album doesn't work
+- fixed: #48 API function displayItem
+- fixed: image display quality in Chrome
+- fixed: misc small issues
+
+
+v1.3.0
+------
+- new: display thumbnail's images smoothly when fully downloaded - option 'thumbnailWaitImageLoaded'
+- new: gallery display animations (options 'galleryDisplayTransition' and 'galleryDisplayTransitionDuration')
+- new: tags support with nanoPhotosProvider2
+- new: API function 'SearchTags'
+- enhanced: blurred image display during image download (thumbnails)
+- enhanced: thumbnails display animations
+- changed: default thumbnail background color from black to gray
+- fixed: #46 rotate internal viewer doesn't resize gallery
+- fixed: #46 hover effect 'toolsAppear' works only with one toolbar
+- fixed: #46 hover effect issue on touch/mobile device
+- fixed: image display quality in Chrome
+
+
+v1.3.0
+------
+- new: #3 Auto hide tools on image view after inactivity. Use the option viewerHideToolsDelay to define the delay in ms.
+- new: compatibility to nanoPhotosProvider2 (https://github.com/nanostudio-org/nanoPhotosProvider2)
+- new: possibility to display dominant color gradient (blurred images) during image load (on thumbnails, not supported by Google Photos or Flickr data source)
+- new: thumbnail display transitions, new possibilties: 'flipDown', 'flipUp', 'slideUp2', 'slideDown2', 'slideRight', 'slideLeft'
+- new: thumbnailDisplayTransition 'slideUp' and 'slideDown': distance can be defined (example: 'slideUp_200')
+- new: share to VK.com
+- new: #39 lightbox single tap/click to go to next/previous image (to remove the single tap delay, set option 'viewerZoom' to false)
+- new: album level 1 specific options: 'fnThumbnailL1DisplayEffect', 'thumbnailL1DisplayTransition', 'thumbnailL1DisplayTransitionDuration', 'thumbnailL1DisplayInterval'
+- new: #30 callbacks in HTML markup mode
+- new: enhanced compatibility to browser without CSS Transform support
+- new: ImagesLoaded now in version 4.1.1
+- new: screenfull.js now in version 3.2.0
+- changed: removed share button from to top right toolbar (can be changed with the option 'viewerTools')
+- fixed: low image quality in some cases
+- fixed: share to Google+
+- fixed: old Picasa albums not retrieved (for data before 09/02/2017)
+- fixed: #14 Slideshow stop on iPhone/android
+- fixex: #34 Image description - filename no more used in title by default
+- fixed: #37 Error using custom colors for colorSchemeViewer breaks nanoGallery2
+- fixed: #38 Fullscreen icon when opening in fullscreen
+
+  
+v1.2.1
+------
+- fixed: Google Photos albums not displayed (with NANOGP - https://github.com/nanostudio-org/nanogp)
+- fixed: kind 'google' for (old) Picasa data
+- fixed: #31 pagination 'pageChanged' event only fired with next/previous
+- fixed: parameter 'galleryLastRowFull' ignored in justified layout
+
+  
+  
+v1.2.0
+------
+- new: thumbnails hover effects can now be chained and syntax has been enhanced with new options
+- new: stack motions effects on thumbnails - options 'thumbnailStacks' and 'thumbnailL1Stacks' to add N stacks behind the thumbnails (thanks to Mary Lou from Codrops for the inspiration - https://tympanus.net/codrops/2017/03/15/stack-motion-hover-effects/)
+- new: options 'thumbnailStacksTranslateX', 'thumbnailStacksTranslateY', 'thumbnailStacksTranslateZ', 'thumbnailStacksRotateX', 'thumbnailStacksRotateY', 'thumbnailStacksRotateZ', 'thumbnailStacksScale'
+- new: color scheme option 'stackBackground'
+- new: options 'thumbnailL1GutterWidth' and 'thumbnailL1GutterHeight'
+- new: #23 define a specific image for download (options 'downloadURL' or 'ngdownloadurl')
+- new: #21 option 'thumbnailDisplayOutsideScreen' to let the thumbnails always displayed even if not visible on screen (may impact performances)
+- new: parameter 'itemsBaseURL' ignored when source of an image is an full URL
+- new: #20 option 'data-ngcustomdata' (additionaly to 'ngcustomdata')
+- new: thumbnail icon 'display' to open a thumbnail even if selection mode is activated
+- changed: hammer.js v2.0.8
+- changed: 'viewerDisplayLogo' default value set to false
+- changed: access to old Picasa content now included in module google2
+- fixed: #28 - Setting navigationBreadcrumb borderRadius does not have any impact
+- fixed: parameter 'galleryMaxItems' not working with data source 'google2'
+- fixed: parameter 'descriptionFontSize' ignored
+- fixed: image zoom with mouse wheel on Firefox
+
+
+v1.1.0
+------
+- new: custom tools for thumbnails ('custom1..10' and the associated icons (icons.thumbnailCustomTool1..10))
+- new: support for custom buttons on thumbnails
+- new: callback on click on thumbnail's custom tool - fnThumbnailToolCustAction(action, item)
+- new: events 'itemSelected.nanogallery2', 'itemUnSelected.nanogallery2'
+- new: data-attribute case insensitive for items definition
+- enhanced: image display toolbars handling (custom buttons, custom elements, definition order...)
+- fixed: small bugs
+  
+  
+v1.0.0
+------
+- new: options to set the size of images and thumbnails
+- new: options to set EXIF properties with javascript
+- new: API option 'refresh' to display again the current gallery
+- new: API option 'instance' to get the reference of the gallery instance
+- new: API option 'search', display thumbnails with title containing the search string
+- new: callbacks 'fnGalleryRenderStart', 'fnGalleryRenderEnd', 'fnGalleryObjectModelBuilt', 'fnGalleryLayoutApplied'
+- changed: default thumbnail toolbar for albums - thumbnailToolbarAlbum : { topLeft: 'select', topRight : 'counter' }
+- changed: default thumbnail toolbar for imgae - thumbnailToolbarImage : { topLeft: 'select', topRight : 'featured' }
+- changed: default value of 'thumbnailDisplayInterval' from 30 to 15
+- enhanced: high DPI screen, like Retina, support for self hosted content when image size defined
+- fixed: misc issues with kind 'google2'
+- fixed: zoom image in/out for self hosted content  
+  
+  
+v0.9.3
+------
+- fixed: incorrect image size with Flickr storage
+- fixed: double tap fired on zoom-in/out icons
+- fixed: image next/previous scrolled 2 images on iPhone
+- fixed: incorrect image display
+- fixed: error on Google Photos albums with more then 1000 photos
+- fixed: Google Photos data added after february 9, 2017 not accessible (module nanogp:https://github.com/nanostudio-org/nanogp)
+- improved: image zoom management
+  
+  
+v0.9.2a
+------
+- fixed: infobox not displayed in lightbox
+- fixed: incorrect thumbnail height/widths calc for google (thanks to alexanderhowell - https://github.com/alexanderhowell)
+- fixed: incorrect min-width in CSS
+
+  
+v0.9.2
+------
+- new option 'thumbnailOpenOriginal' : display the original image (for example in Flickr or Google Photos), without opening the lightbox
+- some icons replaced
+- minor changes in the lightbox layout
+- new value for 'thumbnailToolbarImage': 'info'
+- added support of Android stock browser
+- minor bugfixes
+
+

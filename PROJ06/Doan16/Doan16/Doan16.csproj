@@ -227,6 +227,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\loginForm\css\style.css" />
+    <Content Include="Content\loginForm\js\index.js" />
     <Content Include="Content\main.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\prettyPhoto.css" />
@@ -820,6 +822,7 @@
     <Content Include="lib\table-admin\vendor\font-awesome\scss\_variables.scss" />
     <Content Include="lib\table-admin\vendor\jquery\jquery.min.map" />
     <Content Include="lib\table-admin\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="Content\loginForm\scss\style.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
