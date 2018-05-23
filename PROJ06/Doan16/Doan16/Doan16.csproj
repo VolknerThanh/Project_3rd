@@ -289,6 +289,7 @@
     <Content Include="images\ionlife-chai.jpg" />
     <Content Include="images\large\img1.jpg" />
     <Content Include="images\Lavie-chai.png" />
+    <Content Include="images\no-permission.jpg" />
     <Content Include="images\pepsi-chai.jpg" />
     <Content Include="images\pepsi-lon.jpg" />
     <Content Include="images\pixeladmin-logo-dark.png" />

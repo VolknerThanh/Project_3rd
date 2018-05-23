@@ -68,8 +68,16 @@ namespace Doan16.Controllers
                 Response.StatusCode = 404;
                 return null;
             }
-            db.KhachHangs.Remove(kh);
-            db.SaveChanges();
+            try
+            {
+                db.KhachHangs.Remove(kh);
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("ErrorMessage", "Dữ liệu đang được sử dụng ! Chưa thể xóa được !");
+                return View("Index");
+            }
             return RedirectToAction("KhachHang");
         }
 
@@ -148,8 +156,16 @@ namespace Doan16.Controllers
                 Response.StatusCode = 404;
                 return null;
             }
-            db.TaiKhoans.Remove(nv);
-            db.SaveChanges();
+            try
+            {
+                db.TaiKhoans.Remove(nv);
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("ErrorMessage", "Dữ liệu đang được sử dụng ! Chưa thể xóa được !");
+                return View("Index");
+            }
             return RedirectToAction("NhanVien");
         }
         public ActionResult KhoaNV(int id)
@@ -268,8 +284,16 @@ namespace Doan16.Controllers
                 Response.StatusCode = 404;
                 return null;
             }
-            db.NuocGKs.Remove(ngk);
-            db.SaveChanges();
+            try
+            {
+                db.NuocGKs.Remove(ngk);
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("ErrorMessage", "Dữ liệu đang được sử dụng ! Chưa thể xóa được !");
+                return View("Index");
+            }
             return RedirectToAction("SanPham");
         }
         #endregion
@@ -419,8 +443,16 @@ namespace Doan16.Controllers
                 Response.StatusCode = 404;
                 return null;
             }
-            db.NhaCungUngs.Remove(ncu);
-            db.SaveChanges();
+            try
+            {
+                db.NhaCungUngs.Remove(ncu);
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("ErrorMessage", "Dữ liệu đang được sử dụng ! Chưa thể xóa được !");
+                return View("Index");
+            }
             return RedirectToAction("NhaCungUng");
         }
         #endregion
@@ -535,8 +567,16 @@ namespace Doan16.Controllers
                 Response.StatusCode = 404;
                 return null;
             }
-            db.LoaiNGKs.Remove(lngk);
-            db.SaveChanges();
+            try
+            {
+                db.LoaiNGKs.Remove(lngk);
+                db.SaveChanges();
+            }
+            catch(Exception)
+            {
+                ModelState.AddModelError("ErrorMessage", "Dữ liệu đang được sử dụng ! Chưa thể xóa được !");
+                return View("Index");
+            }
             return RedirectToAction("LoaiNGK");
         }
         #endregion
