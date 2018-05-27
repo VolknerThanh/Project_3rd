@@ -113,21 +113,25 @@ namespace Doan16.Controllers
             {
                 Response.StatusCode = 404;
             }
-            if (tk.PhanQuyen == true)
+            if(tk.Duyet == true)
             {
-                var dsAdmin = (from ad in db.TaiKhoans
-                               where ad.PhanQuyen == true
-                               select ad).ToList();
-                if (dsAdmin.Count == 1)
+                if (tk.PhanQuyen == true)
                 {
-                    ViewBag.CantChangePermission = true;
-                    return RedirectToAction("NhanVien");
+                    var dsAdmin = (from ad in db.TaiKhoans
+                                   where ad.PhanQuyen == true
+                                   select ad).ToList();
+                    if (dsAdmin.Count == 1)
+                    {
+                        ViewBag.CantChangePermission = true;
+                        return RedirectToAction("NhanVien");
+                    }
+                    else
+                        tk.PhanQuyen = false;
                 }
                 else
-                    tk.PhanQuyen = false;
+                    tk.PhanQuyen = true;
             }
-            else
-                tk.PhanQuyen = true;
+
             db.Entry(tk).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("NhanVien");

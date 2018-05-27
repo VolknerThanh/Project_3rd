@@ -1021,7 +1021,9 @@
     <EmbeddedResource Include="Migrations\201805231613508_removeNull_PhanQuyen.resx">
       <DependentUpon>201805231613508_removeNull_PhanQuyen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\BaoCaoDoanhSo.rdlc" />
+    <Content Include="Report\BaoCaoDoanhSo.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
