@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" href="../../images/icon.ico" type="image/x-icon">
     <title>Bootstrap E-Commerce Template- DIGI Shop mini</title>
     <!-- Bootstrap core CSS -->
     <link href="../../lib/assets/css/bootstrap.css" rel="stylesheet">
@@ -21,15 +22,15 @@
     <!-- custom CSS here -->
     <link href="../../lib/assets/css/style.css" rel="stylesheet" />
     <script src="../../Scripts/jquery.js"></script>
-    
+
     <script>
         var first_scroll_position = 0;
         /* the menu bar become transparent when it hits the top */
-        
+
         window.addEventListener('scroll', function (e) {
             var after_scroll_position = window.scrollY;
             /* the menu bar become transparent when it hits the top */
-            
+
             if (after_scroll_position > first_scroll_position) {
                 $('#menu').fadeOut(600);
             } else {
@@ -175,12 +176,6 @@
             </div>
             <!-- /.col -->
             <div class="col-md-9">
-                <div>
-                    <ol class="breadcrumb">
-                        <li><a href="#">Home</a></li>
-                        <li class="active">Electronics</li>
-                    </ol>
-                </div>
                 
 
                 @RenderBody()

@@ -4,30 +4,85 @@
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-<h3>SẢN PHẨM THEO LOẠI NƯỚC GIẢI KHÁT</h3>
+<div>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index", "SanPham")">Home</a></li>
+        <li class="active">Loại Sản Phẩm</li>
+    </ol>
+</div>
+
+<!-- /.div -->
 <div class="row">
+    <div class="btn-group alg-right-pad">
+        <button type="button" class="btn btn-default"><strong>@ViewBag.SoLuongTheoLoai  </strong>items</button>
+        <div class="btn-group">
+            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                Sort Products &nbsp;
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#">By Price Low</a></li>
+                <li class="divider"></li>
+                <li><a href="#">By Price High</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row" id="thisPage">
+
     @foreach (var nuoc in Model)
     {
-        <div class="col-md-4 text-center col-sm-6 col-xs-6">
-            <div class="thumbnail product-box" style="min-height:250px">
-                <div style="min-height:200px;">
-                    <img src="~/images/@nuoc.hinhanh" style="width:200px" />
-                </div>
-                <div class="caption">
-                    <h4><a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })">@nuoc.tenNGK</a></h4>
-                    <p>Price : <strong>@nuoc.dongia VNĐ</strong>  </p>
+        if (Session["TaiKhoan"] != null && bool.Parse(Session["LoaiTaiKhoan"].ToString()))
+        {
+            <div class="col-md-4 text-center col-sm-6 col-xs-6">
+                <div class="thumbnail product-box" style="min-height:250px">
+                    <div style="min-height:200px;">
+                        <img src="~/images/@nuoc.hinhanh" style="width:200px;" />
+                    </div>
+                    <div class="caption">
+                        <h4><a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })">@nuoc.tenNGK</a></h4>
+                        <p>Price : <strong>@nuoc.dongia VNĐ</strong>  </p>
 
-                    <span>
-                        <a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })" class="btn btn-primary" role="button">See Details</a>
+                        <span>
+                            <a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })" class="btn btn-primary" role="button">See Details</a>
 
-                        @using (Html.BeginForm("AddToCart", "Cart", new { id = nuoc.id_NuocGK, Url = Request.Url.ToString() }))
-                        {
-                            <button class="btn btn-success">Add To Cart</button>
-                        }
-                    </span>
+                            @using (Html.BeginForm("AddToCart", "Cart", new { id = nuoc.id_NuocGK, Url = Request.Url.ToString() }))
+                            {
+                                <button class="btn btn-success">Add To Cart</button>
+                            }
+                        </span>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
+        else
+        {
+            if (nuoc.soluongton > 0)
+            {
+                <div class="col-md-4 text-center col-sm-6 col-xs-6">
+                    <div class="thumbnail product-box" style="min-height:250px">
+                        <div style="min-height:200px;">
+                            <img src="~/images/@nuoc.hinhanh" style="width:200px;" />
+                        </div>
+                        <div class="caption">
+                            <h4><a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })">@nuoc.tenNGK</a></h4>
+                            <p>Price : <strong>@nuoc.dongia VNĐ</strong>  </p>
+
+                            <span>
+                                <a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })" class="btn btn-primary" role="button">See Details</a>
+
+                                @using (Html.BeginForm("AddToCart", "Cart", new { id = nuoc.id_NuocGK, Url = Request.Url.ToString() }))
+                                {
+                                    <button class="btn btn-success">Add To Cart</button>
+                                }
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
     }
 </div>
 

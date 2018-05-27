@@ -137,51 +137,46 @@
 
 }
 
-@if (Model.Item2.Count != 0)
+@if (Model.Item2.Count != 0) // ton tai san pham vuot so luong ( khong du hang )
 {
-    if (Session["TaiKhoan"] != null && Session["LoaiTaiKhoan"] != null && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == false)
+    // tai khoan "VIP"
+    if (Session["TaiKhoan"] != null && Session["LoaiTaiKhoan"] != null && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == true)
+    {
+        using (Html.BeginForm("Appointment", "Cart"))
+        {
+            <button type="submit" class="btn btn-warning" style="width: 15%; padding: 0.6em; margin:0 0.5em; float: right">
+                Hẹn
+            </button>
+        }
+    }
+    // tai khoan "thuong"
+    else
     {
         <button type="submit" class="btn btn-primary" style="width: 15%; padding: 0.6em; margin:0 0.5em; float: right" onclick="alert('Xin cập nhật lại số lượng hàng !');">
             Thanh Toán
         </button>
     }
-    else
-    {
-        using (Html.BeginForm("Order", "Cart"))
-        {
-            <button type="submit" class="btn btn-primary" style="width: 15%; padding: 0.6em; margin:0 0.5em; float: right">
-                Thanh Toán
-            </button>
-        }
-
-        if (Session["LoaiTaiKhoan"] != null && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == true)
-        {
-            using (Html.BeginForm("Appointment", "Cart"))
-            {
-                <button type="submit" class="btn btn-warning" style="width: 15%; padding: 0.6em; margin:0 0.5em; float: right">
-                    Hẹn
-                </button>
-            }
-        }
-    }
 }
-else
+else // du so luong hang dat mua
 {
+    // khach "thuong" / "VIP"
     using (Html.BeginForm("Order", "Cart"))
     {
         <button type="submit" class="btn btn-primary" style="width: 15%; padding: 0.6em; margin:0 0.5em; float: right">
             Thanh Toán
         </button>
     }
-
+    // khach "VIP" duoc no
     if (Session["LoaiTaiKhoan"] != null && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == true)
     {
+        // kiem tra con no hay khong ( Con No )
         if (Session["ConNo"] != null)
         {
             <button class="btn btn-warning" style="width: 15%; padding: 0.6em; margin:0 0.5em; float: right" onclick="alert('Quý khách vẫn còn nợ đợt trước ! Hãy thanh toán để tiếp tục mua hàng !');">
                 Nợ
             </button>
         }
+        // chua co no
         else
         {
             using (Html.BeginForm("Debt", "Cart"))

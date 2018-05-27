@@ -279,6 +279,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="images\7up-chai.png" />
     <Content Include="images\7up-lon.jpg" />
+    <Content Include="images\admin-icon.ico" />
     <Content Include="images\aquafina-chai.jpg" />
     <Content Include="images\coca-350ml.jpg" />
     <Content Include="images\coca-chai.jpg" />
@@ -286,6 +287,7 @@
     <Content Include="images\fanta-chai.jpg" />
     <Content Include="images\fanta-lon.jpg" />
     <Content Include="images\favicon.png" />
+    <Content Include="images\icon.ico" />
     <Content Include="images\ionlife-chai.jpg" />
     <Content Include="images\large\img1.jpg" />
     <Content Include="images\Lavie-chai.png" />
@@ -979,6 +981,7 @@
     <Content Include="Views\Report\Report.cshtml" />
     <Content Include="Views\Report\ReportDoanhSo.cshtml" />
     <Content Include="Views\Admin\ThemmoiLNGK.cshtml" />
+    <Content Include="Views\SanPham\SumProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
