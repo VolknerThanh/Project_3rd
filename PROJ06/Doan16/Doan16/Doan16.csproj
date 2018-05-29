@@ -234,7 +234,13 @@
     <Compile Include="Migrations\201805231613508_removeNull_PhanQuyen.Designer.cs">
       <DependentUpon>201805231613508_removeNull_PhanQuyen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805290318293_BK_HoaDon_CTHoaDon.cs" />
+    <Compile Include="Migrations\201805290318293_BK_HoaDon_CTHoaDon.Designer.cs">
+      <DependentUpon>201805290318293_BK_HoaDon_CTHoaDon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BK_CTHoaDon.cs" />
+    <Compile Include="Models\BK_HoaDon.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\ChiTietDonDatHang.cs" />
     <Compile Include="Models\ChiTietHoaDon.cs" />
@@ -258,6 +264,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetDoanhSo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\DataSetSoLuongTon.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetSoLuongTon.xsd</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
   </ItemGroup>
@@ -877,6 +888,17 @@
     <Content Include="Report\DataSetDoanhSo.xss">
       <DependentUpon>DataSetDoanhSo.xsd</DependentUpon>
     </Content>
+    <Content Include="Report\DataSetSoLuongTon.xsc">
+      <DependentUpon>DataSetSoLuongTon.xsd</DependentUpon>
+    </Content>
+    <None Include="Report\DataSetSoLuongTon.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetSoLuongTon.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Report\DataSetSoLuongTon.xss">
+      <DependentUpon>DataSetSoLuongTon.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -982,6 +1004,8 @@
     <Content Include="Views\Report\ReportDoanhSo.cshtml" />
     <Content Include="Views\Admin\ThemmoiLNGK.cshtml" />
     <Content Include="Views\SanPham\SumProduct.cshtml" />
+    <Content Include="Views\Report\ReportSoLuong.cshtml" />
+    <Content Include="Views\Report\ReportSoluongton.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1027,6 +1051,10 @@
     <Content Include="Report\BaoCaoDoanhSo.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Migrations\201805290318293_BK_HoaDon_CTHoaDon.resx">
+      <DependentUpon>201805290318293_BK_HoaDon_CTHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\BaoCaoSoLuongTon.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

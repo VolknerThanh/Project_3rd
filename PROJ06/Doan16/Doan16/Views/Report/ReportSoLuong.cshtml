@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "ReportSoLuong";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("ReportSoLuong", "Report", FormMethod.Post))
+{
+    <div class="row" style="text-align:center">
+        <div>Nhập số lượng để hệ thống kiểm tra mặt hàng có số lượng tồn thấp hơn</div>
+        <br />
+        <input type="number" name="soluong" required />
+        <br />
+        <input type="submit" value="Xuất báo cáo" class="btn btn-primary" />
+    </div>
+}
+

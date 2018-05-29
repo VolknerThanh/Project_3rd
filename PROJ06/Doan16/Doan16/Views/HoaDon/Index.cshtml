@@ -22,6 +22,10 @@
         <div class="card-body">
             <div class="row">
                 <div style="margin-left:2em; margin-bottom:1em; font-weight:bold">
+                    @using (Html.BeginForm("BackUp", "HoaDon"))
+                    {
+                        <button type="submit" class="btn btn-primary" name="themmoi" >BACK UP</button>
+                    }
                 </div>
             </div>
             <div class="table-responsive">

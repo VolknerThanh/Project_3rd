@@ -887,3 +887,6 @@ C:\Users\ASUS\Desktop\backup\Doan16\Doan16\obj\Debug\Doan16.dll
 C:\Users\ASUS\Desktop\backup\Doan16\Doan16\obj\Debug\Doan16.pdb
 C:\Users\ASUS\Desktop\backup\Doan16\Doan16\obj\Debug\Doan16.Migrations.removeNull_PhanQuyen.resources
 C:\Users\ASUS\Desktop\BackUp\Doan16\Doan16\bin\Report\BaoCaoDoanhSo.rdlc
+E:\GitHUb\Project_3rd\PROJ06\Doan16\Doan16\bin\Report\BaoCaoDoanhSo.rdlc
+E:\GitHUb\Project_3rd\PROJ06\Doan16\Doan16\obj\Debug\Doan16.Migrations.removeNull_PhanQuyen.resources
+E:\GitHUb\Project_3rd\PROJ06\Doan16\Doan16\obj\Debug\Doan16.Migrations.BK_HoaDon_CTHoaDon.resources

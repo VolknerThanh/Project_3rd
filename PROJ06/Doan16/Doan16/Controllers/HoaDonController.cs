@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -89,6 +91,19 @@ namespace Doan16.Controllers
                 db.SaveChanges();
             }
             return View("Index");
+        }
+
+        public ActionResult BackUp()
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["QLCuaHangDB"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "Exec BackupHoaDon";
+
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            return RedirectToAction("Index", "Admin");
         }
     }
 }
