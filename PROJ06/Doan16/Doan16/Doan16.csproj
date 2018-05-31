@@ -1006,6 +1006,8 @@
     <Content Include="Views\SanPham\SumProduct.cshtml" />
     <Content Include="Views\Report\ReportSoLuong.cshtml" />
     <Content Include="Views\Report\ReportSoluongton.cshtml" />
+    <Content Include="Views\KhachHang\Information.cshtml" />
+    <Content Include="Views\KhachHang\ChiTietHoaDon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

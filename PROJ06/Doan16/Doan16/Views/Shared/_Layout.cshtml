@@ -95,7 +95,7 @@
                         @if (Session["TenDangNhap"] != null)
                         {
                             <li>
-                                <a href="#"><i class="fa fa-user" style="font-size:18px"></i>&nbsp;&nbsp;<strong>@Session["TenDangNhap"] </strong></a>
+                                <a href="@Url.Action("Information", "KhachHang")"><i class="fa fa-user" style="font-size:18px"></i>&nbsp;&nbsp;<strong>@Session["TenDangNhap"] </strong></a>
                             </li>
 
                             <li>

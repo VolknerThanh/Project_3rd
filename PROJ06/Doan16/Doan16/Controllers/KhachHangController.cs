@@ -154,5 +154,29 @@ namespace Doan16.Controllers
 
             return RedirectToAction("Index", "SanPham");
         }
+        public ActionResult Information()
+        {
+            KhachHang kh = (KhachHang)Session["TaiKhoan"];
+            if(kh != null)
+            {
+                var giohang = (from hd in db.HoaDons
+                               where hd.id_KhachHang == kh.id_KhachHang && hd.Status != 3 && hd.Status != 4
+                               select hd).ToList();
+
+                return View(giohang);
+            }
+            else
+            {
+                return RedirectToAction("DangNhap", "KhachHang");
+            }
+        }
+        public ActionResult ChiTietHoaDon(int id)
+        {
+            var giohang = (from ct in db.ChiTietHoaDons
+                           where ct.id_HoaDon == id
+                           select ct).ToList();
+            
+            return View(giohang);
+        }
     }
 }

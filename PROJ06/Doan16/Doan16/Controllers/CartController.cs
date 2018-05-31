@@ -364,6 +364,13 @@ namespace Doan16.Controllers
                 data.SaveChanges();
             }
             data.SaveChanges();
+
+            // cập nhật số tiền khách nợ vào thông tin của khách hàng
+            KhachHang khach = data.KhachHangs.Find(kh.id_KhachHang);
+            khach.SoTienConNo = TotalPrice();
+            data.Entry(khach).State = EntityState.Modified;
+            data.SaveChanges();
+
             Session["Cart"] = null;
             Session["ConNo"] = null;
             return RedirectToAction("ConfirmOrder", "Cart");
