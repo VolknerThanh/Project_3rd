@@ -172,11 +172,17 @@ namespace Doan16.Controllers
         }
         public ActionResult ChiTietHoaDon(int id)
         {
-            var giohang = (from ct in db.ChiTietHoaDons
-                           where ct.id_HoaDon == id
-                           select ct).ToList();
-            
-            return View(giohang);
+            KhachHang kh = (KhachHang)Session["TaiKhoan"];
+            if (kh != null)
+            {
+                var giohang = (from ct in db.ChiTietHoaDons
+                               where ct.id_HoaDon == id
+                               select ct).ToList();
+
+                return View(giohang);
+            }
+            else
+                return RedirectToAction("DangNhap", "KhachHang");
         }
     }
 }
