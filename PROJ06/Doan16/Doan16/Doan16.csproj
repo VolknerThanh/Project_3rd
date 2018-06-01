@@ -1008,6 +1008,8 @@
     <Content Include="Views\Report\ReportSoluongton.cshtml" />
     <Content Include="Views\KhachHang\Information.cshtml" />
     <Content Include="Views\KhachHang\ChiTietHoaDon.cshtml" />
+    <Content Include="Views\Admin\Notification.cshtml" />
+    <Content Include="Views\Admin\Warning.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1056,7 +1058,9 @@
     <EmbeddedResource Include="Migrations\201805290318293_BK_HoaDon_CTHoaDon.resx">
       <DependentUpon>201805290318293_BK_HoaDon_CTHoaDon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\BaoCaoSoLuongTon.rdlc" />
+    <Content Include="Report\BaoCaoSoLuongTon.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,33 @@
+﻿@using Doan16.Models
+@model List<PhieuHen>
+
+<li class="nav-item dropdown" style="float:left">
+    <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-fw fa-envelope"></i>
+        <span class="d-lg-none">
+            Messages
+            <span class="badge badge-pill badge-primary">12 New</span>
+        </span>
+        @if (Model.Count != 0)
+        {
+            <span class="indicator text-danger d-none d-lg-block">
+                <i class="fa fa-fw fa-circle"></i>
+            </span>
+        }
+    </a>
+    <div class="dropdown-menu" aria-labelledby="messagesDropdown">
+        <h6 class="dropdown-header">Ngày Hẹn Sắp Tới:</h6>
+
+        @foreach(var item in Model)
+        {
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="@Url.Action("Index","PhieuHen")">
+                <strong>@item.KhachHang.tenKhachHang</strong>
+                <span class="small float-right text-muted">@item.ngayhen.ToShortDateString()</span>
+                <div class="dropdown-message small">Ngày Hẹn Còn : @Math.Round(item.ngayhen.Subtract(DateTime.Now).TotalDays, 0) Ngày</div>
+            </a>
+        }
+
+        <a class="dropdown-item small" href="@Url.Action("Index","PhieuHen")">Xem tất cả ...</a>
+    </div>
+</li>

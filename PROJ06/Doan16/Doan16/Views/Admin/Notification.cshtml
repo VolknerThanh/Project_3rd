@@ -1,0 +1,49 @@
+﻿@using Doan16.Models
+@model List<HoaDon>
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-fw fa-bell"></i>
+        <span class="d-lg-none">
+            Alerts
+            <span class="badge badge-pill badge-warning">6 New</span>
+        </span>
+        @if(Model.Count != 0)
+        {
+            <span class="indicator text-warning d-none d-lg-block">
+                <i class="fa fa-fw fa-circle"></i>
+            </span>
+        }
+    </a>
+    <div class="dropdown-menu" aria-labelledby="alertsDropdown">
+        <h6 class="dropdown-header">Hóa Đơn Chưa Thanh Toán:</h6>
+
+        @foreach(var item in Model)
+        {
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="@Url.Action("Index", "HoaDon")">
+                @if(item.Status == 1)
+                {
+                    <span class="text-danger">
+                        <strong>
+                            <i class="fa fa-long-arrow-down fa-fw"></i>Phiếu Hẹn
+                        </strong>
+                    </span>
+                }
+                else if(item.Status == 2)
+                {
+                    <span class="text-warning">
+                        <strong>
+                            <i class="fa fa-long-arrow-down fa-fw"></i>Phiếu Nợ
+                        </strong>
+                    </span>
+                }
+                <span class="small float-right text-muted">@item.NgayXuatHD.ToShortDateString()</span>
+                <div class="dropdown-message small">@item.soHD</div>
+                <div class="dropdown-message small">Khách : <strong>@item.KhachHang.tenKhachHang</strong></div>
+            </a>
+        }
+        
+        <a class="dropdown-item small" style="color: dimgrey" href="@Url.Action("Index", "HoaDon")">Xem tất cả...</a>
+    </div>
+</li>

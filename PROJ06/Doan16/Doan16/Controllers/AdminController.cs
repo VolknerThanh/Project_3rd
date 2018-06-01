@@ -609,5 +609,29 @@ namespace Doan16.Controllers
         {
             return View();
         }
+
+        public ActionResult Notification()
+        {
+            var thongbao = (from hd in db.HoaDons
+                            where hd.Status != 3 && hd.Status != 4
+                            select hd).Take(3).ToList();
+
+            return PartialView(thongbao);
+        }
+
+        public double GetDate(DateTime date)
+        {
+            TimeSpan span = date.Subtract(DateTime.Now);
+            return span.TotalDays;
+        }
+
+        public ActionResult Warning()
+        {
+            var thongbao = (from ph in db.PhieuHens
+                            where ph.ngayhen.Year == DateTime.Now.Year && ph.ngayhen.Month == DateTime.Now.Month && ph.ngayhen.Day - DateTime.Now.Day <= 10
+                            select ph).Take(3).ToList();
+
+            return PartialView(thongbao);
+        }
     }
 }
