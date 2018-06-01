@@ -974,3 +974,4 @@ C:\Users\ASUS\Desktop\Doan16\Doan16\bin\zh-CHS\Microsoft.ReportViewer.WinForms.r
 C:\Users\ASUS\Desktop\Doan16\Doan16\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\ASUS\Desktop\Doan16\Doan16\obj\Debug\Doan16.Migrations.removeNull_PhanQuyen.resources
 C:\Users\ASUS\Desktop\Doan16\Doan16\obj\Debug\Doan16.Migrations.BK_HoaDon_CTHoaDon.resources
+C:\Users\ASUS\Desktop\Doan16\Doan16\bin\Report\BaoCaoSoLuongTon.rdlc
