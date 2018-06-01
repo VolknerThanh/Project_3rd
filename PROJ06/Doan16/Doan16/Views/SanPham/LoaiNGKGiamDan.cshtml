@@ -1,29 +1,31 @@
 ﻿
 @{
-    ViewBag.Title = "SPTheoNhaCungUng";
+    ViewBag.Title = "LoaiNGKGiamDan";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
+
+
 
 <div>
     <ol class="breadcrumb">
         <li><a href="@Url.Action("Index", "SanPham")">Home</a></li>
-        <li class="active">Nhà Cung Ứng</li>
+        <li class="active">Loại Sản Phẩm</li>
     </ol>
 </div>
 
 <!-- /.div -->
 <div class="row">
     <div class="btn-group alg-right-pad">
-        <button type="button" class="btn btn-default"><strong>@ViewBag.SoLuongTheoNCU </strong>items</button>
+        <button type="button" class="btn btn-default"><strong>@ViewBag.SoLuongTheoLoai  </strong>items</button>
         <div class="btn-group">
             <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                 Sort Products &nbsp;
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-                <li><a href="@Url.Action("NCUTangDan", "SanPham", new { @id = ViewBag.ID })">By Price Low</a></li>
+                <li><a href="@Url.Action("LoaiNGKTangDan","SanPham", new { @id = ViewBag.ID })">By Price Low</a></li>
                 <li class="divider"></li>
-                <li><a href="@Url.Action("NCUGiamDan", "SanPham" , new { @id = ViewBag.ID })">By Price High</a></li>
+                <li><a href="@Url.Action("LoaiNGKGiamDan","SanPham", new { @id = ViewBag.ID })">By Price High</a></li>
             </ul>
         </div>
     </div>
@@ -85,5 +87,4 @@
         }
     }
 </div>
-
 

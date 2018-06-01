@@ -84,12 +84,14 @@ namespace Doan16.Controllers
             {
                 var ncu = from s in db.NuocGKs where s.LoaiNGK.NhaCungUng1.id_NhaCungUng == id select s;
                 ViewBag.SoLuongTheoNCU = ncu.Count();
+                ViewBag.ID = id;
                 return View(ncu);
             }
             else
             {
                 var ncu = from s in db.NuocGKs where s.LoaiNGK.NhaCungUng1.id_NhaCungUng == id && s.soluongton > 0 select s;
                 ViewBag.SoLuongTheoNCU = ncu.Count();
+                ViewBag.ID = id;
                 return View(ncu);
             }
         }
@@ -100,16 +102,158 @@ namespace Doan16.Controllers
             {
                 var lngk = from s in db.NuocGKs where s.LoaiNGK.id_LoaiNGK == id select s;
                 ViewBag.SoLuongTheoLoai = lngk.Count();
+                ViewBag.ID = id;
                 return View(lngk);
             }
             else
             {
                 var lngk = from s in db.NuocGKs where s.LoaiNGK.id_LoaiNGK == id && s.soluongton > 0 select s;
                 ViewBag.SoLuongTheoLoai = lngk.Count();
+                ViewBag.ID = id;
                 return View(lngk);
             }
         }
 
+        public ActionResult TangDan()
+        {
+            if (Session["LoaiTaiKhoan"] != null && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == true)
+            {
+                var ds = (from sp in db.NuocGKs
+                          orderby sp.dongia ascending
+                          select sp).ToList();
+
+                return View(ds);
+            }
+            else
+            {
+                var ds = (from sp in db.NuocGKs
+                          where sp.soluongton > 0
+                          orderby sp.dongia ascending
+                          select sp).ToList();
+
+                return View(ds);
+            }
+        }
+        public ActionResult GiamDan()
+        {
+            if (Session["LoaiTaiKhoan"] != null && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == true)
+            {
+                var ds = (from sp in db.NuocGKs
+                          orderby sp.dongia descending
+                          select sp).ToList();
+
+                return View(ds);
+            }
+            else
+            {
+                var ds = (from sp in db.NuocGKs
+                          where sp.soluongton > 0
+                          orderby sp.dongia descending
+                          select sp).ToList();
+
+                return View(ds);
+            }
+        }
+        public ActionResult NCUTangDan(int id)
+        {
+            if (Session["LoaiTaiKhoan"] != null && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == true)
+            {
+                var ds = (from sp in db.NuocGKs
+                          where sp.LoaiNGK.NhaCungUng1.id_NhaCungUng == id
+                          orderby sp.dongia ascending
+                          select sp).ToList();
+
+                ViewBag.SoLuongTheoNCU = ds.Count();
+                ViewBag.ID = id;
+                return View(ds);
+            }
+            else
+            {
+                var ds = (from sp in db.NuocGKs
+                          where sp.soluongton > 0 && sp.LoaiNGK.NhaCungUng1.id_NhaCungUng == id
+                          orderby sp.dongia ascending
+                          select sp).ToList();
+
+                ViewBag.SoLuongTheoNCU = ds.Count();
+                ViewBag.ID = id;
+                return View(ds);
+            }
+        }
+        public ActionResult NCUGiamDan(int id)
+        {
+            if (Session["LoaiTaiKhoan"] != null && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == true)
+            {
+                var ds = (from sp in db.NuocGKs
+                          where sp.LoaiNGK.NhaCungUng1.id_NhaCungUng == id
+                          orderby sp.dongia descending
+                          select sp).ToList();
+
+                ViewBag.SoLuongTheoNCU = ds.Count();
+                ViewBag.ID = id;
+                return View(ds);
+            }
+            else
+            {
+                var ds = (from sp in db.NuocGKs
+                          where sp.soluongton > 0 && sp.LoaiNGK.NhaCungUng1.id_NhaCungUng == id
+                          orderby sp.dongia descending
+                          select sp).ToList();
+
+                ViewBag.SoLuongTheoNCU = ds.Count();
+                ViewBag.ID = id;
+                return View(ds);
+            }
+        }
+        public ActionResult LoaiNGKTangDan(int id)
+        {
+            if (Session["LoaiTaiKhoan"] != null && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == true)
+            {
+                var ds = (from sp in db.NuocGKs
+                          where sp.LoaiNGK.id_LoaiNGK == id
+                          orderby sp.dongia ascending
+                          select sp).ToList();
+
+                ViewBag.SoLuongTheoLoai = ds.Count();
+                ViewBag.ID = id;
+                return View(ds);
+            }
+            else
+            {
+                var ds = (from sp in db.NuocGKs
+                          where sp.LoaiNGK.id_LoaiNGK == id && sp.soluongton > 0
+                          orderby sp.dongia ascending
+                          select sp).ToList();
+
+                ViewBag.SoLuongTheoLoai = ds.Count();
+                ViewBag.ID = id;
+                return View(ds);
+            }
+        }
+        public ActionResult LoaiNGKGiamDan(int id)
+        {
+            if (Session["LoaiTaiKhoan"] != null && bool.Parse(Session["LoaiTaiKhoan"].ToString()) == true)
+            {
+                var ds = (from sp in db.NuocGKs
+                          where sp.LoaiNGK.id_LoaiNGK == id
+                          orderby sp.dongia descending
+                          select sp).ToList();
+
+                ViewBag.SoLuongTheoLoai = ds.Count();
+                ViewBag.ID = id;
+                return View(ds);
+            }
+            else
+            {
+                var ds = (from sp in db.NuocGKs
+                          where sp.LoaiNGK.id_LoaiNGK == id && sp.soluongton > 0
+                          orderby sp.dongia descending
+                          select sp).ToList();
+
+                ViewBag.SoLuongTheoLoai = ds.Count();
+                ViewBag.ID = id;
+                return View(ds);
+            }
+        }
         public ActionResult SanPhamLon()
         {
             // nuoc co ga

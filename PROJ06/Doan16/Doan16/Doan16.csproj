@@ -1012,6 +1012,12 @@
     <Content Include="Views\Admin\Warning.cshtml" />
     <Content Include="Views\HoaDon\HoaDonDaThanhToan.cshtml" />
     <Content Include="Views\HoaDon\HoaDonDaHuy.cshtml" />
+    <Content Include="Views\SanPham\TangDan.cshtml" />
+    <Content Include="Views\SanPham\GiamDan.cshtml" />
+    <Content Include="Views\SanPham\NCUTangDan.cshtml" />
+    <Content Include="Views\SanPham\NCUGiamDan.cshtml" />
+    <Content Include="Views\SanPham\LoaiNGKTangDan.cshtml" />
+    <Content Include="Views\SanPham\LoaiNGKGiamDan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

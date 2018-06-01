@@ -1,13 +1,17 @@
 ﻿
 @{
-    ViewBag.Title = "SPTheoNhaCungUng";
+    ViewBag.Title = "NCUGiamDan";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
+
+
+
+
 
 <div>
     <ol class="breadcrumb">
         <li><a href="@Url.Action("Index", "SanPham")">Home</a></li>
-        <li class="active">Nhà Cung Ứng</li>
+        <li class="active">Products</li>
     </ol>
 </div>
 
@@ -44,7 +48,7 @@
                     <div class="caption">
                         <h4><a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })">@nuoc.tenNGK</a></h4>
                         <p>Price : <strong>@nuoc.dongia VNĐ</strong>  </p>
-
+                        
                         <span>
                             <a href="@Url.Action("Details","SanPham", new { id = nuoc.id_NuocGK })" class="btn btn-primary" role="button">See Details</a>
 
@@ -85,5 +89,3 @@
         }
     }
 </div>
-
-
