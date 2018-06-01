@@ -43,10 +43,18 @@
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseCharts" data-parent="#exampleAccordion">
                         <i class="fa fa-fw fa-area-chart"></i>
-                        <span class="nav-link-text">Thống Kê</span>
+                        <span class="nav-link-text">Thống kê</span>
                     </a>
+                    <ul class="sidenav-second-level collapse" id="collapseCharts">
+                        <li>
+                            <a href="@Url.Action("Report", "Report")">Báo cáo doanh thu</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("ReportSoLuong", "Report")">Báo cáo số lượng tồn</a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
@@ -86,7 +94,18 @@
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseMulti">
                         <li>
-                            <a href="@Url.Action("Index", "HoaDon")">Quản Lý Hóa Đơn</a>
+                            <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti3">Quản lý hóa đơn</a>
+                            <ul class="sidenav-third-level collapse" id="collapseMulti3">
+                                <li>
+                                    <a href="@Url.Action("Index", "HoaDon")">Hóa Đơn Chờ Xử Lý</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("HoaDonDaThanhToan","HoaDon")">Hóa Đơn Đã Thanh Toán</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("HoaDonDaHuy", "HoaDon")">Hóa Đơn Đã Hủy</a>
+                                </li>
+                            </ul>                            
                         </li>
                         <li>
                             <a href="@Url.Action("Index","PhieuHen")">Quản Lý Phiếu Hẹn</a>

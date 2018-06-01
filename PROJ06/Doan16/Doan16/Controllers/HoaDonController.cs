@@ -29,7 +29,16 @@ namespace Doan16.Controllers
             var hd = Layhoadon();
             return View(hd.ToList());
         }
-
+        public ActionResult HoaDonDaThanhToan()
+        {
+            var hd = Layhoadon();
+            return View(hd.ToList());
+        }
+        public ActionResult HoaDonDaHuy()
+        {
+            var hd = Layhoadon();
+            return View(hd.ToList());
+        }
         public ActionResult ChiTietHD(int id)
         {
             HoaDon hoaDon = (from s in db.HoaDons

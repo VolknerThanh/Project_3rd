@@ -1010,6 +1010,8 @@
     <Content Include="Views\KhachHang\ChiTietHoaDon.cshtml" />
     <Content Include="Views\Admin\Notification.cshtml" />
     <Content Include="Views\Admin\Warning.cshtml" />
+    <Content Include="Views\HoaDon\HoaDonDaThanhToan.cshtml" />
+    <Content Include="Views\HoaDon\HoaDonDaHuy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
